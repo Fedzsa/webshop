@@ -1,0 +1,20 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow: hidden;
+    width: 250px;
+    height: 100%;
+    padding-top: 56px;
+    box-shadow: 0 5px 15px rgba(57, 98, 254, 0.02), 0 3px 6px rgba(117, 108, 254, 0.12);
+}
+
+.sidebar-menu {
+    padding: 10px;
+    list-style: none;
+}
+
+.sidebar-menu li i {
+    margin-right: 55px;
+}
