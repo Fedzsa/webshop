@@ -18,3 +18,8 @@
 .sidebar-menu li i {
     margin-right: 55px;
 }
+
+.main {
+    padding-top: 80px;
+    padding-left: 15% !important;
+}

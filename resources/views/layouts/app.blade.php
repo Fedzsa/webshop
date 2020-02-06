@@ -27,7 +27,7 @@
 
     @include('layouts.admin_sidebar')
 
-    <main class="container-fluid">
+    <main class="container main">
         <div class="row">
             <div class="col">
                 @yield('content')

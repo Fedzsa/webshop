@@ -3,7 +3,7 @@
         <ul class="sidebar-menu">
             <li>
                 <i class="fas fa-users"></i>
-                <span>Felhasználók</span>
+                <span>@lang('messages.users')</span>
             </li>
         </ul>
     </div>
