@@ -22,11 +22,6 @@
 .sidebar-menu li:hover {
     border-bottom: solid 1px black;
     cursor: pointer;
-    /*color: white;*/
-}
-
-.sidebar-menu li i {
-    /*margin-right: 55px;*/
 }
 
 .sidebar-menu li span {
