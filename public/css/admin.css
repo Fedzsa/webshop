@@ -15,8 +15,22 @@
     list-style: none;
 }
 
+.sidebar-menu li {
+    padding: 5px;
+}
+
+.sidebar-menu li:hover {
+    border-bottom: solid 1px black;
+    cursor: pointer;
+    /*color: white;*/
+}
+
 .sidebar-menu li i {
-    margin-right: 55px;
+    /*margin-right: 55px;*/
+}
+
+.sidebar-menu li span {
+    float: right;
 }
 
 .main {
