@@ -14,5 +14,6 @@ return [
     'forgot_password_link' => 'Elfelejtetted a jelszavad?',
     'logout' => 'Kijelentkezés',
     'users' => 'Felhasználók',
-    'name' => 'Név'
+    'name' => 'Név',
+    'registrated' => 'Regisztrált'
 ];

@@ -8,6 +8,8 @@
             <tr>
                 <th>id</th>
                 <th>@lang('messages.name')</th>
+                <th>@lang('messages.email')</th>
+                <th>@lang('messages.registrated')</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +17,8 @@
                 <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->getFullname() }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->created_at }}</td>
                 </tr>
             @endforeach
         </tbody>

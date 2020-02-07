@@ -21,5 +21,6 @@ return [
     'forgot_password_link' => 'Forgot your password?',
     'logout' => 'Logout',
     'users' => 'Users',
-    'name' => 'Name'
+    'name' => 'Name',
+    'registrated' => 'Registrated'
 ];
