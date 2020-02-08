@@ -40,4 +40,8 @@ class User extends Authenticatable
     public function getFullname(): String {
         return $this->firstname.' '.$this->lastname;
     }
+
+    public function isAdmin() {
+        return $this->admin === 1;
+    }
 }

@@ -14,4 +14,4 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/users', 'UserController@index')->name('users');
+Route::get('/users', 'UserController@index')->name('users')->middleware('can:viewAny,App\Models\User');

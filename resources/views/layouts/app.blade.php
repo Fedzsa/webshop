@@ -27,7 +27,9 @@
 <body>
     @include('layouts.header')
 
-    @include('layouts.admin_sidebar')
+    @if (Auth::user()->isAdmin())
+        @include('layouts.admin_sidebar')
+    @endif
 
     <main class="container main">
         <div class="row">
