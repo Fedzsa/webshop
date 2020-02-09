@@ -27,9 +27,11 @@
 <body>
     @include('layouts.header')
 
-    @if (Auth::user()->isAdmin())
-        @include('layouts.admin_sidebar')
-    @endif
+    @auth
+        @if (Auth::user()->isAdmin())
+            @include('layouts.admin_sidebar')
+        @endif
+    @endauth
 
     <main class="container main">
         <div class="row">

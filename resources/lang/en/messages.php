@@ -22,5 +22,8 @@ return [
     'logout' => 'Logout',
     'users' => 'Users',
     'name' => 'Name',
-    'registrated' => 'Registrated'
+    'registrated' => 'Registrated',
+    'products' => 'Products',
+    'price' => 'Price',
+    'description' => 'Description'
 ];

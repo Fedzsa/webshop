@@ -15,9 +15,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // binding repositories
         $this->app->bind('App\Repositories\User\UserRepositoryInterface', 'App\Repositories\User\UserRepository');
+        $this->app->bind('App\Repositories\Product\ProductRepositoryInterface', 'App\Repositories\Product\ProductRepository');
 
         // binding services
         $this->app->bind('App\Services\User\UserServiceInterface', 'App\Services\User\UserService');
+        $this->app->bind('App\Services\Product\ProductServiceInterface', 'App\Services\Product\ProductService');
     }
 
     /**
