@@ -10,6 +10,7 @@
                 <th>@lang('messages.name')</th>
                 <th>@lang('messages.price')</th>
                 <th>@lang('messages.description')</th>
+                <th><a href="{{ route('create-product') }}" class="btn btn-outline-light fas fa-plus"></a></th>
             </tr>
         </thead>
         <tbody>

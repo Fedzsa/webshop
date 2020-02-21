@@ -10,4 +10,8 @@ class ProductRepository implements ProductRepositoryInterface {
     public function getProducts() {
         return Product::all();
     }
+
+    public function storeProduct(Product $product) {
+        return $product->save();
+    }
 }

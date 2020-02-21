@@ -25,5 +25,9 @@ return [
     'registrated' => 'Registrated',
     'products' => 'Products',
     'price' => 'Price',
-    'description' => 'Description'
+    'description' => 'Description',
+    'create-product' => 'Create product',
+    'product-name' => 'Product name',
+    'back' => 'Back',
+    'save' => 'Save'
 ];
