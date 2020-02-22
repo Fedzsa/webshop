@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Product;
+use App\Models\Product;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProductPolicy
@@ -30,7 +30,7 @@ class ProductPolicy
      */
     public function view(User $user, Product $product)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $product)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**

@@ -20,3 +20,4 @@ Route::get('/products', 'ProductController@index')->name('products')->middleware
 Route::get('/products/create', 'ProductController@create')->name('create-product')->middleware('can:viewAny,App\Models\Product');
 Route::get('/products/{id}/edit', 'ProductController@edit')->name('edit-product');
 Route::post('/products', 'ProductController@store')->name('store-product')->middleware('can:create,App\Models\Product');
+Route::post('/products/{id}', 'ProductController@update')->name('update-product');

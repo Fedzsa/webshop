@@ -22,4 +22,16 @@ class ProductService implements ProductServiceInterface {
 
         return $this->productRepo->storeProduct($product);
     }
+
+    public function getProductByIdForUpdate(int $id) {
+        return $this->productRepo->getProductById($id);
+    }
+
+    function updateProduct(int $id, array $attributes) {
+        $product = $this->getProductByIdForUpdate($id);
+
+        $product->fill($attributes);
+
+        return $this->productRepo->updateProduct($product);
+    }
 }

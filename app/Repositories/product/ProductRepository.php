@@ -14,4 +14,12 @@ class ProductRepository implements ProductRepositoryInterface {
     public function storeProduct(Product $product) {
         return $product->save();
     }
+
+    public function getProductById(int $id) {
+        return Product::find($id);
+    }
+
+    public function updateProduct(Product $product) {
+        return $product->save();
+    }
 }

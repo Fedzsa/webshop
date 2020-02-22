@@ -32,12 +32,27 @@ class ProductController extends Controller
         if($isInserted)
             return redirect()->route('products');
         else
-            return redirect()->withInput();
+            return back()->withInput();
     }
 
     public function edit($id) {
-        // todo
-        dd(\App\Models\Product::find($id));
+        $product = $this->productService->getProductByIdForUpdate((int)$id);
+
+        $this->authorize('view', $product);
+
+        return view('product.update', ['product' => $product]);
     }
 
+    public function update(StoreProduct $request, $id) {
+        $product = $this->productService->getProductByIdForUpdate((int)$id);
+
+        $this->authorize('update', $product);
+
+        $isUpdated = $this->productService->updateProduct((int)$id, $request->validated());
+
+        if($isUpdated)
+            return redirect()->route('products');
+        else
+            return back()->withInput();
+    }
 }
