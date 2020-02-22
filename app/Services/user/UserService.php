@@ -12,7 +12,7 @@ class UserService implements UserServiceInterface {
         $this->userRepo = $userRepo;
     }
 
-    public function getUsers() {
-        return $this->userRepo->getUsers();
+    public function getPaginatedUsers() {
+        return $this->userRepo->getPaginatedUsers();
     }
 }

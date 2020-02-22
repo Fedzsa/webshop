@@ -19,7 +19,7 @@
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->price }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td>{{ $product->getTruncatedDescription() }}</td>
                     <td>
                         <a href="{{ route('edit-product', ['id' => $product->id]) }}" class="fas fa-edit"></a>
                     </td>
@@ -27,4 +27,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="paginator">
+        {{ $products->onEachSide(1)->links() }}
+    </div>
 @endsection

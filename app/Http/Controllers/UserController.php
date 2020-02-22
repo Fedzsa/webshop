@@ -16,7 +16,7 @@ class UserController extends Controller
     }
 
     public function index() {
-        $users = $this->userService->getUsers();
+        $users = $this->userService->getPaginatedUsers();
         return view('user.index', ['users' => $users]);
     }
 }

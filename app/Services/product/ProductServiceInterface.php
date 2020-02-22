@@ -3,6 +3,6 @@
 namespace App\Services\Product;
 
 interface ProductServiceInterface {
-    function getProducts();
+    function getPaginatedProducts();
     function storeProduct(array $attributes);
 }

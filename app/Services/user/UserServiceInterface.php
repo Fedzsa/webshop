@@ -3,5 +3,5 @@
 namespace App\Services\User;
 
 interface UserServiceInterface {
-    function getUsers();
+    function getPaginatedUsers();
 }

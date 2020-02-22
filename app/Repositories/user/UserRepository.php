@@ -7,7 +7,7 @@ use App\Models\User;
 
 class UserRepository implements UserRepositoryInterface {
     
-    public function getUsers() {
-        return User::all();
+    public function getPaginatedUsers() {
+        return User::paginate(10);
     }
 }

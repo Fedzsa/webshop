@@ -13,4 +13,8 @@ class Product extends Model
     public function specifications() {
         return $this->hasMany('App\Models\Specification');
     }
+
+    public function getTruncatedDescription() {
+        return substr($this->description, 0, 50).'...';
+    }
 }

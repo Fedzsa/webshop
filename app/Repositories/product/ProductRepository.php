@@ -7,8 +7,8 @@ use App\Models\Product;
 
 class ProductRepository implements ProductRepositoryInterface {
 
-    public function getProducts() {
-        return Product::all();
+    public function getPaginatedProducts() {
+        return Product::paginate(10);
     }
 
     public function storeProduct(Product $product) {

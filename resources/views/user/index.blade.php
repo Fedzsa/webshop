@@ -23,4 +23,8 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="paginator">
+        {{ $users->onEachSide(1)->links() }}
+    </div>
 @endsection
