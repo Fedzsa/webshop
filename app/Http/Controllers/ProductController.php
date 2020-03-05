@@ -16,10 +16,12 @@ class ProductController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
-        $products = $this->productService->getPaginatedProducts();
+    public function index(Request $request) {
+        $search = $request->filled('search') ? $request->query('search', '') : '';
 
-        return view('product.index', ['products' => $products]);
+        $products = $this->productService->getPaginatedProducts($search);
+        
+        return view('product.index', ['products' => $products, 'searchedText' => $search]);
     }
 
     public function create() {

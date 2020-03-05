@@ -13,8 +13,8 @@ class ProductService implements ProductServiceInterface {
         $this->productRepo = $productRepo;
     }
 
-    public function getpaginatedProducts() {
-        return $this->productRepo->getPaginatedProducts();
+    public function getpaginatedProducts(string $search) {
+        return $this->productRepo->getPaginatedProducts($search);
     }
 
     public function storeProduct(array $attributes) {

@@ -7,8 +7,8 @@ use App\Models\Product;
 
 class ProductRepository implements ProductRepositoryInterface {
 
-    public function getPaginatedProducts() {
-        return Product::paginate(10);
+    public function getPaginatedProducts(string $search) {
+        return Product::where('name','like', '%'.$search.'%')->paginate(10);
     }
 
     public function storeProduct(Product $product) {
