@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index(Request $request) {
         $search = $request->filled('search') ? $request->query('search', '') : '';
 
-        $categories = $this->categoryService->getPaginatedCategories();
+        $categories = $this->categoryService->getPaginatedCategories($search);
 
         return view('category.index', ['categories' => $categories, 'searchedText' => $search]);
     }

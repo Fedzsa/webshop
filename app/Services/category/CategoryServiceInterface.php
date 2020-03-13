@@ -4,5 +4,5 @@ namespace App\Services\Category;
 
 interface CategoryServiceInterface
 {
-    function getPaginatedCategories();
+    function getPaginatedCategories(string $searchedText);
 }

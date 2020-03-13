@@ -13,8 +13,8 @@ class CategoryService implements CategoryServiceInterface
         $this->category = $category;
     }
 
-    public function getPaginatedCategories()
+    public function getPaginatedCategories(string $searchedText)
     {
-        return $this->category->paginate(10);
+        return $this->category->where('name', 'like', '%'.$searchedText.'%')->paginate(10);
     }
 }

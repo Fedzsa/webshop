@@ -30,10 +30,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($categories as $categories)
+                @foreach ($categories as $category)
                     <tr>
-                        <td>{{ $categories->id }}</td>
-                        <td>{{ $categories->name }}</td>
+                        <td>{{ $category->id }}</td>
+                        <td>{{ $category->name }}</td>
                         <td>
 
                         </td>
