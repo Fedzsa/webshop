@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Category\CategoryServiceInterface;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -11,5 +12,13 @@ class CategoryController extends Controller
     public function __construct(CategoryServiceInterface $categoryService)
     {
         $this->categoryService = $categoryService;
+    }
+
+    public function index(Request $request) {
+        $search = $request->filled('search') ? $request->query('search', '') : '';
+
+        $categories = $this->categoryService->getPaginatedCategories();
+
+        return view('category.index', ['categories' => $categories, 'searchedText' => $search]);
     }
 }

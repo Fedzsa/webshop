@@ -22,3 +22,5 @@ Route::get('/products/create', 'ProductController@create')->name('create-product
 Route::get('/products/{id}/edit', 'ProductController@edit')->name('edit-product');
 Route::post('/products', 'ProductController@store')->name('store-product')->middleware('can:create,App\Models\Product');
 Route::post('/products/{id}', 'ProductController@update')->name('update-product');
+
+Route::get('/categories', 'CategoryController@index')->name('categories');

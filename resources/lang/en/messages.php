@@ -29,5 +29,6 @@ return [
     'create-product' => 'Create product',
     'product-name' => 'Product name',
     'back' => 'Back',
-    'save' => 'Save'
+    'save' => 'Save',
+    'categories' => 'Categories'
 ];

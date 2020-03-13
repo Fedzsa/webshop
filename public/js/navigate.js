@@ -5,3 +5,7 @@ function navigateToUsers() {
 function navigateToProducts() {
     window.location.href = '/products';
 }
+
+function navigateToCategories() {
+    window.location.href = '/categories';
+}
