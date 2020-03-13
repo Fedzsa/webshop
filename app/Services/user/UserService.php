@@ -2,17 +2,14 @@
 
 namespace App\Services\User;
 
-use App\Services\User\UserServiceInterface;
-use App\Repositories\User\UserRepositoryInterface;
+use App\Models\User;
 
 class UserService implements UserServiceInterface {
-    private $userRepo;
 
-    public function __construct(UserRepositoryInterface $userRepo) {
-        $this->userRepo = $userRepo;
+    public function __construct() {
     }
 
     public function getPaginatedUsers() {
-        return $this->userRepo->getPaginatedUsers();
+        return User::paginate(10);
     }
 }

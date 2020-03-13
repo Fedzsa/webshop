@@ -10,13 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/users', 'UserController@index')->name('users')->middleware('can:viewAny,App\Models\User');
 
 Route::get('/products', 'ProductController@index')->name('products')->middleware('can:viewAny,App\Models\Product');
+Route::get('/products/{id}', 'ProductController@show')->name('show-product');
 Route::get('/products/create', 'ProductController@create')->name('create-product')->middleware('can:viewAny,App\Models\Product');
 Route::get('/products/{id}/edit', 'ProductController@edit')->name('edit-product');
 Route::post('/products', 'ProductController@store')->name('store-product')->middleware('can:create,App\Models\Product');

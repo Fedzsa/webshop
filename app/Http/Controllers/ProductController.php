@@ -24,6 +24,12 @@ class ProductController extends Controller
         return view('product.index', ['products' => $products, 'searchedText' => $search]);
     }
 
+    public function show($id) {
+        $product = $this->productService->getProductByIdWithSpecifications((int) $id);
+        
+        return view('product.show', ['product' => $product]);
+    }
+
     public function create() {
         return view('product.create');
     }
@@ -38,7 +44,7 @@ class ProductController extends Controller
     }
 
     public function edit($id) {
-        $product = $this->productService->getProductByIdForUpdate((int)$id);
+        $product = $this->productService->getProductById((int) $id);
 
         $this->authorize('view', $product);
 

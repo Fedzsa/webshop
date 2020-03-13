@@ -39,6 +39,7 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->getTruncatedDescription() }}</td>
                                 <td>
+                                    <a href="{{ route('show-product', ['id' => $product->id]) }}" class="fas fa-eye"></a>
                                     <a href="{{ route('edit-product', ['id' => $product->id]) }}" class="fas fa-edit"></a>
                                 </td>
                             </tr>

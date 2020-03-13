@@ -2,36 +2,37 @@
 
 namespace App\Services\Product;
 
-use App\Services\Product\ProductServiceInterface;
-use App\Repositories\Product\ProductRepositoryInterface;
 use App\Models\Product;
 
 class ProductService implements ProductServiceInterface {
-    private ProductRepositoryInterface $productRepo;
 
-    public function __construct(ProductRepositoryInterface $productRepo) {
-        $this->productRepo = $productRepo;
+    public function __construct() {
+
     }
 
-    public function getpaginatedProducts(string $search) {
-        return $this->productRepo->getPaginatedProducts($search);
+    public function getPaginatedProducts(string $search) {
+        return Product::where('name','like', '%'.$search.'%')->paginate(10);
     }
 
     public function storeProduct(array $attributes) {
         $product = new Product($attributes);
 
-        return $this->productRepo->storeProduct($product);
+        return $product->save();
     }
 
-    public function getProductByIdForUpdate(int $id) {
-        return $this->productRepo->getProductById($id);
+    public function getProductById(int $id) {
+        return Product::find($id);
     }
 
-    function updateProduct(int $id, array $attributes) {
-        $product = $this->getProductByIdForUpdate($id);
+    public function updateProduct(int $id, array $attributes) {
+        $product = $this->getProductById($id);
 
         $product->fill($attributes);
 
-        return $this->productRepo->updateProduct($product);
+        return $product->save();
+    }
+
+    public function getProductByIdWithSpecifications(int $id) {
+        return Product::with('specifications')->find($id);
     }
 }
