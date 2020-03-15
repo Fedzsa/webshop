@@ -32,5 +32,9 @@ return [
     'back' => 'Back',
     'save' => 'Save',
     'categories' => 'Categories',
-    'create-category' => 'Create category'
+    'create-category' => 'Create category',
+    'update-category' => 'Update :name',
+    'update' => 'Update',
+    'delete' => 'Delete',
+    'delete-category' => 'Are you sure you want to delete the :name category?'
 ];

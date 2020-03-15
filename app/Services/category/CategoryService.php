@@ -4,6 +4,7 @@ namespace App\Services\Category;
 
 use App\Exceptions\CategoryNotInsertedException;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryService implements CategoryServiceInterface
 {
@@ -25,5 +26,24 @@ class CategoryService implements CategoryServiceInterface
 
         if(!$saved)
             throw new CategoryNotInsertedException('Category not inserted!');
+    }
+
+    public function getCategory(int $id)
+    {
+        return $this->category->findOrFail($id);
+    }
+
+    public function updateCategory(int $id, array $attributes) {
+        $category = $this->category->findOrFail($id);
+
+        $category->fill($attributes);
+
+        return $category->save();
+    }
+
+    public function destroyCategory(int $id) {
+        $category = $this->category->findOrFail($id);
+
+        return $category->delete();
     }
 }

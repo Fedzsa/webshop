@@ -37,7 +37,8 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
-
+                                <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-primary fas fa-edit"></a>
+                                <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger fas fa-trash"></a>
                             </td>
                         </tr>
                     @endforeach

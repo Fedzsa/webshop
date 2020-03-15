@@ -35,4 +35,34 @@ class CategoryController extends Controller
 
         return back()->with('status', 'Category created!');
     }
+
+    public function edit($id) {
+        $category = $this->categoryService->getCategory((int)$id);
+
+        return view('category.edit', ['category' => $category]);
+    }
+
+    public function update(StoreCategory $request, $id) {
+        $updated = $this->categoryService->updateCategory((int)$id, $request->validated());
+
+        if($updated)
+            return back()->with('status', 'Category updated!')->withInput($request->all());
+        else
+            return back()->with('status', 'Category not updated!')->withInput($request->all());
+    }
+
+    public function delete($id) {
+        $category = $this->categoryService->getCategory((int)$id);
+
+        return view('category.delete', ['category' => $category]);
+    }
+
+    public function destroy($id) {
+        $deleted = $this->categoryService->destroyCategory((int) $id);
+
+        if($deleted)
+            return redirect()->route('categories.index');
+        else
+            return back()->withErrors(['status', 'Category not be deleted!'])->withInput();
+    }
 }

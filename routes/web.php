@@ -16,9 +16,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/users', 'UserController@index')->name('users')->middleware('can:viewAny,App\Models\User');
 
-Route::resource('categories', 'CategoryController')->only([
-    'index', 'create', 'store'
-]);
+Route::resource('categories', 'CategoryController')->except(['show']);
+Route::get('/categories/{id}/delete', 'CategoryController@delete')->name('categories.delete');
 /*Route::get('/categories', 'CategoryController@index')->name('categories');
 Route::get('/categories/create', 'CategoryController@create')->name('create-category');
 Route::post('/categories', 'CategoryController@store')->name('store-category');*/
