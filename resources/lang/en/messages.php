@@ -23,6 +23,7 @@ return [
     'users' => 'Users',
     'name' => 'Name',
     'registrated' => 'Registrated',
+    'create' => 'Create',
     'products' => 'Products',
     'price' => 'Price',
     'description' => 'Description',
@@ -30,5 +31,6 @@ return [
     'product-name' => 'Product name',
     'back' => 'Back',
     'save' => 'Save',
-    'categories' => 'Categories'
+    'categories' => 'Categories',
+    'create-category' => 'Create category'
 ];

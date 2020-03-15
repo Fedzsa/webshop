@@ -6,7 +6,7 @@
             <h2>@lang('messages.categories')</h2>
         </div>
         <div class="col">
-            <form action="{{ route('categories') }}" method="get">
+            <form action="{{ route('categories.index') }}" method="get">
                 <div class="form-row">
                     <div class="col">
                         <input type="text" class="float-right form-control mb-2" name="search" placeholder="Search..." value="{{ $searchedText }}" />
@@ -23,22 +23,24 @@
         <div class="col">
             <table class="table table-hover">
                 <thead class="thead-dark">
-                <tr>
-                    <th>id</th>
-                    <th>@lang('messages.name')</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>id</th>
+                        <th>@lang('messages.name')</th>
+                        <th>
+                            <a href="{{ route('categories.create') }}" class="btn btn-outline-light fas fa-plus"></a>
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
-                @foreach ($categories as $category)
-                    <tr>
-                        <td>{{ $category->id }}</td>
-                        <td>{{ $category->name }}</td>
-                        <td>
+                    @foreach ($categories as $category)
+                        <tr>
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->name }}</td>
+                            <td>
 
-                        </td>
-                    </tr>
-                @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
 

@@ -16,11 +16,16 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/users', 'UserController@index')->name('users')->middleware('can:viewAny,App\Models\User');
 
+Route::resource('categories', 'CategoryController')->only([
+    'index', 'create', 'store'
+]);
+/*Route::get('/categories', 'CategoryController@index')->name('categories');
+Route::get('/categories/create', 'CategoryController@create')->name('create-category');
+Route::post('/categories', 'CategoryController@store')->name('store-category');*/
+
 Route::get('/products', 'ProductController@index')->name('products')->middleware('can:viewAny,App\Models\Product');
-Route::get('/products/{id}', 'ProductController@show')->name('show-product');
 Route::get('/products/create', 'ProductController@create')->name('create-product')->middleware('can:viewAny,App\Models\Product');
+Route::get('/products/{id}', 'ProductController@show')->name('show-product');
 Route::get('/products/{id}/edit', 'ProductController@edit')->name('edit-product');
 Route::post('/products', 'ProductController@store')->name('store-product')->middleware('can:create,App\Models\Product');
 Route::post('/products/{id}', 'ProductController@update')->name('update-product');
-
-Route::get('/categories', 'CategoryController@index')->name('categories');
