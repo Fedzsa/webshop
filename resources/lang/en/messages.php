@@ -36,5 +36,6 @@ return [
     'update-category' => 'Update :name',
     'update' => 'Update',
     'delete' => 'Delete',
-    'delete-category' => 'Are you sure you want to delete the :name category?'
+    'delete-category' => 'Are you sure you want to delete the :name category?',
+    'deleted' => 'Deleted'
 ];

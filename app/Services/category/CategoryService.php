@@ -17,7 +17,7 @@ class CategoryService implements CategoryServiceInterface
 
     public function getPaginatedCategories(string $searchedText)
     {
-        return $this->category->where('name', 'like', '%'.$searchedText.'%')->paginate(10);
+        return $this->category->where('name', 'like', '%'.$searchedText.'%')->withTrashed()->paginate(10);
     }
 
     public function storeCategory(array $attributes)

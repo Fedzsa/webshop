@@ -26,6 +26,7 @@
                     <tr>
                         <th>id</th>
                         <th>@lang('messages.name')</th>
+                        <th>@lang('messages.deleted')</th>
                         <th>
                             <a href="{{ route('categories.create') }}" class="btn btn-outline-light fas fa-plus"></a>
                         </th>
@@ -36,6 +37,11 @@
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
+                            <td>
+                                @if($category->trashed())
+                                    <i class="fas fa-check text-success"></i>
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-primary fas fa-edit"></a>
                                 <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger fas fa-trash"></a>
