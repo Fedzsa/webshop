@@ -9,6 +9,10 @@
                 <i class="fas fa-clipboard-list"></i>
                 <span>@lang('messages.categories')</span>
             </li>
+            <li onclick="navigateToSpecifications()">
+                <i class="far fa-list-alt"></i>
+                <span>{{ trans_choice('messages.specification', 2) }}</span>
+            </li>
             <li onclick="navigateToProducts()">
                 <i class="fas fa-store-alt"></i>
                 <span>@lang('messages.products')</span>

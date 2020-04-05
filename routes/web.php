@@ -18,9 +18,10 @@ Route::get('/users', 'UserController@index')->name('users')->middleware('can:vie
 
 Route::resource('categories', 'CategoryController')->except(['show']);
 Route::get('/categories/{id}/delete', 'CategoryController@delete')->name('categories.delete');
-/*Route::get('/categories', 'CategoryController@index')->name('categories');
-Route::get('/categories/create', 'CategoryController@create')->name('create-category');
-Route::post('/categories', 'CategoryController@store')->name('store-category');*/
+
+Route::resource('specifications', 'SpecificationController')->except(['show']);
+Route::get('/specifications/{specification}/delete', 'SpecificationController@delete')->name('specifications.delete');
+Route::put('/specifications/{specification}/restore', 'SpecificationController@restore')->name('specifications.restore');
 
 Route::get('/products', 'ProductController@index')->name('products')->middleware('can:viewAny,App\Models\Product');
 Route::get('/products/create', 'ProductController@create')->name('create-product')->middleware('can:viewAny,App\Models\Product');

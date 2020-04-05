@@ -9,3 +9,7 @@ function navigateToProducts() {
 function navigateToCategories() {
     window.location.href = '/categories';
 }
+
+function navigateToSpecifications() {
+    window.location.href = '/specifications'
+}

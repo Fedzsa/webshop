@@ -37,5 +37,8 @@ return [
     'update' => 'Update',
     'delete' => 'Delete',
     'delete-category' => 'Are you sure you want to delete the :name category?',
-    'deleted' => 'Deleted'
+    'deleted' => 'Deleted',
+    'specification' => '{1} Specification|[2,*] Specifications',
+    'delete-specification' => 'Are you sure you want to delete the :name specification?',
+    'update-specification' => 'Update :name'
 ];
