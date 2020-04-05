@@ -9,7 +9,7 @@
             <form action="{{ route('categories.index') }}" method="get">
                 <div class="form-row">
                     <div class="col">
-                        <input type="text" class="float-right form-control mb-2" name="search" placeholder="Search..." value="{{ $searchedText }}" />
+                        <input type="text" class="float-right form-control mb-2" name="search" placeholder="Search..." value="{{ $search }}" />
                     </div>
                     <div class="col-3">
                         <input type="submit" class="btn btn-success form-control" value="Search">
@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col">
-            <table class="table table-hover">
+            <table id="category-table" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>id</th>
@@ -34,7 +34,7 @@
                 </thead>
                 <tbody>
                     @foreach ($categories as $category)
-                        <tr>
+                        <tr id="{{ $category->id }}">
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
@@ -44,7 +44,11 @@
                             </td>
                             <td>
                                 <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-primary fas fa-edit"></a>
-                                <a href="{{ route('categories.delete', ['id' => $category->id]) }}" class="btn btn-danger fas fa-trash"></a>
+                                @if(! $category->trashed())
+                                    <a href="{{ route('categories.delete', ['category' => $category->id]) }}" class="btn btn-danger fas fa-trash"></a>
+                                @else
+                                    <button class="btn btn-warning fas fa-trash-restore" onclick="restore({{ $category->id }})"></button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -56,4 +60,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset('js/category.js') }}"></script>
 @endsection

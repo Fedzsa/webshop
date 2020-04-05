@@ -17,7 +17,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/users', 'UserController@index')->name('users')->middleware('can:viewAny,App\Models\User');
 
 Route::resource('categories', 'CategoryController')->except(['show']);
-Route::get('/categories/{id}/delete', 'CategoryController@delete')->name('categories.delete');
+Route::get('/categories/{category}/delete', 'CategoryController@delete')->name('categories.delete');
+Route::put('/categories/{category}/restore', 'CategoryController@restore')->name('categories.restore');
 
 Route::resource('specifications', 'SpecificationController')->except(['show']);
 Route::get('/specifications/{specification}/delete', 'SpecificationController@delete')->name('specifications.delete');

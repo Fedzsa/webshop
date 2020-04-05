@@ -7,10 +7,10 @@ $.ajaxSetup({
 function restore(id) {
     $.ajax({
         type: 'PUT',
-        url: `/specifications/${id}/restore`,
+        url: `/categories/${id}/restore`,
         success: (response) => {
             if(response.success) {
-                let elementRow = $(`#specification-table #${id}`);
+                let elementRow = $(`#category-table #${id}`);
 
                 elementRow.find('i').remove();
 
@@ -27,7 +27,7 @@ function restore(id) {
 
 function createEditLinkTag(id) {
     let link = $('<a></a>');
-    link.attr('href', `/specifications/${id}/delete`);
+    link.attr('href', `/categories/${id}/delete`);
     link.attr('class', 'btn btn-danger fas fa-trash');
     return link;
 }

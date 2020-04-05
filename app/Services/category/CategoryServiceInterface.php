@@ -2,11 +2,14 @@
 
 namespace App\Services\Category;
 
-interface CategoryServiceInterface
-{
+use App\Models\Category;
+
+interface CategoryServiceInterface {
     function getPaginatedCategories(string $searchedText);
-    function storeCategory(array $attributes);
-    function getCategory(int $id);
-    function updateCategory(int $id, array $attributes);
-    function destroyCategory(int $id);
+    function search($search);
+    function getById(int $category);
+    function store(array $attributes);
+    function update(Category $category, array $attributes): bool;
+    function destroy(Category $category): bool;
+    function restore(Category $category): bool;
 }

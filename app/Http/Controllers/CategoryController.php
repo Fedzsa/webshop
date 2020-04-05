@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategory;
+use App\Models\Category;
 use App\Services\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
-{
+class CategoryController extends Controller {
     private CategoryServiceInterface $categoryService;
 
-    public function __construct(CategoryServiceInterface $categoryService)
-    {
+    public function __construct(CategoryServiceInterface $categoryService) {
         $this->categoryService = $categoryService;
 
         $this->middleware('auth');
@@ -19,50 +18,62 @@ class CategoryController extends Controller
     }
 
     public function index(Request $request) {
-        $search = $request->filled('search') ? $request->query('search', '') : '';
+        $this->authorize('viewAny', Category::class);
+
+        $search = $request->query('search');
 
         $categories = $this->categoryService->getPaginatedCategories($search);
 
-        return view('category.index', ['categories' => $categories, 'searchedText' => $search]);
+        return view('category.index', compact(['categories', 'search']));
     }
 
     public function create() {
+        $this->authorize('create', Category::class);
+
         return view('category.create');
     }
 
     public function store(StoreCategory $request) {
-        $this->categoryService->storeCategory($request->validated());
+        $this->authorize('create', Category::class);
+
+        $this->categoryService->store($request->validated());
 
         return back()->with('status', 'Category created!');
     }
 
-    public function edit($id) {
-        $category = $this->categoryService->getCategory((int)$id);
+    public function edit(Category $category) {
+        $this->authorize('update', $category);
 
-        return view('category.edit', ['category' => $category]);
+        return view('category.edit', compact('category'));
     }
 
-    public function update(StoreCategory $request, $id) {
-        $updated = $this->categoryService->updateCategory((int)$id, $request->validated());
+    public function update(StoreCategory $request, Category $category) {
+        $this->authorize('update', $category);
 
-        if($updated)
-            return back()->with('status', 'Category updated!')->withInput($request->all());
-        else
-            return back()->with('status', 'Category not updated!')->withInput($request->all());
+        $this->categoryService->update($category, $request->validated());
+
+        return back()->with('status', 'Category updated!')->withInput($request->all());
     }
 
-    public function delete($id) {
-        $category = $this->categoryService->getCategory((int)$id);
+    public function delete(Category $category) {
+        $this->authorize('delete', $category);
 
-        return view('category.delete', ['category' => $category]);
+        return view('category.delete', compact('category'));
     }
 
-    public function destroy($id) {
-        $deleted = $this->categoryService->destroyCategory((int) $id);
+    public function destroy(Category $category) {
+        $this->authorize('delete', $category);
 
-        if($deleted)
-            return redirect()->route('categories.index');
-        else
-            return back()->withErrors(['status', 'Category not be deleted!'])->withInput();
+        $this->categoryService->destroy($category);
+
+        return redirect()->route('categories.index');
+    }
+
+    public function restore(Category $category) {
+        $this->authorize('restore', $category);
+
+        $this->categoryService->restore($category);
+
+        return response()->json(['success' => true]);
     }
 }
