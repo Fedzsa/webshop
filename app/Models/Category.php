@@ -14,6 +14,10 @@ class Category extends Model
 
     protected $searchable = ['name'];
 
+    public function products() {
+        return $this->hasMany('App\Models\Product');
+    }
+
     public function resolveRouteBinding($value) {
         return $this->withTrashed()->findOrFail($value);
     }
