@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Specification;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProductPolicy
@@ -65,7 +66,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -77,7 +78,7 @@ class ProductPolicy
      */
     public function restore(User $user, Product $product)
     {
-        //
+        return $user->isAdmin();
     }
 
     /**
@@ -89,6 +90,10 @@ class ProductPolicy
      */
     public function forceDelete(User $user, Product $product)
     {
-        //
+        return $user->isAdmin();
+    }
+
+    public function upload(User $user, Product $product) {
+        return $user->isAdmin();
     }
 }

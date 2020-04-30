@@ -3,36 +3,68 @@
 namespace App\Services\Product;
 
 use App\Models\Product;
+use App\Models\Specification;
 
 class ProductService implements ProductServiceInterface {
+    private Product $product;
+    private Specification $specification;
 
-    public function __construct() {
-
+    public function __construct(Product $product, Specification $specification) {
+        $this->product = $product;
+        $this->specification = $specification;
     }
 
-    public function getPaginatedProducts(string $search) {
-        return Product::where('name','like', '%'.$search.'%')->paginate(10);
+    public function getPaginatedProducts($search) {
+        return $this->product->search($search)
+                                ->withTrashed()
+                                ->select('id', 'name', 'price', 'description', 'deleted_at')
+                                ->paginate(10);
     }
 
-    public function storeProduct(array $attributes) {
-        $product = new Product($attributes);
-
-        return $product->save();
+    public function store(array $attributes) {
+        return $this->product->create($attributes);
     }
 
-    public function getProductById(int $id) {
+    public function getById(int $id) {
         return Product::find($id);
     }
 
-    public function updateProduct(int $id, array $attributes) {
-        $product = $this->getProductById($id);
-
-        $product->fill($attributes);
-
-        return $product->save();
+    public function update(Product $product, array $attributes) {
+        return $product->update($attributes);
     }
 
-    public function getProductByIdWithSpecifications(int $id) {
-        return Product::with('specifications')->find($id);
+    public function getProductByIdWithSpecificationsAndImages(int $id) {
+        return $this->product->with('specifications')
+                                ->with('files')
+                                ->find($id);
+    }
+
+    public function storeSpecifications(Product $product, array $attributes) {
+        $specification = $this->specification->find($attributes['specification'], ['id']);
+
+        return $product->specifications()->save($specification, [
+            'value' => $attributes['specification-value'],
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+    }
+
+    public function updateSpecification(Product $product, int $specificationId, array $attributes) {
+        return $product->specifications()->updateExistingPivot($specificationId, [
+            'value' => $attributes['specification-value'],
+            'updated_at' => now()
+        ]);
+    }
+
+    public function destroySpecification(Product $product, int $specificationId){
+        return $product->specifications()->updateExistingPivot($specificationId, [
+            'deleted_at' => now()
+        ]);
+    }
+
+    public function restoreSpecification(Product $product, int $specificationId) {
+        return $product->specifications()->updateExistingPivot($specificationId, [
+            'deleted_at' => null
+        ]);
     }
 }

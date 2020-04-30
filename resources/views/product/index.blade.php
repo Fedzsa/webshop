@@ -6,10 +6,10 @@
                 <h2>@lang('messages.products')</h2>
             </div>
             <div class="col">
-                <form action="{{ route('products') }}" method="get">
+                <form action="{{ route('products.index') }}" method="get">
                     <div class="form-row">
                         <div class="col">
-                            <input type="text" class="float-right form-control mb-2" name="search" placeholder="Search..." value="{{ $searchedText }}" />
+                            <input type="text" class="float-right form-control mb-2" name="search" placeholder="Search..." value="{{ $search }}" />
                         </div>
                         <div class="col-3">
                             <input type="submit" class="btn btn-success form-control" value="Search">
@@ -28,7 +28,7 @@
                             <th>@lang('messages.name')</th>
                             <th>@lang('messages.price')</th>
                             <th>@lang('messages.description')</th>
-                            <th><a href="{{ route('create-product') }}" class="btn btn-outline-light fas fa-plus"></a></th>
+                            <th><a href="{{ route('products.create') }}" class="btn btn-outline-light fas fa-plus float-right"></a></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,16 +39,18 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->getTruncatedDescription() }}</td>
                                 <td>
-                                    <a href="{{ route('show-product', ['id' => $product->id]) }}" class="fas fa-eye"></a>
-                                    <a href="{{ route('edit-product', ['id' => $product->id]) }}" class="fas fa-edit"></a>
+                                    <a href="{{ route('products.show', ['product' => $product->id]) }}" class="fas fa-eye"></a>
+                                    <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-primary fas fa-edit"></a>
+                                    <a href="{{ route('products.specifications.index', ['product' => $product->id]) }}" class="btn btn-primary fas fa-list-alt"></a>
+                                    <a href="{{ route('products.images', ['product' => $product->id]) }}" class="btn btn-primary fas fa-images"></a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-            
+
                 <div class="paginator">
-                    {{ $products->onEachSide(1)->links() }}
+                    {{ $products->appends(['search' => $search])->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

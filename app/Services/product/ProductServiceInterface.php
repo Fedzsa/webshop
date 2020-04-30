@@ -2,10 +2,16 @@
 
 namespace App\Services\Product;
 
+use App\Models\Product;
+
 interface ProductServiceInterface {
-    function getPaginatedProducts(string $search);
-    function storeProduct(array $attributes);
-    function getProductById(int $id);
-    function updateProduct(int $id, array $attributes);
-    function getProductByIdWithSpecifications(int $id);
+    function getPaginatedProducts($search);
+    function store(array $attributes);
+    function getById(int $id);
+    function update(Product $product, array $attributes);
+    function getProductByIdWithSpecificationsAndImages(int $id);
+    function storeSpecifications(Product $product, array $attributes);
+    function updateSpecification(Product $product, int $specificationId, array $attributes);
+    function destroySpecification(Product $product, int $specificationId);
+    function restoreSpecification(Product $product, int $specificationId);
 }

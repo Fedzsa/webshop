@@ -14,8 +14,8 @@ class Specification extends Model
 
     protected  $searchable = ['name'];
 
-    public function product() {
-        return $this->belongsTo('App\Models\Product');
+    public function products() {
+        return $this->belongsToMany('App\Models\Product');
     }
 
     public function resolveRouteBinding($value) {

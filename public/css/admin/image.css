@@ -1,0 +1,12 @@
+img {
+    box-shadow: 2px 2px 5px grey;
+    margin: 5px;
+}
+
+.btn-delete {
+    position: absolute;
+    left: 300px;
+    top: 5px;
+    transform: translateX(-50%);
+    border-radius: 0;
+}

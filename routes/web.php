@@ -24,9 +24,10 @@ Route::resource('specifications', 'SpecificationController')->except(['show']);
 Route::get('/specifications/{specification}/delete', 'SpecificationController@delete')->name('specifications.delete');
 Route::put('/specifications/{specification}/restore', 'SpecificationController@restore')->name('specifications.restore');
 
-Route::get('/products', 'ProductController@index')->name('products')->middleware('can:viewAny,App\Models\Product');
-Route::get('/products/create', 'ProductController@create')->name('create-product')->middleware('can:viewAny,App\Models\Product');
-Route::get('/products/{id}', 'ProductController@show')->name('show-product');
-Route::get('/products/{id}/edit', 'ProductController@edit')->name('edit-product');
-Route::post('/products', 'ProductController@store')->name('store-product')->middleware('can:create,App\Models\Product');
-Route::post('/products/{id}', 'ProductController@update')->name('update-product');
+Route::resource('products', 'ProductController');
+Route::resource('products.specifications', 'ProductSpecificationController')->except(['show']);
+Route::get('/products/{product}/specifications/{specification}/delete', 'ProductSpecificationController@delete')->name('products.specifications.delete');
+Route::put('/products/{product}/specifications/{specification}/restore', 'ProductSpecificationController@restore')->name('products.specifications.restore');
+Route::get('/products/{product}/images', 'ProductController@images')->name('products.images');
+Route::post('/products/{product}/images', 'ProductController@storeImage')->name('products.images.store');
+Route::delete('/products/{product}/images/{file}', 'ProductController@destroyImage')->name('products.images.destroy');

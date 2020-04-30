@@ -28,6 +28,7 @@ return [
     'price' => 'Price',
     'description' => 'Description',
     'create-product' => 'Create product',
+    'update-product' => 'Update product',
     'product-name' => 'Product name',
     'back' => 'Back',
     'save' => 'Save',
@@ -35,10 +36,13 @@ return [
     'create-category' => 'Create category',
     'update-category' => 'Update :name',
     'update' => 'Update',
+    'update-item' => 'Update :name value',
     'delete' => 'Delete',
     'delete-category' => 'Are you sure you want to delete the :name category?',
     'deleted' => 'Deleted',
     'specification' => '{1} Specification|[2,*] Specifications',
     'delete-specification' => 'Are you sure you want to delete the :name specification?',
-    'update-specification' => 'Update :name'
+    'update-specification' => 'Update :name',
+    'delete-product-specification' => 'Are you sure you want to delete the :product-name :specification-name specification?',
+    'product-images' => ':name images'
 ];
