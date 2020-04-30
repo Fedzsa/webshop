@@ -12,4 +12,5 @@ interface CategoryServiceInterface {
     function update(Category $category, array $attributes): bool;
     function destroy(Category $category): bool;
     function restore(Category $category): bool;
+    function all();
 }

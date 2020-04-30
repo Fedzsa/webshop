@@ -45,4 +45,8 @@ class CategoryService implements CategoryServiceInterface {
     public function search($search) {
         return $this->category->search($search)->get();
     }
+
+    public function all(...$columns) {
+        return $this->category->select('id', 'name')->get();
+    }
 }
