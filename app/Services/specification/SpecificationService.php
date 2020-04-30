@@ -5,7 +5,6 @@ namespace App\Services\Specification;
 
 
 use App\Models\Specification;
-use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SpecificationService implements SpecificationServiceInterface {
@@ -49,5 +48,13 @@ class SpecificationService implements SpecificationServiceInterface {
 
     public function restore(Specification $specification): bool {
         return $specification->restore();
+    }
+
+    function all(...$columns) {
+        return $this->specification
+                    ->when($columns, function($query, $columns) {
+                        return $query->select($columns);
+                    })
+                    ->get();
     }
 }

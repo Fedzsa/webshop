@@ -14,4 +14,5 @@ interface SpecificationServiceInterface {
     function update(Specification $specification, array $attributes): bool;
     function destroy(Specification $specification): bool;
     function restore(Specification $specification): bool;
+    function all(...$columns);
 }
