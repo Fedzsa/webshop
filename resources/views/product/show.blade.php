@@ -9,7 +9,7 @@
                     <small>{{ $product->created_at }}</small>
                 </div>
                 <div class="col">
-                    <h2 class="float-right">{{ $product->price }}</h2>
+                    <h2 class="float-right">{{ $product->price }}$</h2>
                 </div>
             </div>
             <hr>
