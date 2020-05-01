@@ -96,6 +96,8 @@ class ProductController extends Controller {
     }
 
     public function storeImage(StoreImage $request, Product $product) {
+        $this->authorize('create', $product);
+
         if(! $request->hasFile('image')) {
             return back()->withErrors(['status' => 'No uploaded file!']);
         }
@@ -105,7 +107,9 @@ class ProductController extends Controller {
         return back()->with('status', 'Image uploaded!');
     }
 
-    public function destroyImage($product, File $file) {
+    public function destroyImage(Product $product, File $file) {
+        $this->authorize('delete', $product);
+
         $this->fileService->destroy($file);
 
         return response()->json(['success' => true]);
