@@ -37,9 +37,9 @@
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->price }}</td>
-                                <td>{{ $product->getTruncatedDescription() }}</td>
+                                <td>{{ Str::words($product->description, 5, '...') }}</td>
                                 <td>
-                                    <a href="{{ route('products.show', ['product' => $product->id]) }}" class="fas fa-eye"></a>
+                                    <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn btn-primary fas fa-eye"></a>
                                     <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-primary fas fa-edit"></a>
                                     <a href="{{ route('products.specifications.index', ['product' => $product->id]) }}" class="btn btn-primary fas fa-list-alt"></a>
                                     <a href="{{ route('products.images', ['product' => $product->id]) }}" class="btn btn-primary fas fa-images"></a>

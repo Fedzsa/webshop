@@ -39,8 +39,4 @@ class Product extends Model
         $text .= MySQLQueryHelper::wildcards[0];
         return $query->whereRaw(MySQLQueryHelper::generateFullTextSearchQueryPart($this->searchable), [$text]);
     }
-
-    public function getTruncatedDescription() {
-        return $this->description ? substr($this->description, 0, 50).'...' : '';
-    }
 }
