@@ -31,3 +31,5 @@ Route::put('/products/{product}/specifications/{specification}/restore', 'Produc
 Route::get('/products/{product}/images', 'ProductController@images')->name('products.images');
 Route::post('/products/{product}/images', 'ProductController@storeImage')->name('products.images.store');
 Route::delete('/products/{product}/images/{file}', 'ProductController@destroyImage')->name('products.images.destroy');
+Route::post('/products/{product}/comments', 'CommentController@store')->name('products.comments.store');
+Route::put('/products/{product}/comments/{comment}', 'CommentController@update')->name('products.comments.update');

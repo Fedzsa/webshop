@@ -37,6 +37,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
+    }
+
     public function getFullname(): String {
         return $this->firstname.' '.$this->lastname;
     }

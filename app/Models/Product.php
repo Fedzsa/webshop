@@ -24,6 +24,10 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Specification')->withPivot(['value', 'deleted_at']);
     }
 
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
+    }
+
     public function files() {
         return $this->hasMany('App\Models\File');
     }

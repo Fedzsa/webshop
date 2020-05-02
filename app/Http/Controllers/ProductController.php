@@ -42,7 +42,7 @@ class ProductController extends Controller {
     }
 
     public function show(int $product) {
-        $product = $this->productService->getProductByIdWithSpecificationsAndImages($product);
+        $product = $this->productService->getProductById($product);
         
         return view('product.show', compact('product'));
     }

@@ -40,7 +40,7 @@
         @endif
     @endauth
 
-    <main class="container main">
+    <main class="container-fluid main">
         <div class="row">
             <div class="col">
                 @yield('content')

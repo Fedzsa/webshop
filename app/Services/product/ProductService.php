@@ -33,10 +33,14 @@ class ProductService implements ProductServiceInterface {
         return $product->update($attributes);
     }
 
-    public function getProductByIdWithSpecificationsAndImages(int $id) {
-        return $this->product->with('specifications')
-                                ->with('files')
-                                ->find($id);
+    public function getProductById(int $id) {
+        return $this->product->with([
+                                    'specifications:name',
+                                    'files:id,name,product_id',
+                                    'comments:id,comment,user_id,product_id,created_at',
+                                    'comments.user:id,firstname,lastname'
+                                ])
+                                ->find($id, ['id', 'name', 'price', 'created_at']);
     }
 
     public function storeSpecifications(Product $product, array $attributes) {
