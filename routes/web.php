@@ -33,3 +33,8 @@ Route::post('/products/{product}/images', 'ProductController@storeImage')->name(
 Route::delete('/products/{product}/images/{file}', 'ProductController@destroyImage')->name('products.images.destroy');
 Route::post('/products/{product}/comments', 'CommentController@store')->name('products.comments.store');
 Route::put('/products/{product}/comments/{comment}', 'CommentController@update')->name('products.comments.update');
+
+Route::get('/dashboard', 'DashboardController')->name('dashboard.index');
+
+Route::get('/notifications/unread-number', 'NotificationController@unreadNumber')->name('notifications.unread_number');
+Route::put('/notifications/{id}', 'NotificationController@update')->name('notifications.update');
