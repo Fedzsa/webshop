@@ -1,3 +1,7 @@
+function navigateToDashboard() {
+    window.location.href = '/dashboard'
+}
+
 function navigateToUsers() {
     window.location.href = '/users';
 }

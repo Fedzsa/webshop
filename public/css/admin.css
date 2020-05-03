@@ -18,6 +18,8 @@
 .sidebar-menu li {
     padding: 5px;
     margin-bottom: 1px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .sidebar-menu li:hover {
@@ -25,11 +27,13 @@
     cursor: pointer;
 }
 
-.sidebar-menu li span {
-    float: right;
-}
-
 .main {
     padding-top: 80px;
     padding-left: 15% !important;
+}
+
+.notification {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

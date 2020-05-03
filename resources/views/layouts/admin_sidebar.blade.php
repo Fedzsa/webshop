@@ -1,6 +1,15 @@
 <nav class="sidebar">
     <div>
         <ul class="sidebar-menu">
+            <li onclick="navigateToDashboard()">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    @if (countUnreadNotificationsForAuthUser() !== 0)
+                        <span id="notification-badge" class="badge badge-danger">{{ countUnreadNotificationsForAuthUser() }}</span>
+                    @endif
+                    <span>@lang('messages.dashboard')</span>
+                </div>
+            </li>
             <li onclick="navigateToUsers()">
                 <i class="fas fa-users"></i>
                 <span>@lang('messages.users')</span>

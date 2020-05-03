@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\Specification\SpecificationServiceInterface', 'App\Services\Specification\SpecificationService');
         $this->app->bind('App\Services\File\FileServiceInterface', 'App\Services\File\FileService');
         $this->app->bind('App\Services\Comment\CommentServiceInterface', 'App\Services\Comment\CommentService');
+        $this->app->bind('App\Services\Notification\NotificationServiceInterface', 'App\Services\Notification\NotificationService');
     }
 
     /**
