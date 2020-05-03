@@ -2,23 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Models\Product;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class NewProduct extends Notification
+class NewProduct extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    private Product $product;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Product $product)
     {
-        //
+        $this->product = $product;
     }
 
     /**
@@ -34,7 +37,11 @@ class NewProduct extends Notification
 
     public function toDatabase($notifiable)
     {
-        
+        return [
+            'id' => $this->product->id,
+            'name' => $this->product->name,
+            'created_at' => $this->product->created_at
+        ];
     }
 
     /**
@@ -45,9 +52,12 @@ class NewProduct extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url("/products/". $this->product->id);
+
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->greeting('Hello!')
+            ->line('New product has been added to the database.')
+            ->action('View '.$this->product->name, $url)
             ->line('Thank you for using our application!');
     }
 
