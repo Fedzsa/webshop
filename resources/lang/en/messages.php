@@ -44,5 +44,6 @@ return [
     'delete-specification' => 'Are you sure you want to delete the :name specification?',
     'update-specification' => 'Update :name',
     'delete-product-specification' => 'Are you sure you want to delete the :product-name :specification-name specification?',
-    'product-images' => ':name images'
+    'product-images' => ':name images',
+    'dashboard' => 'Dashboard'
 ];
