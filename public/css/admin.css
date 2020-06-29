@@ -4,7 +4,7 @@
     left: 0;
     z-index: 1000;
     overflow: hidden;
-    width: 250px;
+    width: 20%;
     height: 100%;
     padding-top: 56px;
     box-shadow: 0 5px 15px rgba(57, 98, 254, 0.02), 0 3px 6px rgba(117, 108, 254, 0.12);
@@ -29,7 +29,8 @@
 
 .main {
     padding-top: 80px;
-    padding-left: 15% !important;
+    padding-left: 25% !important;
+    padding-right: 10% !important;
 }
 
 .notification {
