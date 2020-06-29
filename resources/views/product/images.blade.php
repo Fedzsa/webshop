@@ -42,7 +42,7 @@
                         <div id="image-{{ $image->id }}" class="col">
                             <div>
                                 <button class="btn btn-danger btn-delete fas fa-trash" onclick="deleteImage({{ $product->id }}, {{ $image->id }})"></button>
-                                <img src="{{ asset('storage/'.$image->name) }}" alt="{{ $image->name }}" width="300" height="240" />
+                                <img src="{{ asset('storage/'.$image->name) }}" alt="{{ $image->name }}" width="300" height="300" />
                             </div>
                         </div>
                     @endforeach

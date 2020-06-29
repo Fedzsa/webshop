@@ -27,7 +27,7 @@
                             <div class="carousel-inner">
                                 @foreach ($product->files as $file)
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                        <img src="{{ asset('storage/'.$file->name) }}" class="d-block w-100" alt="{{ $file->name }}" height="500">
+                                        <img src="{{ asset('storage/'.$file->name) }}" class="d-block w-100" alt="{{ $file->name }}" width="300" height="300">
                                     </div>
                                 @endforeach
                             </div>
