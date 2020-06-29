@@ -40,7 +40,7 @@ class ProductService implements ProductServiceInterface {
                                     'comments:id,comment,user_id,product_id,created_at',
                                     'comments.user:id,firstname,lastname'
                                 ])
-                                ->find($id, ['id', 'name', 'price', 'created_at']);
+                                ->find($id, ['id', 'name', 'price', 'description', 'created_at']);
     }
 
     public function storeSpecifications(Product $product, array $attributes) {
