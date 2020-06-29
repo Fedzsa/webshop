@@ -57,8 +57,7 @@ class NewProduct extends Notification implements ShouldQueue
         return (new MailMessage)
             ->greeting('Hello!')
             ->line('New product has been added to the database.')
-            ->action('View '.$this->product->name, $url)
-            ->line('Thank you for using our application!');
+            ->action('View '.$this->product->name, $url);
     }
 
     /**

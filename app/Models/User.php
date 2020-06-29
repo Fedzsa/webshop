@@ -45,6 +45,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->firstname.' '.$this->lastname;
     }
 
+    /**
+     * Select admins
+     */
+    public function scopeAdmins($query) {
+        return $query->where('admin', 1);
+    }
+
     public function isAdmin() {
         return $this->admin === 1;
     }

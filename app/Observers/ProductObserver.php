@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Notification;
 class ProductObserver
 {
     /**
-     * Handle the product "created" event.
+     * When created a new product send notifications for admins.
      *
      * @param  \App\Product  $product
      * @return void
      */
     public function created(Product $product)
     {
-        $admins = User::admin()->get();
+        $admins = User::admins()->get();
 
         Notification::send($admins, new NewProduct($product));
     }
