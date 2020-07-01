@@ -47,9 +47,10 @@ class SpecificationController extends Controller {
 
         $inserted = $this->specificationService->store($request->validated());
 
-        if(!$inserted)
+        if(!$inserted) {
             return back()->withErrors(['status' => 'Specification not inserted!'])->withInput($request->validated());
-
+        }
+        
         return back()->with('status', 'Specification created!');
     }
 
@@ -71,12 +72,6 @@ class SpecificationController extends Controller {
         $this->specificationService->update($specification, $request->validated());
 
         return back()->with('status', 'Update successful!')->withInput($request->validated());
-    }
-
-    public function delete(Specification $specification) {
-        $this->authorize('delete', $specification);
-
-        return view('specification.delete', compact('specification'));
     }
 
     /**
