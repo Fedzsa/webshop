@@ -42,6 +42,12 @@ class SpecificationService implements SpecificationServiceInterface {
         return $specification->update($attributes);
     }
 
+    /**
+     * Soft delete specification.
+     * 
+     * @param \App\Model\Specification $specification
+     * @return bool
+     */
     public function destroy(Specification $specification): bool {
         return $specification->delete();
     }

@@ -37,17 +37,18 @@
                     <tr id="{{ $specification->id }}">
                         <td>{{ $specification->id }}</td>
                         <td>{{ $specification->name }}</td>
-                        <td>
+                        <td id="is-deleted-column">
                             @if($specification->trashed())
                                 <i class="fas fa-check text-success"></i>
                             @endif
                         </td>
                         <td>
                             <a href="{{ route('specifications.edit', ['specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
+                            
                             @if(!$specification->trashed())
-                                <a href="{{ route('specifications.delete', ['specification' => $specification->id]) }}" class="btn btn-danger fas fa-trash"></a>
+                                <button class="btn btn-danger fas fa-trash" onclick="deleteSpecification({{ $specification->id }})"></button>
                             @else
-                                <button class="btn btn-warning fas fa-trash-restore" onclick="restore({{ $specification->id }})"></button>
+                                <button class="btn btn-warning fas fa-trash-restore" onclick="restoreSpecification({{ $specification->id }})"></button>
                             @endif
                         </td>
                     </tr>

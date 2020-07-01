@@ -64,12 +64,19 @@ class SpecificationController extends Controller {
         return view('specification.delete', compact('specification'));
     }
 
+    /**
+     * Delete specification
+     */
     public function destroy(Specification $specification) {
         $this->authorize('delete', $specification);
 
-        $this->specificationService->destroy($specification);
+        $deleted = $this->specificationService->destroy($specification);
 
-        return redirect()->route('specifications.index');
+        if(! $deleted) {
+            return response()->json(['success' => false], 404);
+        }
+
+        return response()->json(['success' => true], 200);
     }
 
     public function restore(Specification $specification) {
