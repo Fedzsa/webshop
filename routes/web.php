@@ -28,7 +28,6 @@ Route::resource('products', 'ProductController');
 Route::put('/products/{product}/restore', 'ProductController@restore');
 
 Route::resource('products.specifications', 'ProductSpecificationController')->except(['show']);
-Route::get('/products/{product}/specifications/{specification}/delete', 'ProductSpecificationController@delete')->name('products.specifications.delete');
 Route::put('/products/{product}/specifications/{specification}/restore', 'ProductSpecificationController@restore')->name('products.specifications.restore');
 Route::get('/products/{product}/images', 'ProductController@images')->name('products.images');
 Route::post('/products/{product}/images', 'ProductController@storeImage')->name('products.images.store');

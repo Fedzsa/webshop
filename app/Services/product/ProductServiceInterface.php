@@ -14,6 +14,6 @@ interface ProductServiceInterface {
     function getProductById(int $id);
     function storeSpecifications(Product $product, array $attributes);
     function updateSpecification(Product $product, int $specificationId, array $attributes);
-    function destroySpecification(Product $product, int $specificationId);
+    function destroySpecification(Product $product, int $specificationId): bool;
     function restoreSpecification(Product $product, int $specificationId);
 }

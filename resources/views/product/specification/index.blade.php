@@ -23,15 +23,16 @@
                             <tr id="{{ $specification->id }}">
                                 <td>{{ $specification->name }}</td>
                                 <td>{{ $specification->pivot->value }}</td>
-                                <td>
+                                <td id="is-deleted-column">
                                     @if (isset($specification->pivot->deleted_at))
                                         <i class="fas fa-check text-success"></i>
                                     @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('products.specifications.edit', ['product' => $product->id, 'specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
+
                                     @if (! isset($specification->pivot->deleted_at))
-                                        <a href="{{ route('products.specifications.delete', ['product' => $product->id, 'specification' => $specification->id]) }}" class="btn btn-danger fas fa-trash"></a>
+                                        <button class="btn btn-danger fas fa-trash" onclick="deleteSpecification({{ $product->id }}, {{ $specification->id }})"></button>
                                     @else
                                         <button class="btn btn-warning fas fa-trash-restore" onclick="restoreSpecification({{ $product->id }}, {{ $specification->id }})"></button>
                                     @endif

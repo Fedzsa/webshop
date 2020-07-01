@@ -17,7 +17,7 @@ function deleteProduct(productId) {
                 url: `/products/${productId}`,
                 success: (response) => {
                     if(response.success) {
-                        Swal.fire('Deleted!', '', 'success')
+                        Swal.fire('Deleted!', '', 'success');
 
                         let deletedProductRow = $(`#product-table tbody #${productId}`);
 
@@ -52,6 +52,39 @@ function restoreProduct(productId) {
         },
         error: (error) => {
             console.error(error);
+        }
+    });
+}
+
+function deleteSpecification(productId, specificationId) {
+    Swal.fire({
+        title: 'Are you sure you want to delete?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Delete'
+    }).then((result) => {
+        if(result.value) {
+            $.ajax({
+                type: 'DELETE',
+                url: `/products/${productId}/specifications/${specificationId}`,
+                success: (response) => {
+                    if(response.success) {
+                        Swal.fire('Deleted!', '', 'success');
+
+                        let deletedProductRow = $(`#product-specification-table tbody #${specificationId}`);
+
+                        deletedProductRow.find('#is-deleted-column')
+                                            .append('<i class="fas fa-check text-success"></i>');
+
+                        deletedProductRow.find('button')
+                                            .attr('class', 'btn btn-warning fas fa-trash-restore')
+                                            .attr('onclick', `restoreSpecification(${productId}, ${specificationId})`);
+                    }
+                },
+                error: (error) => {
+                    console.error(error);
+                }
+            });
         }
     });
 }

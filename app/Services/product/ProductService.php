@@ -80,7 +80,14 @@ class ProductService implements ProductServiceInterface {
         ]);
     }
 
-    public function destroySpecification(Product $product, int $specificationId){
+    /**
+     * Soft delete product specification.
+     * 
+     * @param \App\Model\Product $product
+     * @param int $specificationId
+     * @return bool
+     */
+    public function destroySpecification(Product $product, int $specificationId): bool {
         return $product->specifications()->updateExistingPivot($specificationId, [
             'deleted_at' => now()
         ]);

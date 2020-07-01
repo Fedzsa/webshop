@@ -63,18 +63,19 @@ class ProductSpecificationController extends Controller {
         return back()->with('status', $product->name.' specification value updated!')->withInput($request->validated());
     }
 
-    public function delete(Product $product, Specification $specification) {
-        return view('product.specification.delete', compact(['product', 'specification']));
-    }
-
+    /**
+     * Delete product specification
+     */
     public function destroy(Product $product, int $specification) {
+        $this->authorize('delete', $product);
+
         $deleted = $this->productService->destroySpecification($product, $specification);
 
         if(! $deleted) {
-            return back()->withErrors(['status' => 'Specification not deleted!'])->withInput();
+            return response()->json(['success' => false], 404);
         }
 
-        return redirect()->route('products.specifications.index', ['product' => $product->id]);
+        return response()->json(['success' => true], 200);
     }
 
     public function restore(Product $product, int $specification) {
