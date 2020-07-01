@@ -99,9 +99,9 @@ function restoreSpecification(productId, specificationId) {
 
                 elementRow.find('i').remove();
 
-                elementRow.find('button').remove();
-
-                elementRow.find('td:last-child').append(createEditLinkTag(productId, specificationId));
+                elementRow.find('button')
+                            .attr('class', 'btn btn-danger fas fa-trash')
+                            .attr('onclick', `deleteSpecification(${productId}, ${specificationId})`);
             }
         },
         error: (error) => {
