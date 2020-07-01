@@ -25,6 +25,8 @@ Route::get('/specifications/{specification}/delete', 'SpecificationController@de
 Route::put('/specifications/{specification}/restore', 'SpecificationController@restore')->name('specifications.restore');
 
 Route::resource('products', 'ProductController');
+Route::put('/products/{product}/restore', 'ProductController@restore');
+
 Route::resource('products.specifications', 'ProductSpecificationController')->except(['show']);
 Route::get('/products/{product}/specifications/{specification}/delete', 'ProductSpecificationController@delete')->name('products.specifications.delete');
 Route::put('/products/{product}/specifications/{specification}/restore', 'ProductSpecificationController@restore')->name('products.specifications.restore');

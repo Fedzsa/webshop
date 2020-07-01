@@ -9,6 +9,8 @@ interface ProductServiceInterface {
     function store(array $attributes);
     function getById(int $id);
     function update(Product $product, array $attributes);
+    function destroy(Product $product): bool;
+    function restore(Product $product): bool;
     function getProductById(int $id);
     function storeSpecifications(Product $product, array $attributes);
     function updateSpecification(Product $product, int $specificationId, array $attributes);

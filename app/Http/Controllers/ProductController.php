@@ -87,6 +87,28 @@ class ProductController extends Controller {
         return back()->with('status', 'Product updated!')->withInput($request->validated());
     }
 
+    /**
+     * Delete the product
+     */
+    public function destroy(Product $product) {
+        $this->authorize('delete', $product);
+
+        $this->productService->destroy($product);
+
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * Restore soft deleted product.
+     */
+    public function restore(Product $product) {
+        $this->authorize('restore', $product);
+
+        $this->productService->restore($product);
+
+        return response()->json(['success' => true]);
+    }
+
     public function images(Product $product) {
         $this->authorize('upload', $product);
 

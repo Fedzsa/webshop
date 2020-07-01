@@ -33,6 +33,26 @@ class ProductService implements ProductServiceInterface {
         return $product->update($attributes);
     }
 
+    /**
+     * Soft delete the product.
+     * 
+     * @param \App\Model\Product $product
+     * @return bool
+     */
+    public function destroy(Product $product): bool {
+        return $product->delete();
+    }
+
+    /**
+     * Restore soft deleted product.
+     * 
+     * @param \App\Model\Product $product
+     * @return bool
+     */
+    public function restore(Product $product): bool {
+        return $product->restore();
+    }
+
     public function getProductById(int $id) {
         return $this->product->with([
                                     'specifications:name',

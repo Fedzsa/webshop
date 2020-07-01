@@ -25,6 +25,8 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     <script src="{{ config('fontawesome.link') }}" crossorigin="anonymous"></script>
 
     <script src="{{ asset('js/navigate.js') }}"></script>
