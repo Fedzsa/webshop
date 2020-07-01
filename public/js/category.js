@@ -57,10 +57,3 @@ function restoreCategory(id) {
         }
     });
 }
-
-function createEditLinkTag(id) {
-    let link = $('<a></a>');
-    link.attr('href', `/categories/${id}/delete`);
-    link.attr('class', 'btn btn-danger fas fa-trash');
-    return link;
-}

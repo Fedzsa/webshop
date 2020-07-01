@@ -110,13 +110,6 @@ function restoreSpecification(productId, specificationId) {
     });
 }
 
-function createEditLinkTag(productId, specificationId) {
-    let link = $('<a></a>');
-    link.attr('href', `/products/${productId}/specifications/${specificationId}/delete`);
-    link.attr('class', 'btn btn-danger fas fa-trash');
-    return link;
-}
-
 function deleteImage(productId, imageId) {
     $.ajax({
         type: 'DELETE',

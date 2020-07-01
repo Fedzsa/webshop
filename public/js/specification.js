@@ -57,10 +57,3 @@ function restoreSpecification(id) {
         }
     });
 }
-
-function createEditLinkTag(id) {
-    let link = $('<a></a>');
-    link.attr('href', `/specifications/${id}/delete`);
-    link.attr('class', 'btn btn-danger fas fa-trash');
-    return link;
-}
