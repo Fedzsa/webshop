@@ -47,9 +47,9 @@ function restoreSpecification(id) {
 
                 elementRow.find('i').remove();
 
-                elementRow.find('button').remove();
-
-                elementRow.find('td:last-child').append(createEditLinkTag(id));
+                elementRow.find('button')
+                            .attr('class', 'btn btn-danger fas fa-trash')
+                            .attr('onclick', `deleteSpecification(${id})`);
             }
         },
         error: (error) => {
