@@ -17,6 +17,9 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Display unread notifications.
+     */
     public function __invoke() {
         $notifications = $this->notificationService->getUnreadNotificationsForUser();
 

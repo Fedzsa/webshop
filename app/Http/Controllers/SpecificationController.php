@@ -18,6 +18,9 @@ class SpecificationController extends Controller {
         $this->middleware('verified');
     }
 
+    /**
+     * Listing the specifications.
+     */
     public function index(Request $request) {
         $this->authorize('viewAny', Specification::class);
 
@@ -27,12 +30,18 @@ class SpecificationController extends Controller {
         return view('specification.index', compact(['specifications', 'search']));
     }
 
+    /**
+     * Create specification page.
+     */
     public function create() {
         $this->authorize('create', Specification::class);
 
         return view('specification.create');
     }
 
+    /**
+     * Store the specification.
+     */
     public function store(SpecificationStore $request) {
         $this->authorize('create', Specification::class);
 
@@ -44,12 +53,18 @@ class SpecificationController extends Controller {
         return back()->with('status', 'Specification created!');
     }
 
+    /**
+     * Edit specification page.
+     */
     public function edit(Specification $specification) {
         $this->authorize('update', $specification);
 
         return view('specification.edit', compact('specification'));
     }
 
+    /**
+     * Update the specification.
+     */
     public function update(SpecificationStore $request, Specification $specification) {
         $this->authorize('update', $specification);
 
@@ -79,6 +94,9 @@ class SpecificationController extends Controller {
         return response()->json(['success' => true], 200);
     }
 
+    /**
+     * Restore the deleted specification.
+     */
     public function restore(Specification $specification) {
         $this->authorize('restore', $specification);
 

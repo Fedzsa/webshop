@@ -19,6 +19,9 @@ class CommentController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Store comment.
+     */
     public function store(StoreComment $request)
     {
         $comment = $this->commentService->store($request->validated());
@@ -26,6 +29,9 @@ class CommentController extends Controller
         return view('product.comment', compact('comment'));
     }
 
+    /**
+     * Update comment.
+     */
     public function update(StoreComment $request, int $product, Comment $comment) 
     {
         $this->authorize('update', $comment);

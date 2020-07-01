@@ -22,6 +22,9 @@ class ProductSpecificationController extends Controller {
         $this->middleware('verified');
     }
 
+    /**
+     * Listing specifications of the product.
+     */
     public function index(Product $product) {
         $this->authorize('viewAny', Product::class);
 
@@ -30,6 +33,9 @@ class ProductSpecificationController extends Controller {
         return view('product.specification.index', compact(['product', 'specifications']));
     }
 
+    /**
+     * Create product specification page.
+     */
     public function create(Product $product) {
         $this->authorize('create', Product::class);
 
@@ -38,12 +44,18 @@ class ProductSpecificationController extends Controller {
         return view('product.specification.create', compact(['product', 'specifications']));
     }
 
+    /**
+     * Store the product specification.
+     */
     public function store(StoreProductSpecification $request, Product $product) {
         $this->productService->storeSpecifications($product, $request->validated());
 
         return back()->with('status', 'Specification added!')->withInput($request->validated());
     }
 
+    /**
+     * Edit product specification page.
+     */
     public function edit(Product $product, int $specification) {
         $this->authorize('update', $product);
 
@@ -53,6 +65,9 @@ class ProductSpecificationController extends Controller {
         return view('product.specification.edit', compact(['product', 'specifications', 'specification']));
     }
 
+    /**
+     * Update product specification.
+     */
     public function update(UpdateProductSpecification $request, Product $product, int $specification) {
         $updated = $this->productService->updateSpecification($product, $specification, $request->validated());
         
@@ -78,6 +93,9 @@ class ProductSpecificationController extends Controller {
         return response()->json(['success' => true], 200);
     }
 
+    /**
+     * Restore th deleted product specification.
+     */
     public function restore(Product $product, int $specification) {
         $this->productService->restoreSpecification($product, $specification);
 

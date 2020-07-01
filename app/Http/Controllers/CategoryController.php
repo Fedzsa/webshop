@@ -17,6 +17,9 @@ class CategoryController extends Controller {
         $this->middleware('verified');
     }
 
+    /**
+     * Listing categories.
+     */
     public function index(Request $request) {
         $this->authorize('viewAny', Category::class);
 
@@ -27,12 +30,18 @@ class CategoryController extends Controller {
         return view('category.index', compact(['categories', 'search']));
     }
 
+    /**
+     * Create category page.
+     */
     public function create() {
         $this->authorize('create', Category::class);
 
         return view('category.create');
     }
 
+    /**
+     * Create category.
+     */
     public function store(StoreCategory $request) {
         $this->authorize('create', Category::class);
 
@@ -41,24 +50,24 @@ class CategoryController extends Controller {
         return back()->with('status', 'Category created!');
     }
 
+    /**
+     * Edit category page.
+     */
     public function edit(Category $category) {
         $this->authorize('update', $category);
 
         return view('category.edit', compact('category'));
     }
 
+    /**
+     * Update category.
+     */
     public function update(StoreCategory $request, Category $category) {
         $this->authorize('update', $category);
 
         $this->categoryService->update($category, $request->validated());
 
         return back()->with('status', 'Category updated!')->withInput($request->all());
-    }
-
-    public function delete(Category $category) {
-        $this->authorize('delete', $category);
-
-        return view('category.delete', compact('category'));
     }
 
     /**
@@ -76,6 +85,9 @@ class CategoryController extends Controller {
         return response()->json(['success' => true], 200);
     }
 
+    /**
+     * Restore deleted category.
+     */
     public function restore(Category $category) {
         $this->authorize('restore', $category);
 

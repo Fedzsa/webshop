@@ -15,6 +15,9 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Listing the users.
+     */
     public function index() {
         $users = $this->userService->getPaginatedUsers();
         return view('user.index', ['users' => $users]);

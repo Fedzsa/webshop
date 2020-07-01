@@ -31,6 +31,9 @@ class ProductController extends Controller {
         $this->middleware('verified');
     }
 
+    /**
+     * Listing the products.
+     */
     public function index(Request $request) {
         $this->authorize('viewAny', Product::class);
 
@@ -41,12 +44,18 @@ class ProductController extends Controller {
         return view('product.index', compact(['products', 'search']));
     }
 
+    /**
+     * Show the product page.
+     */
     public function show(int $product) {
         $product = $this->productService->getProductById($product);
         
         return view('product.show', compact('product'));
     }
 
+    /**
+     * Create product page.
+     */
     public function create() {
         $this->authorize('create', Product::class);
 
@@ -55,6 +64,9 @@ class ProductController extends Controller {
         return view('product.create', compact('categories'));
     }
 
+    /**
+     * Store product.
+     */
     public function store(StoreProduct $request) {
         $this->authorize('create', Product::class);
 
@@ -67,6 +79,9 @@ class ProductController extends Controller {
         return back()->with('status', 'Product created!')->withInput($request->validated());
     }
 
+    /**
+     * Edit product page.
+     */
     public function edit(Product $product) {
         $this->authorize('update', $product);
 
@@ -75,6 +90,9 @@ class ProductController extends Controller {
         return view('product.edit', compact(['product', 'categories']));
     }
 
+    /**
+     * Update product.
+     */
     public function update(StoreProduct $request, Product $product) {
         $this->authorize('update', $product);
 
@@ -109,6 +127,9 @@ class ProductController extends Controller {
         return response()->json(['success' => true]);
     }
 
+    /**
+     * Display images of the product.
+     */
     public function images(Product $product) {
         $this->authorize('upload', $product);
 
@@ -117,6 +138,9 @@ class ProductController extends Controller {
         return view('product.images', compact(['product', 'images']));
     }
 
+    /**
+     * Store image.
+     */
     public function storeImage(StoreImage $request, Product $product) {
         $this->authorize('create', $product);
 
@@ -129,6 +153,9 @@ class ProductController extends Controller {
         return back()->with('status', 'Image uploaded!');
     }
 
+    /**
+     * Delete image.
+     */
     public function destroyImage(Product $product, File $file) {
         $this->authorize('delete', $product);
 
