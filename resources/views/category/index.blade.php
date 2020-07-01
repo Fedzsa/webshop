@@ -37,15 +37,16 @@
                         <tr id="{{ $category->id }}">
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
-                            <td>
+                            <td id="is-deleted-column">
                                 @if($category->trashed())
                                     <i class="fas fa-check text-success"></i>
                                 @endif
                             </td>
                             <td>
                                 <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-primary fas fa-edit"></a>
+                                
                                 @if(! $category->trashed())
-                                    <a href="{{ route('categories.delete', ['category' => $category->id]) }}" class="btn btn-danger fas fa-trash"></a>
+                                    <button class="btn btn-danger fas fa-trash" onclick="deleteCategory({{ $category->id }})"></button>
                                 @else
                                     <button class="btn btn-warning fas fa-trash-restore" onclick="restore({{ $category->id }})"></button>
                                 @endif

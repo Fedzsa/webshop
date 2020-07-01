@@ -61,12 +61,19 @@ class CategoryController extends Controller {
         return view('category.delete', compact('category'));
     }
 
+    /**
+     * Delete category
+     */
     public function destroy(Category $category) {
         $this->authorize('delete', $category);
 
-        $this->categoryService->destroy($category);
+        $deleted = $this->categoryService->destroy($category);
 
-        return redirect()->route('categories.index');
+        if(! $deleted) {
+            return response()->json(['success' => false], 404);
+        }
+
+        return response()->json(['success' => true], 200);
     }
 
     public function restore(Category $category) {

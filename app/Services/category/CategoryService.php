@@ -34,6 +34,12 @@ class CategoryService implements CategoryServiceInterface {
         return $category->update($attributes);
     }
 
+    /**
+     * Soft delete category.
+     * 
+     * @param \App\Model\Category $category
+     * @return bool
+     */
     public function destroy(Category $category): bool {
         return $category->delete();
     }

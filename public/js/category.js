@@ -4,7 +4,40 @@ $.ajaxSetup({
     }
 });
 
-function restore(id) {
+function deleteCategory(id) {
+    Swal.fire({
+        title: 'Are your sure you want to delete?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Delete'
+    }).then((result) => {
+        if(result.value) {
+            $.ajax({
+                type: 'DELETE',
+                url: `/categories/${id}`,
+                success: (response) => {
+                    if(response.success) {
+                        Swal.fire('Deleted!', '', 'success');
+
+                        let deletedCategoryRow = $(`#category-table tbody #${id}`);
+
+                        deletedCategoryRow.find('#is-deleted-column')
+                                            .append('<i class="fas fa-check text-success"></i>');
+
+                        deletedCategoryRow.find('button')
+                                            .attr('class', 'btn btn-warning fas fa-trash-restore')
+                                            .attr('onclick', `restoreCategory(${id})`);
+                    }
+                },
+                error: (error) => {
+                    console.error(error);
+                }
+            });
+        }
+    });
+}
+
+function restoreCategory(id) {
     $.ajax({
         type: 'PUT',
         url: `/categories/${id}/restore`,
@@ -14,9 +47,9 @@ function restore(id) {
 
                 elementRow.find('i').remove();
 
-                elementRow.find('button').remove();
-
-                elementRow.find('td:last-child').append(createEditLinkTag(id));
+                elementRow.find('button')
+                                    .attr('class', 'btn btn-danger fas fa-trash')
+                                    .attr('onclick', `deleteCategory(${id})`);
             }
         },
         error: (error) => {
