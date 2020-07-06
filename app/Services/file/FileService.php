@@ -11,14 +11,23 @@ use Image;
 
 class FileService implements FileServiceInterface {
     private File $file;
-    
-    public function __construct(File $file) {
+
+    public function __construct(File $file)
+    {
         $this->file = $file;
     }
 
-    public function store(Product $product, $file) {
+    /**
+     * Store the uploaded file to the storage folder.
+     * This file is a picture which belongs to the specific product.
+     * @param Product $product The file belongs to this.
+     * @param $file Uploaded file.
+     * @return mixed
+     */
+    public function store(Product $product, $file)
+    {
         $newFileName = time().'.'.$file->extension();
-        
+
         $resizedImage = Image::make($file)->fit(300, 300);
         $resizedImage->save(public_path('storage/'.$newFileName));
 
@@ -31,7 +40,15 @@ class FileService implements FileServiceInterface {
         ]);
     }
 
-    public function destroy(File $file) {
+    /**
+     * Delete the file.
+     *
+     * @param File $file
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function destroy(File $file)
+    {
         return $file->delete();
     }
 }
