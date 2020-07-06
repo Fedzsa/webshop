@@ -14,7 +14,13 @@ class CommentService implements CommentServiceInterface
         $this->comment = $comment;
     }
 
-    public function store(array $attributes)
+    /**
+     * Store new comment.
+     *
+     * @param array $attributes The comment attributes.
+     * @return Comment Return the saved comment with user.
+     */
+    public function store(array $attributes): Comment
     {
         $comment = new Comment($attributes);
 
@@ -25,7 +31,14 @@ class CommentService implements CommentServiceInterface
         return $comment->load('user');
     }
 
-    public function update(Comment $comment, array $attributes)
+    /**
+     * Update the comment.
+     *
+     * @param Comment $comment
+     * @param array $attributes
+     * @return bool
+     */
+    public function update(Comment $comment, array $attributes): bool
     {
         return $comment->update($attributes);
     }
