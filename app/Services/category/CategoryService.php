@@ -17,8 +17,8 @@ class CategoryService implements CategoryServiceInterface {
     /**
      * Get paginated categories with soft delete categories.
      * 
-     * @param string $search The name of the product to be search.
-     * @return mixin Paginated list.
+     * @param string $search The name of the category to be search.
+     * @return mixed Paginated list.
      */
     public function getPaginatedCategories($search) {
         return $this->category->search($search)->withTrashed()->paginate(10);
