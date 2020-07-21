@@ -101,7 +101,7 @@ class SpecificationService implements SpecificationServiceInterface {
      * @param array $columns - column names
      * @return Specification[]
      */
-    function all(...$columns) {
+    public function all(...$columns) {
         return $this->specification
                     ->when($columns, function($query, $columns) {
                         return $query->select($columns);
