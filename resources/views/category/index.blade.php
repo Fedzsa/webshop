@@ -48,7 +48,7 @@
                                 @if(! $category->trashed())
                                     <button class="btn btn-danger fas fa-trash" onclick="deleteCategory({{ $category->id }})"></button>
                                 @else
-                                    <button class="btn btn-warning fas fa-trash-restore" onclick="restore({{ $category->id }})"></button>
+                                    <button class="btn btn-warning fas fa-trash-restore" onclick="restoreCategory({{ $category->id }})"></button>
                                 @endif
                             </td>
                         </tr>
