@@ -56,7 +56,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="4" align="center">No result</td>
+                            <td colspan="4" align="center">@lang('messages.no-result')</td>
                         </tr>
                     @endif
                 </tbody>

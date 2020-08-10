@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h2>@lang('messages.update-specification', ['name' => $specification->name])</h2>
+            <h2>@lang('messages.update-item', ['name' => $specification->name])</h2>
 
             @if(session('status'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">

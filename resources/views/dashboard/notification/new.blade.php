@@ -1,9 +1,11 @@
 <div id="notification-{{ $notification->id }}" class="alert alert-success notification" role="alert">
     <div>
-        <a href="{{ route('products.show', ['product' => $notification->data['id']]) }}" class="alert-link" >{{ $notification->data['name'] }}</a> 
-        has been added to the database at 
-        <strong>{{ formatStringToDateTime($notification->data['created_at']) }}</strong>.
+        @lang('messages.added-notification', [
+            'link' => route('products.show', ['product' => $notification->data['id']]),
+            'name' => $notification->data['name'],
+            'time' => formatStringToDateTime($notification->data['created_at'])
+        ])
     </div>
     
-    <button class="btn btn-info" onclick="markAsRead('{{ $notification->id }}')">Mark as read</button>
+    <button class="btn btn-info" onclick="markAsRead('{{ $notification->id }}')">@lang('messages.mark-as-read')</button>
 </div>

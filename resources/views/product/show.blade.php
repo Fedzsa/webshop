@@ -17,7 +17,7 @@
                 
                 <div class="row">
                     <div class="col">
-                        <h5>Images</h5>
+                        <h5>@lang('messages.images')</h5>
                         <div id="imageCarousel" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 @for ($i = 0; $i < count($product->files); $i++)
@@ -33,16 +33,16 @@
                             </div>
                             <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Previous</span>
+                              <span class="sr-only">@lang('messages.previous')</span>
                             </a>
                             <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="sr-only">Next</span>
+                              <span class="sr-only">@lang('messages.next')</span>
                             </a>
                         </div>
                     </div>
                     <div class="col">
-                        <h5>Specifications</h5>
+                        <h5>{{ trans_choice('messages.specification', 2) }}</h5>
                         <table class="table table-striped table-bordered">
                             <tbody>
                                 @foreach ($product->specifications as $specification)
@@ -57,7 +57,7 @@
                 </div>
                 <hr>
             
-                <h5>Description</h5>
+                <h5>@lang('messages.description')</h5>
                 <p>{{ $product->description }}</p>
             </div>
         </div>

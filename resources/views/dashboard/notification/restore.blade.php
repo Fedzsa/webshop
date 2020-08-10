@@ -1,9 +1,11 @@
 <div id="notification-{{ $notification->id }}" class="alert alert-info notification" role="alert">
     <div>
-        <a href="{{ route('products.show', ['product' => $notification->data['id']]) }}" class="alert-link" >{{ $notification->data['name'] }}</a> 
-        has been restored at 
-        <strong>{{ formatStringToDateTime($notification->data['updated_at']) }}</strong>.
+        @lang('messages.restored-notification', [
+            'link' => route('products.show', ['product' => $notification->data['id']]),
+            'name' => $notification->data['name'],
+            'time' => formatStringToDateTime($notification->data['created_at'])
+        ])
     </div>
     
-    <button class="btn btn-info" onclick="markAsRead('{{ $notification->id }}')">Mark as read</button>
+    <button class="btn btn-info" onclick="markAsRead('{{ $notification->id }}')">@lang('messages.mark-as-read')</button>
 </div>

@@ -3,15 +3,15 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <h2>Product specifications</h2>
+            <h2>@lang('messages.product-specifications')</h2>
             <hr>
 
             <table id="product-specification-table" class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
                         <th>@lang('messages.name')</th>
-                        <th>Value</th>
-                        <th>Deleted</th>
+                        <th>@lang('messages.value')</th>
+                        <th>@lang('messages.deleted')</th>
                         <th>
                             <a href="{{ route('products.specifications.create', ['product' => $product->id]) }}" class="btn btn-outline-light fas fa-plus float-right"></a>
                         </th>
@@ -41,7 +41,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="4" align="center">No result</td>
+                            <td colspan="4" align="center">@lang('messages.no-result')</td>
                         </tr>
                     @endif
                 </tbody>
