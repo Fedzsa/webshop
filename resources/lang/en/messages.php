@@ -45,5 +45,17 @@ return [
     'update-specification' => 'Update :name',
     'delete-product-specification' => 'Are you sure you want to delete the :product-name :specification-name specification?',
     'product-images' => ':name images',
-    'dashboard' => 'Dashboard'
+    'dashboard' => 'Dashboard',
+    'no-result' => 'No result',
+    'next' => 'Next',
+    'previous' => 'Previous',
+    'images' => 'Images',
+    'mark-as-read' => 'Mark as read',
+    'comment' => 'Comment',
+    'comments' => 'Comments',
+    'choose-category' => 'Choose category',
+    'added-notification' => '<a href=":link" class="alert-link">:name has been added to the database at <strong>:time</strong>.',
+    'updated-notification' => '<a href=":link" class="alert-link">:name has been updated at <strong>:time</strong>',
+    'deleted-notification' => '<a href=":link" class="alert-link">:name has been deleted at <strong>:time</strong>',
+    'restored-notification' => '<a href=":link" class="alert-link">:name has been restored at <strong>:time</strong>',
 ];
