@@ -55,4 +55,6 @@ return [
     'updated-notification' => '<a href=":link" class="alert-link">:name</a> has been updated at <strong>:time</strong>',
     'deleted-notification' => '<a href=":link" class="alert-link">:name</a> has been deleted at <strong>:time</strong>',
     'restored-notification' => '<a href=":link" class="alert-link">:name</a> has been restored at <strong>:time</strong>',
+    'product-specifications' => 'Product specifications',
+    'value' => 'Value'
 ];

@@ -53,4 +53,6 @@ return [
     'updated-notification' => '<a href=":link" class="alert-link">:name</a> módosítva lett <strong>:time</strong>-kor.',
     'deleted-notification' => '<a href=":link" class="alert-link">:name</a> törölve lett <strong>:time</strong>-kor.',
     'restored-notification' => '<a href=":link" class="alert-link">:name</a> helyre lett állítva <strong>:time</strong>-kor.',
+    'product-specifications' => 'Termék specifikációk',
+    'value' => 'Érték'
 ];
