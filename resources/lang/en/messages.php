@@ -51,8 +51,8 @@ return [
     'comment' => 'Comment',
     'comments' => 'Comments',
     'choose-category' => 'Choose category',
-    'added-notification' => '<a href=":link" class="alert-link">:name has been added to the database at <strong>:time</strong>.',
-    'updated-notification' => '<a href=":link" class="alert-link">:name has been updated at <strong>:time</strong>',
-    'deleted-notification' => '<a href=":link" class="alert-link">:name has been deleted at <strong>:time</strong>',
-    'restored-notification' => '<a href=":link" class="alert-link">:name has been restored at <strong>:time</strong>',
+    'added-notification' => '<a href=":link" class="alert-link">:name</a> has been added to the database at <strong>:time</strong>.',
+    'updated-notification' => '<a href=":link" class="alert-link">:name</a> has been updated at <strong>:time</strong>',
+    'deleted-notification' => '<a href=":link" class="alert-link">:name</a> has been deleted at <strong>:time</strong>',
+    'restored-notification' => '<a href=":link" class="alert-link">:name</a> has been restored at <strong>:time</strong>',
 ];

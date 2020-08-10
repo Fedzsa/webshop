@@ -49,8 +49,8 @@ return [
     'comment' => 'Hozzászólás',
     'comments' => 'Hozzászólások',
     'choose-category' => 'Válassz kategóriát',
-    'added-notification' => '<a href=":link" class="alert-link">:name hozzá lett adva az adatbázishoz <strong>:time</strong>-kor.',
-    'updated-notification' => '<a href=":link" class="alert-link">:name módosítva lett <strong>:time</strong>-kor.',
-    'deleted-notification' => '<a href=":link" class="alert-link">:name törölve lett <strong>:time</strong>-kor.',
-    'restored-notification' => '<a href=":link" class="alert-link">:name helyre lett állítva <strong>:time</strong>-kor.',
+    'added-notification' => '<a href=":link" class="alert-link">:name</a> hozzá lett adva az adatbázishoz <strong>:time</strong>-kor.',
+    'updated-notification' => '<a href=":link" class="alert-link">:name</a> módosítva lett <strong>:time</strong>-kor.',
+    'deleted-notification' => '<a href=":link" class="alert-link">:name</a> törölve lett <strong>:time</strong>-kor.',
+    'restored-notification' => '<a href=":link" class="alert-link">:name</a> helyre lett állítva <strong>:time</strong>-kor.',
 ];
