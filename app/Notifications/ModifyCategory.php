@@ -20,6 +20,7 @@ class ModifyCategory extends Notification implements ShouldQueue
 
     private Category $category;
     private int $modificationType;
+    private string $url;
 
     /**
      * Create a new notification instance.
@@ -30,6 +31,7 @@ class ModifyCategory extends Notification implements ShouldQueue
     {
         $this->category = $category;
         $this->modificationType = $modificationType;
+        $this->url = route('categories.edit', ['category' => $this->category->id]);
     }
 
     /**
@@ -54,6 +56,7 @@ class ModifyCategory extends Notification implements ShouldQueue
             'id' => $this->category->id,
             'name' => $this->category->name,
             'modification_type' => $this->modificationType,
+            'url' => $this->url,
             'created_at' => $this->category->created_at,
             'updated_at' => $this->category->updated_at,
             'deleted_at' => $this->category->deleted_at
@@ -78,7 +81,7 @@ class ModifyCategory extends Notification implements ShouldQueue
             case ModelModification::RESTORE: $message->line(self::RESTORED_CATEGORY_MESSAGE); break;
         }
 
-        return $message->action('Notification Action', route('categories.index'));
+        return $message->action('Notification Action', $this->url);
     }
 
     /**

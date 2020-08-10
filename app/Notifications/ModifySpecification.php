@@ -20,6 +20,7 @@ class ModifySpecification extends Notification implements ShouldQueue
 
     private Specification $specification;
     private int $modificationType;
+    private string $url;
 
     /**
      * Create a new notification instance.
@@ -30,6 +31,7 @@ class ModifySpecification extends Notification implements ShouldQueue
     {
         $this->specification = $specification;
         $this->modificationType = $modificationType;
+        $this->url = route('specifications.edit', ['specification' => $this->specification->id]);
     }
 
     /**
@@ -49,6 +51,7 @@ class ModifySpecification extends Notification implements ShouldQueue
             'id' => $this->specification->id,
             'name' => $this->specification->name,
             'modification_type' => $this->modificationType,
+            'url' => $this->url,
             'created_at' => $this->specification->created_at,
             'updated_at' => $this->specification->updated_at,
             'deleted_at' => $this->specification->deleted_at
@@ -73,7 +76,7 @@ class ModifySpecification extends Notification implements ShouldQueue
             case ModelModification::RESTORE: $message->line(self::RESTORED_SPECIFICATION_MESSAGE); break;
         }
 
-        return $message->action('View '.$this->specification->name, route('specifications.index'));
+        return $message->action('View '.$this->specification->name, $this->url);
     }
 
     /**

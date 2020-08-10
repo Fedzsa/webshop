@@ -20,6 +20,7 @@ class ModifyProduct extends Notification implements ShouldQueue
 
     private Product $product;
     private int $modificationType;
+    private string $url;
 
     /**
      * Create a new notification instance.
@@ -30,6 +31,7 @@ class ModifyProduct extends Notification implements ShouldQueue
     {
         $this->product = $product;
         $this->modificationType = $modificationType;
+        $this->url = route('products.edit', ['product' => $this->product->id]);
     }
 
     /**
@@ -49,6 +51,7 @@ class ModifyProduct extends Notification implements ShouldQueue
             'id' => $this->product->id,
             'name' => $this->product->name,
             'modification_type' => $this->modificationType,
+            'url' => $this->url,
             'created_at' => $this->product->created_at,
             'updated_at' => $this->product->updated_at,
             'deleted_at' => $this->product->deleted_at
@@ -63,8 +66,6 @@ class ModifyProduct extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = url("/products/". $this->product->id);
-
         $message = new MailMessage();
         $message->greeting('Hello!');
 
@@ -75,7 +76,7 @@ class ModifyProduct extends Notification implements ShouldQueue
             case ModelModification::RESTORE: $message->line(self::RESTORED_PRODUCT_MESSAGE); break;
         }
 
-        return $message->action('View '.$this->product->name, $url);
+        return $message->action('View '.$this->product->name, $this->url);
     }
 
     /**
