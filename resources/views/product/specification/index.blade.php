@@ -28,7 +28,7 @@
                                         <i class="fas fa-check text-success"></i>
                                     @endif
                                 </td>
-                                <td>
+                                <td align="right">
                                     <a href="{{ route('products.specifications.edit', ['product' => $product->id, 'specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
 
                                     @if (! isset($specification->pivot->deleted_at))

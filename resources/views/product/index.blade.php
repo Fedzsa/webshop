@@ -44,7 +44,7 @@
                                         <i class="fas fa-check text-success"></i>
                                     @endif
                                 </td>
-                                <td>
+                                <td align="right">
                                     <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn btn-primary fas fa-eye"></a>
                                     <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-primary fas fa-edit"></a>
                                     <a href="{{ route('products.specifications.index', ['product' => $product->id]) }}" class="btn btn-primary fas fa-list-alt"></a>

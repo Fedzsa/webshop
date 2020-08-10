@@ -28,7 +28,7 @@
                     <th>@lang('messages.name')</th>
                     <th>@lang('messages.deleted')</th>
                     <th>
-                        <a href="{{ route('specifications.create') }}" class="btn btn-outline-light fas fa-plus"></a>
+                        <a href="{{ route('specifications.create') }}" class="btn btn-outline-light fas fa-plus float-right"></a>
                     </th>
                 </tr>
                 </thead>
@@ -42,7 +42,7 @@
                                 <i class="fas fa-check text-success"></i>
                             @endif
                         </td>
-                        <td>
+                        <td align="right">
                             <a href="{{ route('specifications.edit', ['specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
                             
                             @if(!$specification->trashed())
