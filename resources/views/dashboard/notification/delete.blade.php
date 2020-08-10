@@ -1,7 +1,7 @@
 <div id="notification-{{ $notification->id }}" class="alert alert-danger notification" role="alert">
     <div>
         @lang('messages.deleted-notification', [
-            'link' => route('products.show', ['product' => $notification->data['id']]),
+            'link' => $notification->data['url'],
             'name' => $notification->data['name'],
             'time' => formatStringToDateTime($notification->data['created_at'])
         ])
