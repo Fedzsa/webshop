@@ -33,26 +33,32 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($specifications as $specification)
-                    <tr id="{{ $specification->id }}">
-                        <td>{{ $specification->id }}</td>
-                        <td>{{ $specification->name }}</td>
-                        <td id="is-deleted-column">
-                            @if($specification->trashed())
-                                <i class="fas fa-check text-success"></i>
-                            @endif
-                        </td>
-                        <td align="right">
-                            <a href="{{ route('specifications.edit', ['specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
-                            
-                            @if(!$specification->trashed())
-                                <button class="btn btn-danger fas fa-trash" onclick="deleteSpecification({{ $specification->id }})"></button>
-                            @else
-                                <button class="btn btn-warning fas fa-trash-restore" onclick="restoreSpecification({{ $specification->id }})"></button>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
+                    @if (count($specifications) > 0)
+                        @foreach ($specifications as $specification)
+                            <tr id="{{ $specification->id }}">
+                                <td>{{ $specification->id }}</td>
+                                <td>{{ $specification->name }}</td>
+                                <td id="is-deleted-column">
+                                    @if($specification->trashed())
+                                        <i class="fas fa-check text-success"></i>
+                                    @endif
+                                </td>
+                                <td align="right">
+                                    <a href="{{ route('specifications.edit', ['specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
+                                    
+                                    @if(!$specification->trashed())
+                                        <button class="btn btn-danger fas fa-trash" onclick="deleteSpecification({{ $specification->id }})"></button>
+                                    @else
+                                        <button class="btn btn-warning fas fa-trash-restore" onclick="restoreSpecification({{ $specification->id }})"></button>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="4" align="center" >No result</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
 

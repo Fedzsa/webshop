@@ -33,26 +33,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $category)
-                        <tr id="{{ $category->id }}">
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td id="is-deleted-column">
-                                @if($category->trashed())
-                                    <i class="fas fa-check text-success"></i>
-                                @endif
-                            </td>
-                            <td align="right">
-                                <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-primary fas fa-edit"></a>
-                                
-                                @if(! $category->trashed())
-                                    <button class="btn btn-danger fas fa-trash" onclick="deleteCategory({{ $category->id }})"></button>
-                                @else
-                                    <button class="btn btn-warning fas fa-trash-restore" onclick="restoreCategory({{ $category->id }})"></button>
-                                @endif
-                            </td>
+                    @if (count($categories) > 0)
+                        @foreach ($categories as $category)
+                            <tr id="{{ $category->id }}">
+                                <td>{{ $category->id }}</td>
+                                <td>{{ $category->name }}</td>
+                                <td id="is-deleted-column">
+                                    @if($category->trashed())
+                                        <i class="fas fa-check text-success"></i>
+                                    @endif
+                                </td>
+                                <td align="right">
+                                    <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-primary fas fa-edit"></a>
+                                    
+                                    @if(! $category->trashed())
+                                        <button class="btn btn-danger fas fa-trash" onclick="deleteCategory({{ $category->id }})"></button>
+                                    @else
+                                        <button class="btn btn-warning fas fa-trash-restore" onclick="restoreCategory({{ $category->id }})"></button>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="4" align="center">No result</td>
                         </tr>
-                    @endforeach
+                    @endif
                 </tbody>
             </table>
 

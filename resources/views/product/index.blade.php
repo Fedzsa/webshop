@@ -33,31 +33,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product)
-                            <tr id="{{ $product->id }}">
-                                <td>{{ $product->id }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->price }}</td>
-                                <td>{{ Str::words($product->description, 5, '...') }}</td>
-                                <td id="is-deleted-column">
-                                    @if ($product->trashed())
-                                        <i class="fas fa-check text-success"></i>
-                                    @endif
-                                </td>
-                                <td align="right">
-                                    <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn btn-primary fas fa-eye"></a>
-                                    <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-primary fas fa-edit"></a>
-                                    <a href="{{ route('products.specifications.index', ['product' => $product->id]) }}" class="btn btn-primary fas fa-list-alt"></a>
-                                    <a href="{{ route('products.images', ['product' => $product->id]) }}" class="btn btn-primary fas fa-images"></a>
+                        @if (count($products) > 0)
+                            @foreach ($products as $product)
+                                <tr id="{{ $product->id }}">
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ Str::words($product->description, 5, '...') }}</td>
+                                    <td id="is-deleted-column">
+                                        @if ($product->trashed())
+                                            <i class="fas fa-check text-success"></i>
+                                        @endif
+                                    </td>
+                                    <td align="right">
+                                        <a href="{{ route('products.show', ['product' => $product->id]) }}" class="btn btn-primary fas fa-eye"></a>
+                                        <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-primary fas fa-edit"></a>
+                                        <a href="{{ route('products.specifications.index', ['product' => $product->id]) }}" class="btn btn-primary fas fa-list-alt"></a>
+                                        <a href="{{ route('products.images', ['product' => $product->id]) }}" class="btn btn-primary fas fa-images"></a>
 
-                                    @if (! $product->trashed())
-                                        <button class="btn btn-danger fas fa-trash" onclick="deleteProduct({{ $product->id }})" data-toggle="modal" data-target="#deleteModal"></button>
-                                    @else
-                                        <button class="btn btn-warning fas fa-trash-restore" onclick="restoreProduct({{ $product->id }})"></button>
-                                    @endif
-                                </td>
+                                        @if (! $product->trashed())
+                                            <button class="btn btn-danger fas fa-trash" onclick="deleteProduct({{ $product->id }})" data-toggle="modal" data-target="#deleteModal"></button>
+                                        @else
+                                            <button class="btn btn-warning fas fa-trash-restore" onclick="restoreProduct({{ $product->id }})"></button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6" align="center" >No result</td>
                             </tr>
-                        @endforeach
+                        @endif
                     </tbody>
                 </table>
 
