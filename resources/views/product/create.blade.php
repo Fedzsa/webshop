@@ -39,7 +39,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <select class="form-control" name="category_id">
-                <option value="0">--- Choose category ---</option>
+                <option value="0">@lang('messages.choose-category')</option>
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
