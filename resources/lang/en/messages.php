@@ -56,5 +56,6 @@ return [
     'deleted-notification' => '<a href=":link" class="alert-link">:name</a> has been deleted at <strong>:time</strong>',
     'restored-notification' => '<a href=":link" class="alert-link">:name</a> has been restored at <strong>:time</strong>',
     'product-specifications' => 'Product specifications',
-    'value' => 'Value'
+    'value' => 'Value',
+    'amount' => 'Amount'
 ];
