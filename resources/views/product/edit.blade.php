@@ -49,12 +49,21 @@
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="price">@lang('messages.price')</label>
-                    @error('price')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <input type="number" name="price" class="form-control" min="0" value="{{ $product->price }}" />
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="price">@lang('messages.price')</label>
+                        @error('price')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <input type="number" name="price" class="form-control" min="0" value="{{ $product->price }}" />
+                    </div>
+                    <div class="form-group col">
+                        <label for="amount">@lang('messages.amount')</label>
+                        @error('amount')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <input type="number" name="amount" class="form-control" min="0" value="{{ $product->amount }}" />
+                    </div>
                 </div>
 
                 <div class="form-group">
