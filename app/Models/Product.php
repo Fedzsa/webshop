@@ -11,7 +11,7 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'price', 'description', 'category_id'
+        'name', 'price', 'description', 'category_id', 'amount'
     ];
 
     protected  $searchable = ['name', 'description'];
