@@ -39,6 +39,10 @@ class StoreProduct extends FormRequest
                 'required',
                 'max:100'
             ],
+            'amount' => [
+                'required',
+                'integer'
+            ],
             'description' => [
                 'nullable',
                 'string',
