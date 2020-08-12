@@ -26,9 +26,6 @@ class ProductController extends Controller {
         $this->categoryService = $categoryService;
         $this->specificationService = $specificationService;
         $this->fileService = $fileService;
-
-        $this->middleware('auth');
-        $this->middleware('verified');
     }
 
     /**
