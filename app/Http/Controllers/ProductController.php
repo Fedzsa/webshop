@@ -46,7 +46,7 @@ class ProductController extends Controller {
      */
     public function show(int $product) {
         $product = $this->productService->getProductById($product);
-        
+
         return view('product.show', compact('product'));
     }
 
@@ -110,7 +110,7 @@ class ProductController extends Controller {
 
         $this->productService->destroy($product);
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 200);
     }
 
     /**
@@ -121,7 +121,7 @@ class ProductController extends Controller {
 
         $this->productService->restore($product);
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 200);
     }
 
     /**
