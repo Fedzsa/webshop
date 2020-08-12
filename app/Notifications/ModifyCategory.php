@@ -47,7 +47,7 @@ class ModifyCategory extends Notification implements ShouldQueue
 
     /**
      * Store notification in the database.
-     * 
+     *
      * @param  mixed  $notifiable
      * @return array
      */
@@ -81,7 +81,7 @@ class ModifyCategory extends Notification implements ShouldQueue
             case ModelModification::RESTORE: $message->line(self::RESTORED_CATEGORY_MESSAGE); break;
         }
 
-        return $message->action('Notification Action', $this->url);
+        return $message->action('View', $this->url);
     }
 
     /**
