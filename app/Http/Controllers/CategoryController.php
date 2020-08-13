@@ -93,6 +93,6 @@ class CategoryController extends Controller {
 
         $this->categoryService->restore($category);
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 200);
     }
 }
