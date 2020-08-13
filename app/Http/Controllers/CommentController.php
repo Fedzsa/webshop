@@ -25,8 +25,9 @@ class CommentController extends Controller
     public function store(StoreComment $request)
     {
         $comment = $this->commentService->store($request->validated());
+        $product = $comment->product;
 
-        return view('product.comment', compact('comment'));
+        return view('product.comment', compact(['comment', 'product']));
     }
 
     /**

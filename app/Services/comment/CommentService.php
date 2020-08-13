@@ -28,7 +28,7 @@ class CommentService implements CommentServiceInterface
 
         $comment->save();
 
-        return $comment->load('user');
+        return $comment->load('user', 'product');
     }
 
     /**
