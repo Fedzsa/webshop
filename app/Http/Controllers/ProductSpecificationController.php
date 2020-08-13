@@ -70,11 +70,11 @@ class ProductSpecificationController extends Controller {
      */
     public function update(UpdateProductSpecification $request, Product $product, int $specification) {
         $updated = $this->productService->updateSpecification($product, $specification, $request->validated());
-        
+
         if(! $updated) {
             return back()->withErrors('status', $product->name.' specification value not updated!')->withInput($request->validated());
         }
-        
+
         return back()->with('status', $product->name.' specification value updated!')->withInput($request->validated());
     }
 
@@ -99,6 +99,6 @@ class ProductSpecificationController extends Controller {
     public function restore(Product $product, int $specification) {
         $this->productService->restoreSpecification($product, $specification);
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 200);
     }
 }

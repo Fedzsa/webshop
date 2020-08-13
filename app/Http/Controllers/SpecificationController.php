@@ -7,6 +7,7 @@ use App\Models\Specification;
 use App\Services\Specification\SpecificationServiceInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class SpecificationController extends Controller {
     private SpecificationServiceInterface $specificationService;
@@ -50,7 +51,7 @@ class SpecificationController extends Controller {
         if(!$inserted) {
             return back()->withErrors(['status' => 'Specification not inserted!'])->withInput($request->validated());
         }
-        
+
         return back()->with('status', 'Specification created!');
     }
 
@@ -97,6 +98,6 @@ class SpecificationController extends Controller {
 
         $this->specificationService->restore($specification);
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 200);
     }
 }
