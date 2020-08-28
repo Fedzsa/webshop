@@ -41,5 +41,5 @@ Route::put('/products/{product}/comments/{comment}', 'CommentController@update')
 
 Route::get('/dashboard', 'DashboardController')->name('dashboard.index');
 
-Route::get('/notifications/unread-number', 'NotificationController@unreadNumber')->name('notifications.unread_number');
+Route::get('/notifications/unread-notification-number', 'NotificationController@unreadNumber')->name('notifications.unread_notification_number');
 Route::put('/notifications/{id}', 'NotificationController@update')->name('notifications.update');
