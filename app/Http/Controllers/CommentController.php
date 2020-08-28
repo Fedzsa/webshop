@@ -33,12 +33,12 @@ class CommentController extends Controller
     /**
      * Update comment.
      */
-    public function update(StoreComment $request, int $product, Comment $comment) 
+    public function update(StoreComment $request, int $product, Comment $comment)
     {
         $this->authorize('update', $comment);
 
         $this->commentService->update($comment, $request->validated());
 
-        return response()->json(['updated' => true]);
+        return response()->json(['updated' => true], 200);
     }
 }

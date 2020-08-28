@@ -15,7 +15,7 @@ class NotificationController extends Controller {
      * Get unread notification number.
      */
     public function unreadNumber() {
-        return response()->json(['notificationNumber' => countUnreadNotificationsForAuthUser()]);
+        return response()->json(['notificationNumber' => countUnreadNotificationsForAuthUser()], 200);
     }
 
     /**
@@ -24,6 +24,6 @@ class NotificationController extends Controller {
     public function update(string $id) {
         $this->notificationService->markAsRead($id);
 
-        return response()->json(['marked' => true]);
+        return response()->json(['marked' => true], 200);
     }
 }
