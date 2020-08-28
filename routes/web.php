@@ -24,8 +24,12 @@ Route::resource('specifications', 'SpecificationController')->except(['show']);
 Route::get('/specifications/{specification}/delete', 'SpecificationController@delete')->name('specifications.delete');
 Route::put('/specifications/{specification}/restore', 'SpecificationController@restore')->name('specifications.restore');
 
-Route::resource('products', 'ProductController');
-Route::put('/products/{product}/restore', 'ProductController@restore');
+Route::middleware(['auth', 'verified'])->group(function() {
+    Route::resource('products', 'ProductController')->except(['show']);
+    Route::put('/products/{product}/restore', 'ProductController@restore');
+});
+
+Route::get('/products/{product}', 'ProductController@show')->name('products.show');
 
 Route::resource('products.specifications', 'ProductSpecificationController')->except(['show']);
 Route::put('/products/{product}/specifications/{specification}/restore', 'ProductSpecificationController@restore')->name('products.specifications.restore');
