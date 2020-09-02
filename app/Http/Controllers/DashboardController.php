@@ -13,8 +13,6 @@ class DashboardController extends Controller
     public function __construct(NotificationServiceInterface $notificationService)
     {
         $this->notificationService = $notificationService;
-
-        $this->middleware('auth');
     }
 
     /**

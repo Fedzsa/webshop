@@ -14,9 +14,6 @@ class SpecificationController extends Controller {
 
     public function __construct(SpecificationServiceInterface $specificationService) {
         $this->specificationService = $specificationService;
-
-        $this->middleware('auth');
-        $this->middleware('verified');
     }
 
     /**

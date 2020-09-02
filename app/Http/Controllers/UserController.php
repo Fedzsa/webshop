@@ -11,8 +11,6 @@ class UserController extends Controller
 
     public function __construct(UserServiceInterface $userService) {
         $this->userService = $userService;
-
-        $this->middleware('auth');
     }
 
     /**
@@ -20,7 +18,7 @@ class UserController extends Controller
      */
     public function index() {
         $users = $this->userService->getPaginatedUsers();
-        
+
         return view('user.index', ['users' => $users]);
     }
 }

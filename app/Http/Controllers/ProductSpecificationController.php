@@ -17,9 +17,6 @@ class ProductSpecificationController extends Controller {
     public function __construct(ProductServiceInterface $productService, SpecificationServiceInterface $specificationService) {
         $this->productService = $productService;
         $this->specificationService = $specificationService;
-
-        $this->middleware('auth');
-        $this->middleware('verified');
     }
 
     /**
