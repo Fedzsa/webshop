@@ -16,20 +16,20 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Get paginated products.
-     * 
+     *
      * @param string $search - The name of the product to be search.
      * @return mixed - paginated products
      */
     public function getPaginatedProducts($search) {
         return $this->product->search($search)
                                 ->withTrashed()
-                                ->select('id', 'name', 'price', 'description', 'deleted_at')
+                                ->select('id', 'name', 'price', 'amount', 'description', 'deleted_at')
                                 ->paginate(10);
     }
 
     /**
      * Store the new product.
-     * 
+     *
      * @param array $attributes - product attributes
      * @return bool
      */
@@ -39,7 +39,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Find the product by id.
-     * 
+     *
      * @param int $id - product id
      * @return Product
      */
@@ -49,7 +49,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Update the product.
-     * 
+     *
      * @param Product $product - Product which will be update.
      * @param array $attributes - Product attributes
      * @return bool
@@ -60,7 +60,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Soft delete the product.
-     * 
+     *
      * @param \App\Model\Product $product
      * @return bool
      */
@@ -70,7 +70,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Restore soft deleted product.
-     * 
+     *
      * @param \App\Model\Product $product
      * @return bool
      */
@@ -80,7 +80,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Find the product by id and return with specification, file and comment.
-     * 
+     *
      * @param int $id - product id
      * @return Product
      */
@@ -96,7 +96,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Store the product specification.
-     * 
+     *
      * @param Product $product
      * @param array $attributes - specification names and values
      * @return bool
@@ -113,7 +113,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Update the product specification.
-     * 
+     *
      * @param Product $product
      * @param int $specificationId
      * @param array $attributes - the specification name and value
@@ -128,7 +128,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Soft delete product specification.
-     * 
+     *
      * @param \App\Model\Product $product
      * @param int $specificationId
      * @return bool
@@ -141,7 +141,7 @@ class ProductService implements ProductServiceInterface {
 
     /**
      * Restore the soft deleted product specification.
-     * 
+     *
      * @param Product $product
      * @param int $specificationId
      * @return bool

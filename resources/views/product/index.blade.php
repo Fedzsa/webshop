@@ -27,6 +27,7 @@
                             <th>id</th>
                             <th>@lang('messages.name')</th>
                             <th>@lang('messages.price')</th>
+                            <th>@lang('messages.amount')</th>
                             <th>@lang('messages.description')</th>
                             <th>@lang('messages.deleted')</th>
                             <th><a href="{{ route('products.create') }}" class="btn btn-outline-light fas fa-plus float-right"></a></th>
@@ -39,6 +40,7 @@
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
+                                    <td>{{ $product->amount }}</td>
                                     <td>{{ Str::words($product->description, 5, '...') }}</td>
                                     <td id="is-deleted-column">
                                         @if ($product->trashed())
