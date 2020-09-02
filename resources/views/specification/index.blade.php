@@ -35,7 +35,7 @@
                 <tbody>
                     @if (count($specifications) > 0)
                         @foreach ($specifications as $specification)
-                            <tr id="{{ $specification->id }}">
+                            <tr data-specification-id="{{ $specification->id }}">
                                 <td>{{ $specification->id }}</td>
                                 <td>{{ $specification->name }}</td>
                                 <td id="is-deleted-column">
@@ -45,7 +45,7 @@
                                 </td>
                                 <td align="right">
                                     <a href="{{ route('specifications.edit', ['specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
-                                    
+
                                     @if(!$specification->trashed())
                                         <button class="btn btn-danger fas fa-trash" onclick="deleteSpecification({{ $specification->id }})"></button>
                                     @else

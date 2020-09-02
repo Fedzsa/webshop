@@ -19,7 +19,7 @@ function deleteSpecification(id) {
                     if(response.success) {
                         Swal.fire('Deleted!', '', 'success');
 
-                        let deletedSpecificationRow = $(`#specification-table tbody #${id}`);
+                        let deletedSpecificationRow = $(`#specification-table tbody tr[data-specification-id=${id}]`);
 
                         deletedSpecificationRow.find('#is-deleted-column')
                                             .append('<i class="fas fa-check text-success"></i>');
@@ -43,7 +43,7 @@ function restoreSpecification(id) {
         url: `/specifications/${id}/restore`,
         success: (response) => {
             if(response.success) {
-                let elementRow = $(`#specification-table #${id}`);
+                let elementRow = $(`#specification-table tr[data-specification-id=${id}]`);
 
                 elementRow.find('i').remove();
 
