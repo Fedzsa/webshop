@@ -35,7 +35,7 @@
                     <tbody>
                         @if (count($products) > 0)
                             @foreach ($products as $product)
-                                <tr id="{{ $product->id }}">
+                                <tr data-product-id="{{ $product->id }}">
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>

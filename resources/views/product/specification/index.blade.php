@@ -20,7 +20,7 @@
                 <tbody>
                     @if (count($specifications) > 0)
                         @foreach($specifications as $specification)
-                            <tr id="{{ $specification->id }}">
+                            <tr data-specification-id="{{ $specification->id }}">
                                 <td>{{ $specification->name }}</td>
                                 <td>{{ $specification->pivot->value }}</td>
                                 <td id="is-deleted-column">

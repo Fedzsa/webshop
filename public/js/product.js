@@ -19,7 +19,7 @@ function deleteProduct(productId) {
                     if(response.success) {
                         Swal.fire('Deleted!', '', 'success');
 
-                        let deletedProductRow = $(`#product-table tbody #${productId}`);
+                        let deletedProductRow = $(`#product-table tbody tr[data-product-id=${productId}]`);
 
                         deletedProductRow.find('#is-deleted-column')
                                             .append('<i class="fas fa-check text-success"></i>');
@@ -43,7 +43,7 @@ function restoreProduct(productId) {
         url: `/products/${productId}/restore`,
         success: (response) => {
             if(response.success) {
-                let restoredProductRow = $(`#product-table tbody #${productId}`);
+                let restoredProductRow = $(`#product-table tbody tr[data-product-id=${productId}]`);
                 restoredProductRow.find('i').remove();
                 restoredProductRow.find('button')
                                     .attr('class', 'btn btn-danger fas fa-trash')
@@ -71,7 +71,7 @@ function deleteSpecification(productId, specificationId) {
                     if(response.success) {
                         Swal.fire('Deleted!', '', 'success');
 
-                        let deletedProductRow = $(`#product-specification-table tbody #${specificationId}`);
+                        let deletedProductRow = $(`#product-specification-table tbody tr[data-specification-id=${specificationId}]`);
 
                         deletedProductRow.find('#is-deleted-column')
                                             .append('<i class="fas fa-check text-success"></i>');
@@ -95,7 +95,7 @@ function restoreSpecification(productId, specificationId) {
         url: `/products/${productId}/specifications/${specificationId}/restore`,
         success: (response) => {
             if(response.success) {
-                let elementRow = $(`#product-specification-table #${specificationId}`);
+                let elementRow = $(`#product-specification-table tr[data-specification-id=${specificationId}]`);
 
                 elementRow.find('i').remove();
 
@@ -115,7 +115,7 @@ function deleteImage(productId, imageId) {
         type: 'DELETE',
         url: `/products/${productId}/images/${imageId}`,
         success: (response) => {
-            $(`#image-${imageId}`).remove();
+            $(`img[data-image-id=${imageId}]`).remove();
         },
         error: (error) => {
             console.error(error);
