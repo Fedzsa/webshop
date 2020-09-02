@@ -4,8 +4,8 @@
             <li onclick="navigateToDashboard()">
                 <i class="fas fa-chart-line"></i>
                 <div>
-                    @if (countUnreadNotificationsForAuthUser() !== 0)
-                        <span id="notification-badge" class="badge badge-danger">{{ countUnreadNotificationsForAuthUser() }}</span>
+                    @if (($number = countUnreadNotificationsForAuthUser()) !== 0)
+                        <span id="notification-badge" class="badge badge-danger">{{ $number }}</span>
                     @endif
                     <span>@lang('messages.dashboard')</span>
                 </div>
