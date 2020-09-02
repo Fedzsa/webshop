@@ -9,14 +9,16 @@ class UserController extends Controller
 {
     private UserServiceInterface $userService;
 
-    public function __construct(UserServiceInterface $userService) {
+    public function __construct(UserServiceInterface $userService)
+    {
         $this->userService = $userService;
     }
 
     /**
      * Listing the users.
      */
-    public function index() {
+    public function index()
+    {
         $users = $this->userService->getPaginatedUsers();
 
         return view('user.index', ['users' => $users]);

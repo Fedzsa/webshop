@@ -7,17 +7,20 @@ use App\Models\Category;
 use App\Services\Category\CategoryServiceInterface;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller {
+class CategoryController extends Controller
+{
     private CategoryServiceInterface $categoryService;
 
-    public function __construct(CategoryServiceInterface $categoryService) {
+    public function __construct(CategoryServiceInterface $categoryService)
+    {
         $this->categoryService = $categoryService;
     }
 
     /**
      * Listing categories.
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $this->authorize('viewAny', Category::class);
 
         $search = $request->query('search');
@@ -30,7 +33,8 @@ class CategoryController extends Controller {
     /**
      * Create category page.
      */
-    public function create() {
+    public function create()
+    {
         $this->authorize('create', Category::class);
 
         return view('category.create');
@@ -39,7 +43,8 @@ class CategoryController extends Controller {
     /**
      * Create category.
      */
-    public function store(StoreCategory $request) {
+    public function store(StoreCategory $request)
+    {
         $this->authorize('create', Category::class);
 
         $this->categoryService->store($request->validated());
@@ -50,7 +55,8 @@ class CategoryController extends Controller {
     /**
      * Edit category page.
      */
-    public function edit(Category $category) {
+    public function edit(Category $category)
+    {
         $this->authorize('update', $category);
 
         return view('category.edit', compact('category'));
@@ -59,23 +65,27 @@ class CategoryController extends Controller {
     /**
      * Update category.
      */
-    public function update(StoreCategory $request, Category $category) {
+    public function update(StoreCategory $request, Category $category)
+    {
         $this->authorize('update', $category);
 
         $this->categoryService->update($category, $request->validated());
 
-        return back()->with('status', 'Category updated!')->withInput($request->all());
+        return back()
+            ->with('status', 'Category updated!')
+            ->withInput($request->all());
     }
 
     /**
      * Delete category
      */
-    public function destroy(Category $category) {
+    public function destroy(Category $category)
+    {
         $this->authorize('delete', $category);
 
         $deleted = $this->categoryService->destroy($category);
 
-        if(! $deleted) {
+        if (!$deleted) {
             return response()->json(['success' => false], 404);
         }
 
@@ -85,7 +95,8 @@ class CategoryController extends Controller {
     /**
      * Restore deleted category.
      */
-    public function restore(Category $category) {
+    public function restore(Category $category)
+    {
         $this->authorize('restore', $category);
 
         $this->categoryService->restore($category);

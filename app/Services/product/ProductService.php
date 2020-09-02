@@ -5,11 +5,13 @@ namespace App\Services\Product;
 use App\Models\Product;
 use App\Models\Specification;
 
-class ProductService implements ProductServiceInterface {
+class ProductService implements ProductServiceInterface
+{
     private Product $product;
     private Specification $specification;
 
-    public function __construct(Product $product, Specification $specification) {
+    public function __construct(Product $product, Specification $specification)
+    {
         $this->product = $product;
         $this->specification = $specification;
     }
@@ -20,11 +22,20 @@ class ProductService implements ProductServiceInterface {
      * @param string $search - The name of the product to be search.
      * @return mixed - paginated products
      */
-    public function getPaginatedProducts($search) {
-        return $this->product->search($search)
-                                ->withTrashed()
-                                ->select('id', 'name', 'price', 'amount', 'description', 'deleted_at')
-                                ->paginate(10);
+    public function getPaginatedProducts($search)
+    {
+        return $this->product
+            ->search($search)
+            ->withTrashed()
+            ->select(
+                'id',
+                'name',
+                'price',
+                'amount',
+                'description',
+                'deleted_at'
+            )
+            ->paginate(10);
     }
 
     /**
@@ -33,7 +44,8 @@ class ProductService implements ProductServiceInterface {
      * @param array $attributes - product attributes
      * @return bool
      */
-    public function store(array $attributes) {
+    public function store(array $attributes)
+    {
         return $this->product->create($attributes);
     }
 
@@ -43,7 +55,8 @@ class ProductService implements ProductServiceInterface {
      * @param int $id - product id
      * @return Product
      */
-    public function getById(int $id) {
+    public function getById(int $id)
+    {
         return Product::find($id);
     }
 
@@ -54,7 +67,8 @@ class ProductService implements ProductServiceInterface {
      * @param array $attributes - Product attributes
      * @return bool
      */
-    public function update(Product $product, array $attributes) {
+    public function update(Product $product, array $attributes)
+    {
         return $product->update($attributes);
     }
 
@@ -64,7 +78,8 @@ class ProductService implements ProductServiceInterface {
      * @param \App\Model\Product $product
      * @return bool
      */
-    public function destroy(Product $product): bool {
+    public function destroy(Product $product): bool
+    {
         return $product->delete();
     }
 
@@ -74,7 +89,8 @@ class ProductService implements ProductServiceInterface {
      * @param \App\Model\Product $product
      * @return bool
      */
-    public function restore(Product $product): bool {
+    public function restore(Product $product): bool
+    {
         return $product->restore();
     }
 
@@ -84,14 +100,16 @@ class ProductService implements ProductServiceInterface {
      * @param int $id - product id
      * @return Product
      */
-    public function getProductById(int $id) {
-        return $this->product->with([
-                                    'specifications:name',
-                                    'files:id,name,product_id',
-                                    'comments:id,comment,user_id,product_id,created_at',
-                                    'comments.user:id,firstname,lastname'
-                                ])
-                                ->find($id, ['id', 'name', 'price', 'description', 'created_at']);
+    public function getProductById(int $id)
+    {
+        return $this->product
+            ->with([
+                'specifications:name',
+                'files:id,name,product_id',
+                'comments:id,comment,user_id,product_id,created_at',
+                'comments.user:id,firstname,lastname',
+            ])
+            ->find($id, ['id', 'name', 'price', 'description', 'created_at']);
     }
 
     /**
@@ -101,13 +119,17 @@ class ProductService implements ProductServiceInterface {
      * @param array $attributes - specification names and values
      * @return bool
      */
-    public function storeSpecifications(Product $product, array $attributes) {
-        $specification = $this->specification->find($attributes['specification'], ['id']);
+    public function storeSpecifications(Product $product, array $attributes)
+    {
+        $specification = $this->specification->find(
+            $attributes['specification'],
+            ['id']
+        );
 
         return $product->specifications()->save($specification, [
             'value' => $attributes['specification-value'],
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
     }
 
@@ -119,11 +141,17 @@ class ProductService implements ProductServiceInterface {
      * @param array $attributes - the specification name and value
      * @return bool
      */
-    public function updateSpecification(Product $product, int $specificationId, array $attributes) {
-        return $product->specifications()->updateExistingPivot($specificationId, [
-            'value' => $attributes['specification-value'],
-            'updated_at' => now()
-        ]);
+    public function updateSpecification(
+        Product $product,
+        int $specificationId,
+        array $attributes
+    ) {
+        return $product
+            ->specifications()
+            ->updateExistingPivot($specificationId, [
+                'value' => $attributes['specification-value'],
+                'updated_at' => now(),
+            ]);
     }
 
     /**
@@ -133,10 +161,15 @@ class ProductService implements ProductServiceInterface {
      * @param int $specificationId
      * @return bool
      */
-    public function destroySpecification(Product $product, int $specificationId): bool {
-        return $product->specifications()->updateExistingPivot($specificationId, [
-            'deleted_at' => now()
-        ]);
+    public function destroySpecification(
+        Product $product,
+        int $specificationId
+    ): bool {
+        return $product
+            ->specifications()
+            ->updateExistingPivot($specificationId, [
+                'deleted_at' => now(),
+            ]);
     }
 
     /**
@@ -146,9 +179,12 @@ class ProductService implements ProductServiceInterface {
      * @param int $specificationId
      * @return bool
      */
-    public function restoreSpecification(Product $product, int $specificationId) {
-        return $product->specifications()->updateExistingPivot($specificationId, [
-            'deleted_at' => null
-        ]);
+    public function restoreSpecification(Product $product, int $specificationId)
+    {
+        return $product
+            ->specifications()
+            ->updateExistingPivot($specificationId, [
+                'deleted_at' => null,
+            ]);
     }
 }

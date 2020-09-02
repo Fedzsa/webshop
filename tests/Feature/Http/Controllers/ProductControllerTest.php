@@ -16,23 +16,23 @@ class ProductControllerTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        $this->get('/products')
-            ->assertViewIs('product.index');
+        $this->get('/products')->assertViewIs('product.index');
     }
 
     private function actingAsAdmin()
     {
-        $this->actingAs(\factory(User::class)->create([
-            'admin' => 1,
-        ]));
+        $this->actingAs(
+            \factory(User::class)->create([
+                'admin' => 1,
+            ])
+        );
     }
 
     public function testGuestUserCantReachProductsView()
     {
         $this->actingAsUser();
 
-        $this->get('/products')
-            ->assertStatus(403);
+        $this->get('/products')->assertStatus(403);
     }
 
     private function actingAsUser()
@@ -44,23 +44,21 @@ class ProductControllerTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        $this->get('/products')->assertViewHasAll([ 'products', 'search' ]);
+        $this->get('/products')->assertViewHasAll(['products', 'search']);
     }
 
     public function twstGetNewProductView()
     {
         $this->actingAsAdmin();
 
-        $this->get('/products/create')
-            ->assertViewIs('product.create');
+        $this->get('/products/create')->assertViewIs('product.create');
     }
 
     public function testJustAdminsReachTheNewProductView()
     {
         $this->actingAsUser();
 
-        $this->get('/products/create')
-            ->assertStatus(403);
+        $this->get('/products/create')->assertStatus(403);
     }
 
     public function testEverybodyCanSeeTheProductPage()
@@ -122,7 +120,9 @@ class ProductControllerTest extends TestCase
 
         $product = $this->generateProduct();
 
-        $this->get('/products/' . $product->id . '/edit')->assertViewIs('product.edit');
+        $this->get('/products/' . $product->id . '/edit')->assertViewIs(
+            'product.edit'
+        );
     }
 
     public function testProductPageGetTheData()
@@ -131,7 +131,10 @@ class ProductControllerTest extends TestCase
 
         $product = $this->generateProduct();
 
-        $this->get('/products/' . $product->id . '/edit')->assertViewHasAll([ 'product', 'categories' ]);
+        $this->get('/products/' . $product->id . '/edit')->assertViewHasAll([
+            'product',
+            'categories',
+        ]);
     }
 
     public function testAdminsCanUpdateTheProduct()
@@ -170,7 +173,7 @@ class ProductControllerTest extends TestCase
 
         $this->delete('/products/' . $product->id)
             ->assertOk()
-            ->assertJson([ 'success' => true ]);
+            ->assertJson(['success' => true]);
 
         $this->assertSoftDeleted($product);
     }
@@ -186,7 +189,7 @@ class ProductControllerTest extends TestCase
 
         $this->put('/products/' . $product->id . '/restore')
             ->assertOk()
-            ->assertJson([ 'success' => true ]);
+            ->assertJson(['success' => true]);
 
         $product = Product::find($product->id);
 

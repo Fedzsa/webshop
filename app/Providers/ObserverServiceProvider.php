@@ -12,9 +12,10 @@ use App\Observers\CategoryObserver;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\SpecificationObserver;
 
-class ObserverServiceProvider extends ServiceProvider {
-
-    public function boot() {
+class ObserverServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
         File::observe(FileObserver::class);
         Product::observe(ProductObserver::class);
         Category::observe(CategoryObserver::class);

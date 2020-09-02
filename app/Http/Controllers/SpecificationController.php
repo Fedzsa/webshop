@@ -9,29 +9,39 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class SpecificationController extends Controller {
+class SpecificationController extends Controller
+{
     private SpecificationServiceInterface $specificationService;
 
-    public function __construct(SpecificationServiceInterface $specificationService) {
+    public function __construct(
+        SpecificationServiceInterface $specificationService
+    ) {
         $this->specificationService = $specificationService;
     }
 
     /**
      * Listing the specifications.
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $this->authorize('viewAny', Specification::class);
 
         $search = $request->query('search');
-        $specifications = $this->specificationService->getPaginatedSpecifications($search);
+        $specifications = $this->specificationService->getPaginatedSpecifications(
+            $search
+        );
 
-        return view('specification.index', compact(['specifications', 'search']));
+        return view(
+            'specification.index',
+            compact(['specifications', 'search'])
+        );
     }
 
     /**
      * Create specification page.
      */
-    public function create() {
+    public function create()
+    {
         $this->authorize('create', Specification::class);
 
         return view('specification.create');
@@ -40,13 +50,16 @@ class SpecificationController extends Controller {
     /**
      * Store the specification.
      */
-    public function store(SpecificationStore $request) {
+    public function store(SpecificationStore $request)
+    {
         $this->authorize('create', Specification::class);
 
         $inserted = $this->specificationService->store($request->validated());
 
-        if(!$inserted) {
-            return back()->withErrors(['status' => 'Specification not inserted!'])->withInput($request->validated());
+        if (!$inserted) {
+            return back()
+                ->withErrors(['status' => 'Specification not inserted!'])
+                ->withInput($request->validated());
         }
 
         return back()->with('status', 'Specification created!');
@@ -55,7 +68,8 @@ class SpecificationController extends Controller {
     /**
      * Edit specification page.
      */
-    public function edit(Specification $specification) {
+    public function edit(Specification $specification)
+    {
         $this->authorize('update', $specification);
 
         return view('specification.edit', compact('specification'));
@@ -64,23 +78,32 @@ class SpecificationController extends Controller {
     /**
      * Update the specification.
      */
-    public function update(SpecificationStore $request, Specification $specification) {
+    public function update(
+        SpecificationStore $request,
+        Specification $specification
+    ) {
         $this->authorize('update', $specification);
 
-        $this->specificationService->update($specification, $request->validated());
+        $this->specificationService->update(
+            $specification,
+            $request->validated()
+        );
 
-        return back()->with('status', 'Update successful!')->withInput($request->validated());
+        return back()
+            ->with('status', 'Update successful!')
+            ->withInput($request->validated());
     }
 
     /**
      * Delete specification
      */
-    public function destroy(Specification $specification) {
+    public function destroy(Specification $specification)
+    {
         $this->authorize('delete', $specification);
 
         $deleted = $this->specificationService->destroy($specification);
 
-        if(! $deleted) {
+        if (!$deleted) {
             return response()->json(['success' => false], 404);
         }
 
@@ -90,7 +113,8 @@ class SpecificationController extends Controller {
     /**
      * Restore the deleted specification.
      */
-    public function restore(Specification $specification) {
+    public function restore(Specification $specification)
+    {
         $this->authorize('restore', $specification);
 
         $this->specificationService->restore($specification);

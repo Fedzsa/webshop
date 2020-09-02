@@ -4,24 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Services\Notification\NotificationServiceInterface;
 
-class NotificationController extends Controller {
+class NotificationController extends Controller
+{
     private NotificationServiceInterface $notificationService;
 
-    public function __construct(NotificationServiceInterface $notificationService) {
+    public function __construct(
+        NotificationServiceInterface $notificationService
+    ) {
         $this->notificationService = $notificationService;
     }
 
     /**
      * Get unread notification number.
      */
-    public function unreadNumber() {
-        return response()->json(['notificationNumber' => countUnreadNotificationsForAuthUser()], 200);
+    public function unreadNumber()
+    {
+        return response()->json(
+            ['notificationNumber' => countUnreadNotificationsForAuthUser()],
+            200
+        );
     }
 
     /**
      * Mark as read the notification.
      */
-    public function update(string $id) {
+    public function update(string $id)
+    {
         $this->notificationService->markAsRead($id);
 
         return response()->json(['marked' => true], 200);

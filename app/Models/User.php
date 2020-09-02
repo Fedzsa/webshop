@@ -16,7 +16,11 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'password', 'admin'
+        'firstname',
+        'lastname',
+        'email',
+        'password',
+        'admin',
     ];
 
     /**
@@ -24,9 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast to native types.
@@ -37,22 +39,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany('App\Models\Comment');
     }
 
-    public function getFullname(): String {
-        return $this->firstname.' '.$this->lastname;
+    public function getFullname(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 
     /**
      * Select admins
      */
-    public function scopeAdmins($query) {
+    public function scopeAdmins($query)
+    {
         return $query->where('admin', 1);
     }
 
-    public function isAdmin() {
+    public function isAdmin()
+    {
         return $this->admin === 1;
     }
 }

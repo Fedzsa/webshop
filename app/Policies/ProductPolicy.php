@@ -93,7 +93,8 @@ class ProductPolicy
         return $user->isAdmin();
     }
 
-    public function upload(User $user, Product $product) {
+    public function upload(User $user, Product $product)
+    {
         return $user->isAdmin();
     }
 }

@@ -12,21 +12,30 @@ class Specification extends Model
 
     protected $fillable = ['name'];
 
-    protected  $searchable = ['name'];
+    protected $searchable = ['name'];
 
-    public function products() {
+    public function products()
+    {
         return $this->belongsToMany('App\Models\Product');
     }
 
-    public function resolveRouteBinding($value) {
+    public function resolveRouteBinding($value)
+    {
         return $this->withTrashed()->findOrFail($value);
     }
 
-    public function scopeSearch($query, $text) {
-        if(!isset($text))
+    public function scopeSearch($query, $text)
+    {
+        if (!isset($text)) {
             return $query;
+        }
 
         $text .= MySQLQueryHelper::wildcards[0];
-        return $query->whereRaw(MySQLQueryHelper::generateFullTextSearchQueryPart($this->searchable), [$text]);
+        return $query->whereRaw(
+            MySQLQueryHelper::generateFullTextSearchQueryPart(
+                $this->searchable
+            ),
+            [$text]
+        );
     }
 }

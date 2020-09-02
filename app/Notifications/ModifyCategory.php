@@ -31,7 +31,9 @@ class ModifyCategory extends Notification implements ShouldQueue
     {
         $this->category = $category;
         $this->modificationType = $modificationType;
-        $this->url = route('categories.edit', ['category' => $this->category->id]);
+        $this->url = route('categories.edit', [
+            'category' => $this->category->id,
+        ]);
     }
 
     /**
@@ -51,7 +53,8 @@ class ModifyCategory extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toDatabase($notifiable) {
+    public function toDatabase($notifiable)
+    {
         return [
             'id' => $this->category->id,
             'name' => $this->category->name,
@@ -59,7 +62,7 @@ class ModifyCategory extends Notification implements ShouldQueue
             'url' => $this->url,
             'created_at' => $this->category->created_at,
             'updated_at' => $this->category->updated_at,
-            'deleted_at' => $this->category->deleted_at
+            'deleted_at' => $this->category->deleted_at,
         ];
     }
 
@@ -74,11 +77,19 @@ class ModifyCategory extends Notification implements ShouldQueue
         $message = new MailMessage();
         $message->greeting('Hello!');
 
-        switch($this->modificationType) {
-            case ModelModification::NEW: $message->line(self::NEW_CATEGORY_MESSAGE); break;
-            case ModelModification::UPDATE: $message->line(self::UPDATED_CATEGORY_MESSAGE); break;
-            case ModelModification::DELETE: $message->line(self::DELETED_CATEGORY_MESSAGE); break;
-            case ModelModification::RESTORE: $message->line(self::RESTORED_CATEGORY_MESSAGE); break;
+        switch ($this->modificationType) {
+            case ModelModification::NEW:
+                $message->line(self::NEW_CATEGORY_MESSAGE);
+                break;
+            case ModelModification::UPDATE:
+                $message->line(self::UPDATED_CATEGORY_MESSAGE);
+                break;
+            case ModelModification::DELETE:
+                $message->line(self::DELETED_CATEGORY_MESSAGE);
+                break;
+            case ModelModification::RESTORE:
+                $message->line(self::RESTORED_CATEGORY_MESSAGE);
+                break;
         }
 
         return $message->action('View', $this->url);
@@ -93,7 +104,7 @@ class ModifyCategory extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 }

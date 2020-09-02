@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Services\File\FileServiceInterface;
 use Image;
 
-class FileService implements FileServiceInterface {
+class FileService implements FileServiceInterface
+{
     private File $file;
 
     public function __construct(File $file)
@@ -26,17 +27,17 @@ class FileService implements FileServiceInterface {
      */
     public function store(Product $product, $file)
     {
-        $newFileName = time().'.'.$file->extension();
+        $newFileName = time() . '.' . $file->extension();
 
         $resizedImage = Image::make($file)->fit(300, 300);
-        $resizedImage->save(public_path('storage/'.$newFileName));
+        $resizedImage->save(public_path('storage/' . $newFileName));
 
         return $this->file->create([
             'name' => $newFileName,
             'original_name' => $file->getClientOriginalName(),
             'extension' => $file->extension(),
             'path' => 'storage/public',
-            'product_id' => $product->id
+            'product_id' => $product->id,
         ]);
     }
 

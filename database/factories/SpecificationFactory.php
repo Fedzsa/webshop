@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Specification::class, function (Faker $faker) {
     return [
-        'name' => $faker->unique(true)->word
+        'name' => $faker->unique(true)->word,
     ];
 });

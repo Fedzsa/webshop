@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
-@import '_variables';
+@import "_variables";
 
 .main {
     padding-top: $header-height;
@@ -23,7 +23,8 @@
     width: $sidebar-width;
     height: 100%;
     padding-top: $header-height;
-    box-shadow: 0 5px 15px rgba(57, 98, 254, 0.02), 0 3px 6px rgba(117, 108, 254, 0.12);
+    box-shadow: 0 5px 15px rgba(57, 98, 254, 0.02),
+        0 3px 6px rgba(117, 108, 254, 0.12);
 
     .sidebar-menu {
         padding: 10px;

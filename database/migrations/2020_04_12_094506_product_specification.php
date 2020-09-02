@@ -11,13 +11,20 @@ class ProductSpecification extends Migration
      *
      * @return void
      */
-    public function up() {
-        Schema::create('product_specification', function(Blueprint $table) {
+    public function up()
+    {
+        Schema::create('product_specification', function (Blueprint $table) {
             $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('specification_id')->unsigned();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('specification_id')->references('id')->on('specifications');
+            $table
+                ->foreign('product_id')
+                ->references('id')
+                ->on('products');
+            $table
+                ->foreign('specification_id')
+                ->references('id')
+                ->on('specifications');
         });
     }
 
@@ -26,10 +33,11 @@ class ProductSpecification extends Migration
      *
      * @return void
      */
-    public function down() {
-        Schema::table('product_specification', function(Blueprint $table) {
-           $table->dropForeign('product_id');
-           $table->dropForeign('specification_id');
+    public function down()
+    {
+        Schema::table('product_specification', function (Blueprint $table) {
+            $table->dropForeign('product_id');
+            $table->dropForeign('specification_id');
         });
 
         Schema::dropIfExists('product_specification');

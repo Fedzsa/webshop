@@ -16,7 +16,10 @@ class AddCategoryForeignKeyAndSoftDeleteToProductsTable extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->softDeletes();
             $table->bigInteger('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table
+                ->foreign('category_id')
+                ->references('id')
+                ->on('categories');
         });
     }
 

@@ -4,13 +4,15 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProductSpecification extends FormRequest {
+class UpdateProductSpecification extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize()
+    {
         return $this->user()->can('update', $this->route('product'));
     }
 
@@ -19,13 +21,10 @@ class UpdateProductSpecification extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            'specification-value' => [
-                'required',
-                'string',
-                'max:1000'
-            ]
+            'specification-value' => ['required', 'string', 'max:1000'],
         ];
     }
 }

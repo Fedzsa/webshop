@@ -29,8 +29,8 @@ class SpecificationStore extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                'unique:specifications,name'
-            ]
+                'unique:specifications,name',
+            ],
         ];
     }
 }

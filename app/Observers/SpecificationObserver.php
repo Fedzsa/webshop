@@ -10,32 +10,43 @@ use Illuminate\Support\Facades\Notification;
 
 class SpecificationObserver
 {
-    
     public function created(Specification $specification)
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifySpecification($specification, ModelModification::NEW));
+        Notification::send(
+            $admins,
+            new ModifySpecification($specification, ModelModification::NEW)
+        );
     }
 
     public function updated(Specification $specification)
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifySpecification($specification, ModelModification::UPDATE));
+        Notification::send(
+            $admins,
+            new ModifySpecification($specification, ModelModification::UPDATE)
+        );
     }
 
     public function deleted(Specification $specification)
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifySpecification($specification, ModelModification::DELETE));
+        Notification::send(
+            $admins,
+            new ModifySpecification($specification, ModelModification::DELETE)
+        );
     }
 
     public function restored(Specification $specification)
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifySpecification($specification, ModelModification::RESTORE));
+        Notification::send(
+            $admins,
+            new ModifySpecification($specification, ModelModification::RESTORE)
+        );
     }
 }

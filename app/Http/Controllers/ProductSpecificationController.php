@@ -10,11 +10,15 @@ use App\Http\Requests\UpdateProductSpecification;
 use App\Services\Product\ProductServiceInterface;
 use App\Services\Specification\SpecificationServiceInterface;
 
-class ProductSpecificationController extends Controller {
+class ProductSpecificationController extends Controller
+{
     private ProductServiceInterface $productService;
     private SpecificationServiceInterface $specificationService;
 
-    public function __construct(ProductServiceInterface $productService, SpecificationServiceInterface $specificationService) {
+    public function __construct(
+        ProductServiceInterface $productService,
+        SpecificationServiceInterface $specificationService
+    ) {
         $this->productService = $productService;
         $this->specificationService = $specificationService;
     }
@@ -22,68 +26,107 @@ class ProductSpecificationController extends Controller {
     /**
      * Listing specifications of the product.
      */
-    public function index(Product $product) {
+    public function index(Product $product)
+    {
         $this->authorize('viewAny', Product::class);
 
         $specifications = $product->specifications()->get(['id', 'name']);
 
-        return view('product.specification.index', compact(['product', 'specifications']));
+        return view(
+            'product.specification.index',
+            compact(['product', 'specifications'])
+        );
     }
 
     /**
      * Create product specification page.
      */
-    public function create(Product $product) {
+    public function create(Product $product)
+    {
         $this->authorize('create', Product::class);
 
         $specifications = $this->specificationService->all('id', 'name');
 
-        return view('product.specification.create', compact(['product', 'specifications']));
+        return view(
+            'product.specification.create',
+            compact(['product', 'specifications'])
+        );
     }
 
     /**
      * Store the product specification.
      */
-    public function store(StoreProductSpecification $request, Product $product) {
-        $this->productService->storeSpecifications($product, $request->validated());
+    public function store(StoreProductSpecification $request, Product $product)
+    {
+        $this->productService->storeSpecifications(
+            $product,
+            $request->validated()
+        );
 
-        return back()->with('status', 'Specification added!')->withInput($request->validated());
+        return back()
+            ->with('status', 'Specification added!')
+            ->withInput($request->validated());
     }
 
     /**
      * Edit product specification page.
      */
-    public function edit(Product $product, int $specification) {
+    public function edit(Product $product, int $specification)
+    {
         $this->authorize('update', $product);
 
         $specifications = $this->specificationService->all('id', 'name');
-        $specification = $product->specifications()->find($specification, ['id', 'name']);
+        $specification = $product
+            ->specifications()
+            ->find($specification, ['id', 'name']);
 
-        return view('product.specification.edit', compact(['product', 'specifications', 'specification']));
+        return view(
+            'product.specification.edit',
+            compact(['product', 'specifications', 'specification'])
+        );
     }
 
     /**
      * Update product specification.
      */
-    public function update(UpdateProductSpecification $request, Product $product, int $specification) {
-        $updated = $this->productService->updateSpecification($product, $specification, $request->validated());
+    public function update(
+        UpdateProductSpecification $request,
+        Product $product,
+        int $specification
+    ) {
+        $updated = $this->productService->updateSpecification(
+            $product,
+            $specification,
+            $request->validated()
+        );
 
-        if(! $updated) {
-            return back()->withErrors('status', $product->name.' specification value not updated!')->withInput($request->validated());
+        if (!$updated) {
+            return back()
+                ->withErrors(
+                    'status',
+                    $product->name . ' specification value not updated!'
+                )
+                ->withInput($request->validated());
         }
 
-        return back()->with('status', $product->name.' specification value updated!')->withInput($request->validated());
+        return back()
+            ->with('status', $product->name . ' specification value updated!')
+            ->withInput($request->validated());
     }
 
     /**
      * Delete product specification
      */
-    public function destroy(Product $product, int $specification) {
+    public function destroy(Product $product, int $specification)
+    {
         $this->authorize('delete', $product);
 
-        $deleted = $this->productService->destroySpecification($product, $specification);
+        $deleted = $this->productService->destroySpecification(
+            $product,
+            $specification
+        );
 
-        if(! $deleted) {
+        if (!$deleted) {
             return response()->json(['success' => false], 404);
         }
 
@@ -93,7 +136,8 @@ class ProductSpecificationController extends Controller {
     /**
      * Restore th deleted product specification.
      */
-    public function restore(Product $product, int $specification) {
+    public function restore(Product $product, int $specification)
+    {
         $this->productService->restoreSpecification($product, $specification);
 
         return response()->json(['success' => true], 200);

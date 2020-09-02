@@ -54,7 +54,7 @@ class ModifyProduct extends Notification implements ShouldQueue
             'url' => $this->url,
             'created_at' => $this->product->created_at,
             'updated_at' => $this->product->updated_at,
-            'deleted_at' => $this->product->deleted_at
+            'deleted_at' => $this->product->deleted_at,
         ];
     }
 
@@ -69,14 +69,22 @@ class ModifyProduct extends Notification implements ShouldQueue
         $message = new MailMessage();
         $message->greeting('Hello!');
 
-        switch($this->modificationType) {
-            case ModelModification::NEW: $message->line(self::NEW_PRODUCT_MESSAGE); break;
-            case ModelModification::UPDATE: $message->line(self::UPDATED_PRODUCT_MESSAGE); break;
-            case ModelModification::DELETE: $message->line(self::DELETED_PRODUCT_MESSAGE); break;
-            case ModelModification::RESTORE: $message->line(self::RESTORED_PRODUCT_MESSAGE); break;
+        switch ($this->modificationType) {
+            case ModelModification::NEW:
+                $message->line(self::NEW_PRODUCT_MESSAGE);
+                break;
+            case ModelModification::UPDATE:
+                $message->line(self::UPDATED_PRODUCT_MESSAGE);
+                break;
+            case ModelModification::DELETE:
+                $message->line(self::DELETED_PRODUCT_MESSAGE);
+                break;
+            case ModelModification::RESTORE:
+                $message->line(self::RESTORED_PRODUCT_MESSAGE);
+                break;
         }
 
-        return $message->action('View '.$this->product->name, $this->url);
+        return $message->action('View ' . $this->product->name, $this->url);
     }
 
     /**
@@ -88,7 +96,7 @@ class ModifyProduct extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 }

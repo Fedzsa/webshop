@@ -15,7 +15,9 @@ class AddFulltextIndexToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            DB::statement("ALTER TABLE products ADD FULLTEXT(name, description)");
+            DB::statement(
+                "ALTER TABLE products ADD FULLTEXT(name, description)"
+            );
         });
     }
 

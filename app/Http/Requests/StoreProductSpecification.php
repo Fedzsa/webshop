@@ -28,13 +28,9 @@ class StoreProductSpecification extends FormRequest
             'specification' => [
                 'required',
                 'integer',
-                'exists:specifications,id'
+                'exists:specifications,id',
             ],
-            'specification-value' => [
-                'required',
-                'string',
-                'max:1000'
-            ]
+            'specification-value' => ['required', 'string', 'max:1000'],
         ];
     }
 }

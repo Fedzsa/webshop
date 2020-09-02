@@ -1,12 +1,11 @@
 <?php
 
-
 namespace App\Services\Specification;
-
 
 use App\Models\Specification;
 
-interface SpecificationServiceInterface {
+interface SpecificationServiceInterface
+{
     function getPaginatedSpecifications($search);
     function store(array $attributes);
     function getById(int $id, bool $withTrash = false);

@@ -27,11 +27,15 @@ class ModifySpecification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Specification $specification, int $modificationType)
-    {
+    public function __construct(
+        Specification $specification,
+        int $modificationType
+    ) {
         $this->specification = $specification;
         $this->modificationType = $modificationType;
-        $this->url = route('specifications.edit', ['specification' => $this->specification->id]);
+        $this->url = route('specifications.edit', [
+            'specification' => $this->specification->id,
+        ]);
     }
 
     /**
@@ -54,7 +58,7 @@ class ModifySpecification extends Notification implements ShouldQueue
             'url' => $this->url,
             'created_at' => $this->specification->created_at,
             'updated_at' => $this->specification->updated_at,
-            'deleted_at' => $this->specification->deleted_at
+            'deleted_at' => $this->specification->deleted_at,
         ];
     }
 
@@ -69,14 +73,25 @@ class ModifySpecification extends Notification implements ShouldQueue
         $message = new MailMessage();
         $message->greeting('Hello!');
 
-        switch($this->modificationType) {
-            case ModelModification::NEW: $message->line(self::NEW_SPECIFICATION_MESSAGE); break;
-            case ModelModification::UPDATE: $message->line(self::UPDATED_SPECIFICATION_MESSAGE); break;
-            case ModelModification::DELETE: $message->line(self::DELETED_SPECIFICATION_MESSAGE); break;
-            case ModelModification::RESTORE: $message->line(self::RESTORED_SPECIFICATION_MESSAGE); break;
+        switch ($this->modificationType) {
+            case ModelModification::NEW:
+                $message->line(self::NEW_SPECIFICATION_MESSAGE);
+                break;
+            case ModelModification::UPDATE:
+                $message->line(self::UPDATED_SPECIFICATION_MESSAGE);
+                break;
+            case ModelModification::DELETE:
+                $message->line(self::DELETED_SPECIFICATION_MESSAGE);
+                break;
+            case ModelModification::RESTORE:
+                $message->line(self::RESTORED_SPECIFICATION_MESSAGE);
+                break;
         }
 
-        return $message->action('View '.$this->specification->name, $this->url);
+        return $message->action(
+            'View ' . $this->specification->name,
+            $this->url
+        );
     }
 
     /**
@@ -88,7 +103,7 @@ class ModifySpecification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 }

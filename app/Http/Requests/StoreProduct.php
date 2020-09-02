@@ -25,29 +25,11 @@ class StoreProduct extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required',
-                'string',
-                'max:100'
-            ],
-            'category_id' => [
-                'required',
-                'integer',
-                'exists:categories,id'
-            ],
-            'price' => [
-                'required',
-                'max:100'
-            ],
-            'amount' => [
-                'required',
-                'integer'
-            ],
-            'description' => [
-                'nullable',
-                'string',
-                'max:10000'
-            ]
+            'name' => ['required', 'string', 'max:100'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'price' => ['required', 'max:100'],
+            'amount' => ['required', 'integer'],
+            'description' => ['nullable', 'string', 'max:10000'],
         ];
     }
 }

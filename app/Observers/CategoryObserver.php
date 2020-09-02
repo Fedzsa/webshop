@@ -10,31 +10,43 @@ use Illuminate\Support\Facades\Notification;
 
 class CategoryObserver
 {
-    
-    public function created(Category $category) {
+    public function created(Category $category)
+    {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyCategory($category, ModelModification::NEW));
+        Notification::send(
+            $admins,
+            new ModifyCategory($category, ModelModification::NEW)
+        );
     }
 
     public function updated(Category $category)
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyCategory($category, ModelModification::UPDATE));
+        Notification::send(
+            $admins,
+            new ModifyCategory($category, ModelModification::UPDATE)
+        );
     }
 
     public function deleted(Category $category)
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyCategory($category, ModelModification::DELETE));
+        Notification::send(
+            $admins,
+            new ModifyCategory($category, ModelModification::DELETE)
+        );
     }
 
     public function restored(Category $category)
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyCategory($category, ModelModification::RESTORE));
+        Notification::send(
+            $admins,
+            new ModifyCategory($category, ModelModification::RESTORE)
+        );
     }
 }

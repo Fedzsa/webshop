@@ -6,7 +6,8 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CategoryPolicy {
+class CategoryPolicy
+{
     use HandlesAuthorization;
 
     /**
@@ -15,7 +16,8 @@ class CategoryPolicy {
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function viewAny(User $user) {
+    public function viewAny(User $user)
+    {
         return $user->isAdmin();
     }
 
@@ -26,7 +28,8 @@ class CategoryPolicy {
      * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function view(User $user, Category $category) {
+    public function view(User $user, Category $category)
+    {
         return $user->isAdmin();
     }
 
@@ -36,7 +39,8 @@ class CategoryPolicy {
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user) {
+    public function create(User $user)
+    {
         return $user->isAdmin();
     }
 
@@ -47,7 +51,8 @@ class CategoryPolicy {
      * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function update(User $user, Category $category) {
+    public function update(User $user, Category $category)
+    {
         return $user->isAdmin();
     }
 
@@ -58,7 +63,8 @@ class CategoryPolicy {
      * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function delete(User $user, Category $category) {
+    public function delete(User $user, Category $category)
+    {
         return $user->isAdmin();
     }
 
@@ -69,7 +75,8 @@ class CategoryPolicy {
      * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function restore(User $user, Category $category) {
+    public function restore(User $user, Category $category)
+    {
         return $user->isAdmin();
     }
 
@@ -80,7 +87,8 @@ class CategoryPolicy {
      * @param  \App\Models\Category  $category
      * @return mixed
      */
-    public function forceDelete(User $user, Category $category) {
+    public function forceDelete(User $user, Category $category)
+    {
         return $user->isAdmin();
     }
 }

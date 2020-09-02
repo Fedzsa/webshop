@@ -11,36 +11,55 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'price', 'description', 'category_id', 'amount'
+        'name',
+        'price',
+        'description',
+        'category_id',
+        'amount',
     ];
 
-    protected  $searchable = ['name', 'description'];
+    protected $searchable = ['name', 'description'];
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo('App\Models\Category');
     }
 
-    public function specifications() {
-        return $this->belongsToMany('App\Models\Specification')->withPivot(['value', 'deleted_at']);
+    public function specifications()
+    {
+        return $this->belongsToMany('App\Models\Specification')->withPivot([
+            'value',
+            'deleted_at',
+        ]);
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany('App\Models\Comment');
     }
 
-    public function files() {
+    public function files()
+    {
         return $this->hasMany('App\Models\File');
     }
 
-    public function resolveRouteBinding($value) {
+    public function resolveRouteBinding($value)
+    {
         return $this->withTrashed()->findOrFail($value);
     }
 
-    public function scopeSearch($query, $text) {
-        if(!isset($text))
+    public function scopeSearch($query, $text)
+    {
+        if (!isset($text)) {
             return $query;
+        }
 
         $text .= MySQLQueryHelper::wildcards[0];
-        return $query->whereRaw(MySQLQueryHelper::generateFullTextSearchQueryPart($this->searchable), [$text]);
+        return $query->whereRaw(
+            MySQLQueryHelper::generateFullTextSearchQueryPart(
+                $this->searchable
+            ),
+            [$text]
+        );
     }
 }

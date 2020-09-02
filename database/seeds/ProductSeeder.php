@@ -13,8 +13,12 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 10)->create()->each(function($product) {
-            $product->category()->associate(factory(Category::class)->make());
-        });
+        factory(Product::class, 10)
+            ->create()
+            ->each(function ($product) {
+                $product
+                    ->category()
+                    ->associate(factory(Category::class)->make());
+            });
     }
 }

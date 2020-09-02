@@ -10,15 +10,17 @@ class DashboardController extends Controller
 {
     private NotificationServiceInterface $notificationService;
 
-    public function __construct(NotificationServiceInterface $notificationService)
-    {
+    public function __construct(
+        NotificationServiceInterface $notificationService
+    ) {
         $this->notificationService = $notificationService;
     }
 
     /**
      * Display unread notifications.
      */
-    public function __invoke() {
+    public function __invoke()
+    {
         $notifications = $this->notificationService->getUnreadNotificationsForUser();
 
         return view('dashboard.index', compact('notifications'));

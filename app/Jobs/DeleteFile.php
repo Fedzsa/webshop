@@ -35,6 +35,6 @@ class DeleteFile implements ShouldQueue
      */
     public function handle()
     {
-        Storage::delete('public/'.$this->fileName);
+        Storage::delete('public/' . $this->fileName);
     }
 }

@@ -12,7 +12,8 @@ class StoreImage extends FormRequest
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize()
+    {
         return $this->user()->can('upload', $this->route('product'));
     }
 
@@ -24,11 +25,7 @@ class StoreImage extends FormRequest
     public function rules()
     {
         return [
-            'image' => [
-                'required',
-                'image',
-                'max:10240'
-            ]
+            'image' => ['required', 'image', 'max:10240'],
         ];
     }
 }

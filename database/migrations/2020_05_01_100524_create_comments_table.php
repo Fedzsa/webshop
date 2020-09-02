@@ -20,8 +20,14 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('product_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users');
+            $table
+                ->foreign('product_id')
+                ->references('id')
+                ->on('products');
         });
     }
 

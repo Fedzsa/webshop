@@ -20,7 +20,10 @@ class ProductObserver
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyProduct($product, ModelModification::NEW));
+        Notification::send(
+            $admins,
+            new ModifyProduct($product, ModelModification::NEW)
+        );
     }
 
     /**
@@ -33,7 +36,10 @@ class ProductObserver
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyProduct($product, ModelModification::UPDATE));
+        Notification::send(
+            $admins,
+            new ModifyProduct($product, ModelModification::UPDATE)
+        );
     }
 
     /**
@@ -46,7 +52,10 @@ class ProductObserver
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyProduct($product, ModelModification::DELETE));
+        Notification::send(
+            $admins,
+            new ModifyProduct($product, ModelModification::DELETE)
+        );
     }
 
     /**
@@ -59,6 +68,9 @@ class ProductObserver
     {
         $admins = User::admins()->get();
 
-        Notification::send($admins, new ModifyProduct($product, ModelModification::RESTORE));
+        Notification::send(
+            $admins,
+            new ModifyProduct($product, ModelModification::RESTORE)
+        );
     }
 }

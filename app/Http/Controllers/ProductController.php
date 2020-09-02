@@ -12,16 +12,19 @@ use App\Services\Product\ProductServiceInterface;
 use App\Services\Category\CategoryServiceInterface;
 use App\Services\Specification\SpecificationServiceInterface;
 
-class ProductController extends Controller {
+class ProductController extends Controller
+{
     private ProductServiceInterface $productService;
     private CategoryServiceInterface $categoryService;
     private SpecificationServiceInterface $specificationService;
     private FileServiceInterface $fileService;
 
-    public function __construct(ProductServiceInterface $productService,
-                                CategoryServiceInterface $categoryService,
-                                SpecificationServiceInterface $specificationService,
-                                FileServiceInterface $fileService) {
+    public function __construct(
+        ProductServiceInterface $productService,
+        CategoryServiceInterface $categoryService,
+        SpecificationServiceInterface $specificationService,
+        FileServiceInterface $fileService
+    ) {
         $this->productService = $productService;
         $this->categoryService = $categoryService;
         $this->specificationService = $specificationService;
@@ -31,7 +34,8 @@ class ProductController extends Controller {
     /**
      * Listing the products.
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $this->authorize('viewAny', Product::class);
 
         $search = $request->query('search');
@@ -44,7 +48,8 @@ class ProductController extends Controller {
     /**
      * Show the product page.
      */
-    public function show(int $product) {
+    public function show(int $product)
+    {
         $product = $this->productService->getProductById($product);
 
         return view('product.show', compact('product'));
@@ -53,7 +58,8 @@ class ProductController extends Controller {
     /**
      * Create product page.
      */
-    public function create() {
+    public function create()
+    {
         $this->authorize('create', Product::class);
 
         $categories = $this->categoryService->all();
@@ -64,22 +70,28 @@ class ProductController extends Controller {
     /**
      * Store product.
      */
-    public function store(StoreProduct $request) {
+    public function store(StoreProduct $request)
+    {
         $this->authorize('create', Product::class);
 
         $isInserted = $this->productService->store($request->validated());
 
-        if(! $isInserted) {
-            return back()->withErrors(['status' => 'Product not created!'])->withInput($request->validated());
+        if (!$isInserted) {
+            return back()
+                ->withErrors(['status' => 'Product not created!'])
+                ->withInput($request->validated());
         }
 
-        return back()->with('status', 'Product created!')->withInput($request->validated());
+        return back()
+            ->with('status', 'Product created!')
+            ->withInput($request->validated());
     }
 
     /**
      * Edit product page.
      */
-    public function edit(Product $product) {
+    public function edit(Product $product)
+    {
         $this->authorize('update', $product);
 
         $categories = $this->categoryService->all();
@@ -90,22 +102,31 @@ class ProductController extends Controller {
     /**
      * Update product.
      */
-    public function update(StoreProduct $request, Product $product) {
+    public function update(StoreProduct $request, Product $product)
+    {
         $this->authorize('update', $product);
 
-        $isUpdated = $this->productService->update($product, $request->validated());
+        $isUpdated = $this->productService->update(
+            $product,
+            $request->validated()
+        );
 
-        if(! $isUpdated) {
-            return back()->withErrors(['status' => 'Product not updated!'])->withInput($request->validated());
+        if (!$isUpdated) {
+            return back()
+                ->withErrors(['status' => 'Product not updated!'])
+                ->withInput($request->validated());
         }
 
-        return back()->with('status', 'Product updated!')->withInput($request->validated());
+        return back()
+            ->with('status', 'Product updated!')
+            ->withInput($request->validated());
     }
 
     /**
      * Delete the product
      */
-    public function destroy(Product $product) {
+    public function destroy(Product $product)
+    {
         $this->authorize('delete', $product);
 
         $this->productService->destroy($product);
@@ -116,7 +137,8 @@ class ProductController extends Controller {
     /**
      * Restore soft deleted product.
      */
-    public function restore(Product $product) {
+    public function restore(Product $product)
+    {
         $this->authorize('restore', $product);
 
         $this->productService->restore($product);
@@ -127,7 +149,8 @@ class ProductController extends Controller {
     /**
      * Display images of the product.
      */
-    public function images(Product $product) {
+    public function images(Product $product)
+    {
         $this->authorize('upload', $product);
 
         $images = $product->files()->get(['id', 'name']);
@@ -138,10 +161,11 @@ class ProductController extends Controller {
     /**
      * Store image.
      */
-    public function storeImage(StoreImage $request, Product $product) {
+    public function storeImage(StoreImage $request, Product $product)
+    {
         $this->authorize('create', $product);
 
-        if(! $request->hasFile('image')) {
+        if (!$request->hasFile('image')) {
             return back()->withErrors(['status' => 'No uploaded file!']);
         }
 
@@ -153,7 +177,8 @@ class ProductController extends Controller {
     /**
      * Delete image.
      */
-    public function destroyImage(Product $product, File $file) {
+    public function destroyImage(Product $product, File $file)
+    {
         $this->authorize('delete', $product);
 
         $this->fileService->destroy($file);

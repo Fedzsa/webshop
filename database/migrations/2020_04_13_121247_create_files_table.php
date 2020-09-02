@@ -22,7 +22,10 @@ class CreateFilesTable extends Migration
             $table->bigInteger('product_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table
+                ->foreign('product_id')
+                ->references('id')
+                ->on('products');
         });
     }
 
@@ -31,8 +34,9 @@ class CreateFilesTable extends Migration
      *
      * @return void
      */
-    public function down() {
-        Schema::table('files', function(Blueprint $table) {
+    public function down()
+    {
+        Schema::table('files', function (Blueprint $table) {
             $table->dropForeign('product_id');
         });
 

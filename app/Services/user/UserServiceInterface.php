@@ -2,6 +2,7 @@
 
 namespace App\Services\User;
 
-interface UserServiceInterface {
+interface UserServiceInterface
+{
     function getPaginatedUsers();
 }
