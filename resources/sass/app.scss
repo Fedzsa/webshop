@@ -4,5 +4,21 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+header {
+    height: $header-height;
+
+    .navbar {
+        width: 100%;
+        height: $header-height;
+    }
+
+    .col {
+        padding: 0;
+    }
+}
+
+.paginator {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
