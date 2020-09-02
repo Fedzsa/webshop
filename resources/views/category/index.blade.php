@@ -35,7 +35,7 @@
                 <tbody>
                     @if (count($categories) > 0)
                         @foreach ($categories as $category)
-                            <tr id="{{ $category->id }}">
+                            <tr data-category-id="{{ $category->id }}">
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td id="is-deleted-column">
@@ -45,7 +45,7 @@
                                 </td>
                                 <td align="right">
                                     <a href="{{ route('categories.edit', ['category' => $category->id]) }}" class="btn btn-primary fas fa-edit"></a>
-                                    
+
                                     @if(! $category->trashed())
                                         <button class="btn btn-danger fas fa-trash" onclick="deleteCategory({{ $category->id }})"></button>
                                     @else

@@ -18,8 +18,9 @@ function deleteCategory(id) {
                 success: (response) => {
                     if(response.success) {
                         Swal.fire('Deleted!', '', 'success');
-
-                        let deletedCategoryRow = $(`#category-table tbody #${id}`);
+                        console.log('anyád');
+                        let deletedCategoryRow = $(`#category-table tbody tr[data-category-id=${id}]`);
+                        console.log(deletedCategoryRow);
 
                         deletedCategoryRow.find('#is-deleted-column')
                                             .append('<i class="fas fa-check text-success"></i>');
@@ -43,7 +44,7 @@ function restoreCategory(id) {
         url: `/categories/${id}/restore`,
         success: (response) => {
             if(response.success) {
-                let elementRow = $(`#category-table #${id}`);
+                let elementRow = $(`#category-table tbody tr[data-category-id=${id}]`);
 
                 elementRow.find('i').remove();
 
