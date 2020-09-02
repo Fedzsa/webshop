@@ -44,10 +44,12 @@
         @endif
     @endauth
 
-    <main class="container-fluid main">
-        <div class="row">
-            <div class="col">
-                @yield('content')
+    <main class="main">
+        <div class="container p-3">
+            <div class="row">
+                <div class="col">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </main>
