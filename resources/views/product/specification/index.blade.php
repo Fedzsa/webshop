@@ -34,7 +34,7 @@
                                     @if (! isset($specification->pivot->deleted_at))
                                         <button class="btn btn-danger fas fa-trash" onclick="deleteSpecification({{ $product->id }}, {{ $specification->id }})"></button>
                                     @else
-                                        <button class="btn btn-warning fas fa-trash-restore" onclick="restoreSpecification({{ $product->id }}, {{ $specification->id }})"></button>
+                                        <button class="btn btn-warning fas fa-trash-restore" onclick="restoreProductSpecification({{ $product->id }}, {{ $specification->id }})"></button>
                                     @endif
                                 </td>
                             </tr>
