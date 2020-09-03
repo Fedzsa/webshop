@@ -32,7 +32,7 @@
                                     <a href="{{ route('products.specifications.edit', ['product' => $product->id, 'specification' => $specification->id]) }}" class="btn btn-primary fas fa-edit"></a>
 
                                     @if (! isset($specification->pivot->deleted_at))
-                                        <button class="btn btn-danger fas fa-trash" onclick="deleteSpecification({{ $product->id }}, {{ $specification->id }})"></button>
+                                        <button class="btn btn-danger fas fa-trash" onclick="deleteProductSpecification({{ $product->id }}, {{ $specification->id }})"></button>
                                     @else
                                         <button class="btn btn-warning fas fa-trash-restore" onclick="restoreProductSpecification({{ $product->id }}, {{ $specification->id }})"></button>
                                     @endif
