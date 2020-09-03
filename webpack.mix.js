@@ -16,17 +16,28 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/image.scss', 'public/css');
 
 mix.scripts([
-    'resources/js/header.js',
+    'resources/js/header.js',,
+    'resources/js/itemDeletion/itemRemover.js',
+    'resources/js/itemDeletion/tableItemRemover.js',
+    'resources/js/itemDeletion/categoryRemover.js',
     'resources/js/category.js'
 ], 'public/js/category.js')
 .scripts([
     'resources/js/header.js',
+    'resources/js/itemDeletion/itemRemover.js',
+    'resources/js/itemDeletion/tableItemRemover.js',
+    'resources/js/itemDeletion/productRemover.js',
+    'resources/js/itemDeletion/productSpecificationRemover.js',
+    'resources/js/itemDeletion/imageRemover.js',
     'resources/js/product.js',
     'resources/js/productSpecification.js',
     'resources/js/image.js'
 ], 'public/js/product.js')
 .scripts([
     'resources/js/header.js',
+    'resources/js/itemDeletion/itemRemover.js',
+    'resources/js/itemDeletion/tableItemRemover.js',
+    'resources/js/itemDeletion/specificationRemover.js',
     'resources/js/specification.js'
 ], 'public/js/specification.js')
 .scripts([

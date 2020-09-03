@@ -4,46 +4,157 @@ $.ajaxSetup({
     },
 });
 
+class ItemRemover {
+
+    constructor() {}
+
+    deleteItem() {
+        let modal = this.#fireDeleteModal();
+        modal.then(result => {
+            if(result.value) {
+                this.#delete(() => this.afterItemDeletedCallback());
+            }
+        });
+    }
+
+    #fireDeleteModal() {
+        return Swal.fire({
+            title: "Are your sure you want to delete?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+        });
+    }
+
+    #delete(callback) {
+        $.ajax({
+            type: "DELETE",
+            url: this.getUrl(),
+            success: (response) => {
+                if (response.success) {
+                    this.#openSuccessfulDeletionModal();
+
+                    callback();
+                }
+            },
+            error: (error) => {
+                console.error(error);
+            },
+        });
+    }
+
+    #openSuccessfulDeletionModal() {
+        Swal.fire("Deleted!", "", "success");
+    }
+
+    afterItemDeletedCallback() {};
+    getUrl() {};
+    getTheHtmlItemToBeDeleted() {};
+}
+
+class TableItemRemover extends ItemRemover {
+
+    constructor() {
+        super();
+    }
+
+    afterItemDeletedCallback() {
+        let deletedItemRow = this.getTheHtmlItemToBeDeleted();
+
+        deletedItemRow
+            .find("#is-deleted-column")
+            .append(
+                '<i class="fas fa-check text-success"></i>'
+            );
+
+        deletedItemRow
+            .find("button")
+            .attr(
+                "class",
+                "btn btn-warning fas fa-trash-restore"
+            )
+            .attr("onclick", this.getRestoreMethodDeclarationString());
+    }
+
+    getRestoreMethodDeclarationString() {};
+}
+
+class ProductRemover extends TableItemRemover {
+    #productId
+
+    constructor(productId) {
+        super();
+        this.#url = url;
+        this.#productId = productId;
+    }
+
+    getUrl() {
+        return `/products/${this.#productId}`;
+    }
+
+    getTheHtmlItemToBeDeleted() {
+        return $(
+            `#product-table tbody tr[data-product-id=${this.#productId}]`
+        );
+    }
+
+    getRestoreMethodDeclarationString() {
+        return `restoreProduct(${this.#productId})`;
+    }
+}
+
+class ProductSpecificationRemover extends TableItemRemover {
+    #productId
+    #specificationId
+
+    constructor(productId, specificationId) {
+        super();
+        this.#productId = productId;
+        this.#specificationId = specificationId;
+    }
+
+    getUrl() {
+        return `/products/${this.#productId}/specifications/${this.#specificationId}`;
+    }
+
+    getTheHtmlItemToBeDeleted() {
+        return $(
+            `#product-specification-table tbody tr[data-specification-id=${this.#specificationId}]`
+        );
+    }
+
+    getRestoreMethodDeclarationString() {
+        return `restoreProductSpecification(${this.#productId}, ${this.#specificationId})`;
+    }
+}
+
+class ImageRemover extends ItemRemover {
+    #productId
+    #imageId
+
+    constructor(productId, imageId) {
+        super();
+        this.#productId = productId;
+        this.#imageId = imageId;
+    }
+
+    getUrl() {
+        return `/products/${this.#productId}/images/${this.#imageId}`;
+    }
+
+    getTheHtmlItemToBeDeleted(){
+        return $(`div[data-image-id=${this.#imageId}]`);
+    }
+
+    afterItemDeletedCallback() {
+        let imageElement = this.getTheHtmlItemToBeDeleted();
+        imageElement.remove();
+    }
+}
+
 function deleteProduct(productId) {
-    Swal.fire({
-        title: "Are you sure you want to delete?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Delete",
-    }).then((result) => {
-        if (result.value) {
-            $.ajax({
-                type: "DELETE",
-                url: `/products/${productId}`,
-                success: (response) => {
-                    if (response.success) {
-                        Swal.fire("Deleted!", "", "success");
-
-                        let deletedProductRow = $(
-                            `#product-table tbody tr[data-product-id=${productId}]`
-                        );
-
-                        deletedProductRow
-                            .find("#is-deleted-column")
-                            .append(
-                                '<i class="fas fa-check text-success"></i>'
-                            );
-
-                        deletedProductRow
-                            .find("button")
-                            .attr(
-                                "class",
-                                "btn btn-warning fas fa-trash-restore"
-                            )
-                            .attr("onclick", `restoreProduct(${productId})`);
-                    }
-                },
-                error: (error) => {
-                    console.error(error);
-                },
-            });
-        }
-    });
+    let productRemover = new ProductRemover(productId);
+    productRemover.deleteItem();
 }
 
 function restoreProduct(productId) {
@@ -69,51 +180,11 @@ function restoreProduct(productId) {
 }
 
 function deleteSpecification(productId, specificationId) {
-    Swal.fire({
-        title: "Are you sure you want to delete?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Delete",
-    }).then((result) => {
-        if (result.value) {
-            $.ajax({
-                type: "DELETE",
-                url: `/products/${productId}/specifications/${specificationId}`,
-                success: (response) => {
-                    if (response.success) {
-                        Swal.fire("Deleted!", "", "success");
-
-                        let deletedProductRow = $(
-                            `#product-specification-table tbody tr[data-specification-id=${specificationId}]`
-                        );
-
-                        deletedProductRow
-                            .find("#is-deleted-column")
-                            .append(
-                                '<i class="fas fa-check text-success"></i>'
-                            );
-
-                        deletedProductRow
-                            .find("button")
-                            .attr(
-                                "class",
-                                "btn btn-warning fas fa-trash-restore"
-                            )
-                            .attr(
-                                "onclick",
-                                `restoreSpecification(${productId}, ${specificationId})`
-                            );
-                    }
-                },
-                error: (error) => {
-                    console.error(error);
-                },
-            });
-        }
-    });
+    let productSpecificationRemover = new ProductSpecificationRemover(productId, specificationId);
+    productSpecificationRemover.deleteItem();
 }
 
-function restoreSpecification(productId, specificationId) {
+function restoreProductSpecification(productId, specificationId) {
     $.ajax({
         type: "PUT",
         url: `/products/${productId}/specifications/${specificationId}/restore`,
@@ -141,25 +212,8 @@ function restoreSpecification(productId, specificationId) {
 }
 
 function deleteImage(productId, imageId) {
-    Swal.fire({
-        title: "Are you sure you want to delete?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Delete",
-    }).then(() => {
-        $.ajax({
-            type: "DELETE",
-            url: `/products/${productId}/images/${imageId}`,
-            success: (response) => {
-                Swal.fire("Deleted!", "", "success");
-
-                $(`div[data-image-id=${imageId}]`).remove();
-            },
-            error: (error) => {
-                console.error(error);
-            },
-        });
-    });
+    let imageRemover = new ImageRemover(productId, imageId);
+    imageRemover.deleteItem();
 }
 
 function writeOutFileName() {

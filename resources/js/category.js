@@ -1,44 +1,6 @@
 function deleteCategory(id) {
-    Swal.fire({
-        title: "Are your sure you want to delete?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Delete",
-    }).then((result) => {
-        if (result.value) {
-            $.ajax({
-                type: "DELETE",
-                url: `/categories/${id}`,
-                success: (response) => {
-                    if (response.success) {
-                        Swal.fire("Deleted!", "", "success");
-                        console.log("anyád");
-                        let deletedCategoryRow = $(
-                            `#category-table tbody tr[data-category-id=${id}]`
-                        );
-                        console.log(deletedCategoryRow);
-
-                        deletedCategoryRow
-                            .find("#is-deleted-column")
-                            .append(
-                                '<i class="fas fa-check text-success"></i>'
-                            );
-
-                        deletedCategoryRow
-                            .find("button")
-                            .attr(
-                                "class",
-                                "btn btn-warning fas fa-trash-restore"
-                            )
-                            .attr("onclick", `restoreCategory(${id})`);
-                    }
-                },
-                error: (error) => {
-                    console.error(error);
-                },
-            });
-        }
-    });
+    let categoryRemover = new CategoryRemover(id);
+    categoryRemover.deleteItem();
 }
 
 function restoreCategory(id) {
