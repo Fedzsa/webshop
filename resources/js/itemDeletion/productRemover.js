@@ -3,7 +3,6 @@ class ProductRemover extends TableItemRemover {
 
     constructor(productId) {
         super();
-        this.#url = url;
         this.#productId = productId;
     }
 
