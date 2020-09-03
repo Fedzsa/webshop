@@ -1,5 +1,10 @@
 {
     "/css/app.css": "/css/app.css",
     "/css/admin.css": "/css/admin.css",
-    "/css/image.css": "/css/image.css"
+    "/css/image.css": "/css/image.css",
+    "/js/category.js": "/js/category.js",
+    "/js/product.js": "/js/product.js",
+    "/js/specification.js": "/js/specification.js",
+    "/js/notification.js": "/js/notification.js",
+    "/js/navigate.js": "/js/navigate.js"
 }

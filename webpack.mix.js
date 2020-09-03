@@ -14,3 +14,23 @@ const mix = require('laravel-mix');
 mix.sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/image.scss', 'public/css');
+
+mix.scripts([
+    'resources/js/header.js',
+    'resources/js/category.js'
+], 'public/js/category.js')
+.scripts([
+    'resources/js/header.js',
+    'resources/js/product.js',
+    'resources/js/productSpecification.js',
+    'resources/js/image.js'
+], 'public/js/product.js')
+.scripts([
+    'resources/js/header.js',
+    'resources/js/specification.js'
+], 'public/js/specification.js')
+.scripts([
+    'resources/js/header.js',
+    'resources/js/notification.js'
+], 'public/js/notification.js')
+.scripts('resources/js/navigate.js', 'public/js/navigate.js');
