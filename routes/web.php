@@ -55,6 +55,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         '/products/{product}/specifications/{specification}/restore',
         'ProductSpecificationController@restore'
     )->name('products.specifications.restore');
+
+    // Product images
     Route::get('/products/{product}/images', 'ProductController@images')->name(
         'products.images'
     );
