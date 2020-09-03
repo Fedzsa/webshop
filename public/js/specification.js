@@ -102,31 +102,72 @@ class SpecificationRemover extends TableItemRemover {
     }
 }
 
+class ItemRestorer {
+
+    constructor() {}
+
+    restoreItem() {
+        this.#restore();
+    }
+
+    #restore() {
+        $.ajax({
+            type: "PUT",
+            url: this.getUrl(),
+            success: (response) => {
+                if (response.success) {
+                    this.#changeRowToRestoredRow();
+                }
+            },
+            error: (error) => {
+                console.error(error);
+            },
+        });
+    }
+
+    #changeRowToRestoredRow() {
+        let elementRow = this.getTheHtmlItemToBeRestored();
+
+        elementRow.find("i").remove();
+
+        elementRow
+            .find("button")
+            .attr("class", "btn btn-danger fas fa-trash")
+            .attr("onclick", this.getDeleteMethodDeclarationString());
+    }
+
+    getUrl() {}
+    getTheHtmlItemToBeRestored() {}
+    getDeleteMethodDeclarationString() {}
+}
+
+class SpecificationRestorer extends ItemRestorer {
+    #specificationId
+
+    constructor(specificationId) {
+        super();
+        this.#specificationId = specificationId;
+    }
+
+    getUrl() {
+        return `/specifications/${this.#specificationId}/restore`;
+    }
+
+    getTheHtmlItemToBeRestored() {
+        return $(`#specification-table tr[data-specification-id=${this.#specificationId}]`);
+    }
+
+    getDeleteMethodDeclarationString() {
+        return `deleteSpecification(${this.#specificationId})`;
+    }
+}
+
 function deleteSpecification(id) {
     let specificationRemover = new SpecificationRemover(id);
     specificationRemover.deleteItem();
 }
 
 function restoreSpecification(id) {
-    $.ajax({
-        type: "PUT",
-        url: `/specifications/${id}/restore`,
-        success: (response) => {
-            if (response.success) {
-                let elementRow = $(
-                    `#specification-table tr[data-specification-id=${id}]`
-                );
-
-                elementRow.find("i").remove();
-
-                elementRow
-                    .find("button")
-                    .attr("class", "btn btn-danger fas fa-trash")
-                    .attr("onclick", `deleteSpecification(${id})`);
-            }
-        },
-        error: (error) => {
-            console.error(error);
-        },
-    });
+    let specificationRestorer = new SpecificationRestorer(id);
+    specificationRestorer.restoreItem();
 }

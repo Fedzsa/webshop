@@ -103,31 +103,72 @@ class CategoryRemover extends TableItemRemover {
     }
 }
 
+class ItemRestorer {
+
+    constructor() {}
+
+    restoreItem() {
+        this.#restore();
+    }
+
+    #restore() {
+        $.ajax({
+            type: "PUT",
+            url: this.getUrl(),
+            success: (response) => {
+                if (response.success) {
+                    this.#changeRowToRestoredRow();
+                }
+            },
+            error: (error) => {
+                console.error(error);
+            },
+        });
+    }
+
+    #changeRowToRestoredRow() {
+        let elementRow = this.getTheHtmlItemToBeRestored();
+
+        elementRow.find("i").remove();
+
+        elementRow
+            .find("button")
+            .attr("class", "btn btn-danger fas fa-trash")
+            .attr("onclick", this.getDeleteMethodDeclarationString());
+    }
+
+    getUrl() {}
+    getTheHtmlItemToBeRestored() {}
+    getDeleteMethodDeclarationString() {}
+}
+
+class CategoryRestorer extends ItemRestorer {
+    #categoryId
+
+    constructor(categoryId) {
+        super();
+        this.#categoryId = categoryId;
+    }
+
+    getUrl() {
+        return `/categorys/${this.#categoryId}/restore`;
+    }
+
+    getTheHtmlItemToBeRestored() {
+        return $(`#category-table tr[data-category-id=${this.#categoryId}]`);
+    }
+
+    getDeleteMethodDeclarationString() {
+        return `deleteCategory(${this.#categoryId})`;
+    }
+}
+
 function deleteCategory(id) {
     let categoryRemover = new CategoryRemover(id);
     categoryRemover.deleteItem();
 }
 
 function restoreCategory(id) {
-    $.ajax({
-        type: "PUT",
-        url: `/categories/${id}/restore`,
-        success: (response) => {
-            if (response.success) {
-                let elementRow = $(
-                    `#category-table tbody tr[data-category-id=${id}]`
-                );
-
-                elementRow.find("i").remove();
-
-                elementRow
-                    .find("button")
-                    .attr("class", "btn btn-danger fas fa-trash")
-                    .attr("onclick", `deleteCategory(${id})`);
-            }
-        },
-        error: (error) => {
-            console.error(error);
-        },
-    });
+    let categoryRestorer = new CategoryRestorer(id);
+    categoryRestorer.restoreItem();
 }

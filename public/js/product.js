@@ -84,7 +84,6 @@ class ProductRemover extends TableItemRemover {
 
     constructor(productId) {
         super();
-        this.#url = url;
         this.#productId = productId;
     }
 
@@ -152,63 +151,107 @@ class ImageRemover extends ItemRemover {
     }
 }
 
+class ItemRestorer {
+
+    constructor() {}
+
+    restoreItem() {
+        this.#restore();
+    }
+
+    #restore() {
+        $.ajax({
+            type: "PUT",
+            url: this.getUrl(),
+            success: (response) => {
+                if (response.success) {
+                    this.#changeRowToRestoredRow();
+                }
+            },
+            error: (error) => {
+                console.error(error);
+            },
+        });
+    }
+
+    #changeRowToRestoredRow() {
+        let elementRow = this.getTheHtmlItemToBeRestored();
+
+        elementRow.find("i").remove();
+
+        elementRow
+            .find("button")
+            .attr("class", "btn btn-danger fas fa-trash")
+            .attr("onclick", this.getDeleteMethodDeclarationString());
+    }
+
+    getUrl() {}
+    getTheHtmlItemToBeRestored() {}
+    getDeleteMethodDeclarationString() {}
+}
+
+class ProductRestorer extends ItemRestorer {
+    #productId
+
+    constructor(productId) {
+        super();
+        this.#productId = productId;
+    }
+
+    getUrl() {
+        return `/products/${this.#productId}/restore`;
+    }
+
+    getTheHtmlItemToBeRestored() {
+        return $(`#product-table tr[data-product-id=${this.#productId}]`);
+    }
+
+    getDeleteMethodDeclarationString() {
+        return `deleteProduct(${this.#productId})`;
+    }
+}
+
+class ProductSpecificationRestorer extends ItemRestorer {
+    #productId
+    #specificationId
+
+    constructor(productId, specificationId) {
+        super();
+        this.#productId = productId;
+        this.#specificationId = specificationId;
+    }
+
+    getUrl() {
+        return `/products/${this.#productId}/specifications/${this.#specificationId}/restore`;
+    }
+
+    getTheHtmlItemToBeRestored() {
+        return $(`#product-specification-table tr[data-specification-id=${this.#specificationId}]`);
+    }
+
+    getDeleteMethodDeclarationString() {
+        return `deleteProductSpecification(${this.#specificationId})`;
+    }
+}
+
 function deleteProduct(productId) {
     let productRemover = new ProductRemover(productId);
     productRemover.deleteItem();
 }
 
 function restoreProduct(productId) {
-    $.ajax({
-        type: "PUT",
-        url: `/products/${productId}/restore`,
-        success: (response) => {
-            if (response.success) {
-                let restoredProductRow = $(
-                    `#product-table tbody tr[data-product-id=${productId}]`
-                );
-                restoredProductRow.find("i").remove();
-                restoredProductRow
-                    .find("button")
-                    .attr("class", "btn btn-danger fas fa-trash")
-                    .attr("onclick", `deleteProduct(${productId})`);
-            }
-        },
-        error: (error) => {
-            console.error(error);
-        },
-    });
+    let productRestorer = new ProductRestorer(productId);
+    productRestorer.restoreItem();
 }
 
-function deleteSpecification(productId, specificationId) {
+function deleteProductSpecification(productId, specificationId) {
     let productSpecificationRemover = new ProductSpecificationRemover(productId, specificationId);
     productSpecificationRemover.deleteItem();
 }
 
 function restoreProductSpecification(productId, specificationId) {
-    $.ajax({
-        type: "PUT",
-        url: `/products/${productId}/specifications/${specificationId}/restore`,
-        success: (response) => {
-            if (response.success) {
-                let elementRow = $(
-                    `#product-specification-table tr[data-specification-id=${specificationId}]`
-                );
-
-                elementRow.find("i").remove();
-
-                elementRow
-                    .find("button")
-                    .attr("class", "btn btn-danger fas fa-trash")
-                    .attr(
-                        "onclick",
-                        `deleteSpecification(${productId}, ${specificationId})`
-                    );
-            }
-        },
-        error: (error) => {
-            console.error(error);
-        },
-    });
+    let productSpecificationRestorer = new ProductSpecificationRestorer(productId, specificationId);
+    productSpecificationRestorer.restoreItem();
 }
 
 function deleteImage(productId, imageId) {

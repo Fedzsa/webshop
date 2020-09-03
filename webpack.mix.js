@@ -20,6 +20,8 @@ mix.scripts([
     'resources/js/itemDeletion/itemRemover.js',
     'resources/js/itemDeletion/tableItemRemover.js',
     'resources/js/itemDeletion/categoryRemover.js',
+    'resources/js/itemRestorer/itemRestorer.js',
+    'resources/js/itemRestorer/categoryRestorer.js',
     'resources/js/category.js'
 ], 'public/js/category.js')
 .scripts([
@@ -29,6 +31,9 @@ mix.scripts([
     'resources/js/itemDeletion/productRemover.js',
     'resources/js/itemDeletion/productSpecificationRemover.js',
     'resources/js/itemDeletion/imageRemover.js',
+    'resources/js/itemRestorer/itemRestorer.js',
+    'resources/js/itemRestorer/productRestorer.js',
+    'resources/js/itemRestorer/productSpecificationRestorer.js',
     'resources/js/product.js',
     'resources/js/productSpecification.js',
     'resources/js/image.js'
@@ -38,6 +43,8 @@ mix.scripts([
     'resources/js/itemDeletion/itemRemover.js',
     'resources/js/itemDeletion/tableItemRemover.js',
     'resources/js/itemDeletion/specificationRemover.js',
+    'resources/js/itemRestorer/itemRestorer.js',
+    'resources/js/itemRestorer/specificationRestorer.js',
     'resources/js/specification.js'
 ], 'public/js/specification.js')
 .scripts([
