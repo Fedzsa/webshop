@@ -11,6 +11,9 @@
                 <th>@lang('messages.name')</th>
                 <th>@lang('messages.email')</th>
                 <th>@lang('messages.registrated')</th>
+                <th>
+                    <a href="{{ route('users.admins.create') }}" class="btn btn-outline-light fas fa-plus float-right"></a>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -20,6 +23,7 @@
                     <td>{{ $admin->getFullname() }}</td>
                     <td>{{ $admin->email }}</td>
                     <td>{{ $admin->created_at }}</td>
+                    <td></td>
                 </tr>
             @endforeach
             </tbody>
