@@ -67,4 +67,6 @@ return [
     'mark-all-as-read' => 'Összes megjelölése olvasottként',
     'notification-info' => ':value olvasatlan értesítése van',
     'admins' => 'Adminok',
+    'create-admin' => 'Admin felvétel',
+    'create-specification' => 'Specifikáció készítése',
 ];

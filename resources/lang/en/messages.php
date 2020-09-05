@@ -68,4 +68,6 @@ return [
     'mark-all-as-read' => 'Mark all as read',
     'notification-info' => ':value unread notifications',
     'admins' => 'Admins',
+    'create-admin' => 'Create admin',
+    'create-specification' => 'Create specification',
 ];
