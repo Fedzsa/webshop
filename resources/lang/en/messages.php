@@ -59,5 +59,6 @@ return [
     'value' => 'Value',
     'amount' => 'Amount',
     'mark-all-as-read' => 'Mark all as read',
-    'notification-info' => ':value unread notifications'
+    'notification-info' => ':value unread notifications',
+    'admins' => 'Admins'
 ];

@@ -57,5 +57,6 @@ return [
     'value' => 'Érték',
     'amount' => 'Mennyiség',
     'mark-all-as-read' => 'Összes megjelölése olvasottként',
-    'notification-info' => ':value olvasatlan értesítése van'
+    'notification-info' => ':value olvasatlan értesítése van',
+    'admins' => 'Adminok'
 ];
