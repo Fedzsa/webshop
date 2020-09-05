@@ -24,7 +24,7 @@ function markAsRead(notificationId) {
 function getUnreadNotificationNumber() {
     $.ajax({
         type: "GET",
-        url: "/notifications/unread-number",
+        url: "/notifications/unread-notification-number",
         success: (response) => {
             if (response.notificationNumber === 0) {
                 $("#notification-badge").remove();
