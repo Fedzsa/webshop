@@ -48,13 +48,6 @@ class NotificationService implements NotificationServiceInterface
 
     public function markAllAsRead()
     {
-        try
-        {
-            Auth::user()->unreadNotifications->markAsRead();
-        }
-        catch(Exception $exception)
-        {
-            dd($exception);
-        }
+        Auth::user()->unreadNotifications->markAsRead();
     }
 }
