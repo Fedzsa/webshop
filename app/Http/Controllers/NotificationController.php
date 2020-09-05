@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Notification\NotificationServiceInterface;
+use Illuminate\Support\Facades\Lang;
 
 class NotificationController extends Controller
 {
@@ -32,7 +33,7 @@ class NotificationController extends Controller
     {
         $this->notificationService->markAsRead($id);
 
-        return response()->json(['marked' => true], 200);
+        return response()->json(['notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])], 200);
     }
 
     /**
@@ -42,6 +43,6 @@ class NotificationController extends Controller
     {
         $this->notificationService->markAllAsRead();
 
-        return response()->noContent();
+        return response()->json(['notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])], 200);
     }
 }

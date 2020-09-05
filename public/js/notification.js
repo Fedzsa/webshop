@@ -9,11 +9,11 @@ function markAsRead(notificationId) {
         type: "PUT",
         url: `/notifications/${notificationId}`,
         success: (response) => {
-            if (response.marked) {
-                $(`#notification-${notificationId}`).remove();
+            $(`#notification-${notificationId}`).remove();
 
-                getUnreadNotificationNumber();
-            }
+            getUnreadNotificationNumber();
+
+            refreshNotificationInfo(response.notificationInfo);
         },
         error: (error) => {
             console.error(error);
@@ -39,6 +39,10 @@ function getUnreadNotificationNumber() {
 }
 
 
+function refreshNotificationInfo(text) {
+    $('#notification-info-card .row .col:first-child').html(text);
+}
+
 function markAllAsRead() {
     $.ajax({
         type: 'PUT',
@@ -47,6 +51,8 @@ function markAllAsRead() {
             $('#notification-panel').html('');
 
             getUnreadNotificationNumber();
+
+            refreshNotificationInfo(response.notificationInfo);
         },
         error: error => console.error(error)
     });
