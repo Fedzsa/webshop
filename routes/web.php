@@ -17,6 +17,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/users', 'UserController@index')
         ->name('users')
         ->middleware('can:viewAny,App\Models\User');
+    Route::get('/users/admins/create', 'UserController@createAdmin')->name('users.admins.create');
+    Route::post('/users/admins/store', 'UserController@storeAdmin')->name('users.admins.store');
 
     // Categories
     Route::resource('categories', 'CategoryController')->except(['show']);
