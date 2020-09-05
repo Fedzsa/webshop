@@ -6,12 +6,30 @@ use App\Models\User;
 
 class UserService implements UserServiceInterface
 {
-    public function __construct()
+    private User $user;
+
+    public function __construct(User $user)
     {
+        $this->user = $user;
     }
 
+    /**
+     * Get paginated users.
+     *
+     * @return mixed
+     */
     public function getPaginatedUsers()
     {
-        return User::paginate(10);
+        return $this->user->users()->paginate(10);
+    }
+
+    /**
+     * Get paginated admins.
+     *
+     * @return mixed
+     */
+    function getPaginatedAdmins()
+    {
+        return $this->user->admins()->paginate(10);
     }
 }

@@ -57,6 +57,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $query->where('admin', 1);
     }
 
+    /**
+     * Select users
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeUsers($query)
+    {
+        return $query->where('admin', 0);
+    }
+
     public function isAdmin()
     {
         return $this->admin === 1;
