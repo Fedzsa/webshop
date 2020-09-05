@@ -1,6 +1,6 @@
 class ProductSpecificationRemover extends TableItemRemover {
-    #productId
-    #specificationId
+    #productId;
+    #specificationId;
 
     constructor(productId, specificationId) {
         super();
@@ -9,16 +9,22 @@ class ProductSpecificationRemover extends TableItemRemover {
     }
 
     getUrl() {
-        return `/products/${this.#productId}/specifications/${this.#specificationId}`;
+        return `/products/${this.#productId}/specifications/${
+            this.#specificationId
+        }`;
     }
 
     getTheHtmlItemToBeDeleted() {
         return $(
-            `#product-specification-table tbody tr[data-specification-id=${this.#specificationId}]`
+            `#product-specification-table tbody tr[data-specification-id=${
+                this.#specificationId
+            }]`
         );
     }
 
     getRestoreMethodDeclarationString() {
-        return `restoreProductSpecification(${this.#productId}, ${this.#specificationId})`;
+        return `restoreProductSpecification(${this.#productId}, ${
+            this.#specificationId
+        })`;
     }
 }

@@ -1,5 +1,5 @@
 class SpecificationRestorer extends ItemRestorer {
-    #specificationId
+    #specificationId;
 
     constructor(specificationId) {
         super();
@@ -11,7 +11,11 @@ class SpecificationRestorer extends ItemRestorer {
     }
 
     getTheHtmlItemToBeRestored() {
-        return $(`#specification-table tr[data-specification-id=${this.#specificationId}]`);
+        return $(
+            `#specification-table tr[data-specification-id=${
+                this.#specificationId
+            }]`
+        );
     }
 
     getDeleteMethodDeclarationString() {

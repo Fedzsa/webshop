@@ -1,5 +1,4 @@
 class ItemRestorer {
-
     constructor() {}
 
     restoreItem() {

@@ -1,5 +1,5 @@
 class SpecificationRemover extends TableItemRemover {
-    #specificationId
+    #specificationId;
 
     constructor(specificationId) {
         super();
@@ -12,7 +12,9 @@ class SpecificationRemover extends TableItemRemover {
 
     getTheHtmlItemToBeDeleted() {
         return $(
-            `#specification-table tbody tr[data-specification-id=${this.#specificationId}]`
+            `#specification-table tbody tr[data-specification-id=${
+                this.#specificationId
+            }]`
         );
     }
 

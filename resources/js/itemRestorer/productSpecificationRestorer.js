@@ -1,6 +1,6 @@
 class ProductSpecificationRestorer extends ItemRestorer {
-    #productId
-    #specificationId
+    #productId;
+    #specificationId;
 
     constructor(productId, specificationId) {
         super();
@@ -9,11 +9,17 @@ class ProductSpecificationRestorer extends ItemRestorer {
     }
 
     getUrl() {
-        return `/products/${this.#productId}/specifications/${this.#specificationId}/restore`;
+        return `/products/${this.#productId}/specifications/${
+            this.#specificationId
+        }/restore`;
     }
 
     getTheHtmlItemToBeRestored() {
-        return $(`#product-specification-table tr[data-specification-id=${this.#specificationId}]`);
+        return $(
+            `#product-specification-table tr[data-specification-id=${
+                this.#specificationId
+            }]`
+        );
     }
 
     getDeleteMethodDeclarationString() {

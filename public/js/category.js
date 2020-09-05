@@ -6,13 +6,12 @@ $.ajaxSetup({
 
 
 class ItemRemover {
-
     constructor() {}
 
     deleteItem() {
         let modal = this.#fireDeleteModal();
-        modal.then(result => {
-            if(result.value) {
+        modal.then((result) => {
+            if (result.value) {
                 this.#delete(() => this.afterItemDeletedCallback());
             }
         });
@@ -48,13 +47,12 @@ class ItemRemover {
         Swal.fire("Deleted!", "", "success");
     }
 
-    afterItemDeletedCallback() {};
-    getUrl() {};
-    getTheHtmlItemToBeDeleted() {};
+    afterItemDeletedCallback() {}
+    getUrl() {}
+    getTheHtmlItemToBeDeleted() {}
 }
 
 class TableItemRemover extends ItemRemover {
-
     constructor() {
         super();
     }
@@ -64,24 +62,19 @@ class TableItemRemover extends ItemRemover {
 
         deletedItemRow
             .find("#is-deleted-column")
-            .append(
-                '<i class="fas fa-check text-success"></i>'
-            );
+            .append('<i class="fas fa-check text-success"></i>');
 
         deletedItemRow
             .find("button")
-            .attr(
-                "class",
-                "btn btn-warning fas fa-trash-restore"
-            )
+            .attr("class", "btn btn-warning fas fa-trash-restore")
             .attr("onclick", this.getRestoreMethodDeclarationString());
     }
 
-    getRestoreMethodDeclarationString() {};
+    getRestoreMethodDeclarationString() {}
 }
 
 class CategoryRemover extends TableItemRemover {
-    #categoryId
+    #categoryId;
 
     constructor(categoryId) {
         super();
@@ -104,7 +97,6 @@ class CategoryRemover extends TableItemRemover {
 }
 
 class ItemRestorer {
-
     constructor() {}
 
     restoreItem() {
@@ -143,7 +135,7 @@ class ItemRestorer {
 }
 
 class CategoryRestorer extends ItemRestorer {
-    #categoryId
+    #categoryId;
 
     constructor(categoryId) {
         super();

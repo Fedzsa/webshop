@@ -22,10 +22,15 @@ class NotificationController extends Controller
     {
         $this->notificationService->markAsRead($id);
 
-        return response()->json([
-            'notificationNumber' => countUnreadNotificationsForAuthUser(),
-            'notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])
-        ], 200);
+        return response()->json(
+            [
+                'notificationNumber' => countUnreadNotificationsForAuthUser(),
+                'notificationInfo' => Lang::get('messages.notification-info', [
+                    'value' => countUnreadNotificationsForAuthUser(),
+                ]),
+            ],
+            200
+        );
     }
 
     /**
@@ -35,9 +40,14 @@ class NotificationController extends Controller
     {
         $this->notificationService->markAllAsRead();
 
-        return response()->json([
-            'notificationNumber' => countUnreadNotificationsForAuthUser(),
-            'notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])
-        ], 200);
+        return response()->json(
+            [
+                'notificationNumber' => countUnreadNotificationsForAuthUser(),
+                'notificationInfo' => Lang::get('messages.notification-info', [
+                    'value' => countUnreadNotificationsForAuthUser(),
+                ]),
+            ],
+            200
+        );
     }
 }

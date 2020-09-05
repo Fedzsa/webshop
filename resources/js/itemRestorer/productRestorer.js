@@ -1,5 +1,5 @@
 class ProductRestorer extends ItemRestorer {
-    #productId
+    #productId;
 
     constructor(productId) {
         super();

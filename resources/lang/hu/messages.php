@@ -6,8 +6,10 @@ return [
     'throttled' => 'Kérjük várjon az újboli prokálkozáshoz.',
     'token' => 'A jelszó vissza állítási token nem megfelelő.',
     'user' => "Nem találtunk ezzel az e-mail címmel felhasználót.",
-    'failed' => 'Ezek az adatok nem egyeznek meg az adatbázisban szerepeltekkel.',
-    'throttle' => 'Túl sok bejelentkezési kísérlet. Kérlek próbáld újra :seconds másodperc múlva.',
+    'failed' =>
+        'Ezek az adatok nem egyeznek meg az adatbázisban szerepeltekkel.',
+    'throttle' =>
+        'Túl sok bejelentkezési kísérlet. Kérlek próbáld újra :seconds másodperc múlva.',
     'registration' => 'Regisztráció',
     'firstname' => 'Keresztnév',
     'lastname' => 'Vezetéknév',
@@ -37,8 +39,10 @@ return [
     'delete-category' => 'Biztosan törölni szeretnéd a :name kategóriát?',
     'deleted' => 'Törölve',
     'specification' => '{1} Specifikáció|[2,*] Specifikációk',
-    'delete-specification' => 'Biztosan törölni szeretnéd a :name specifikációt?',
-    'delete-product-specification' => 'Biztosan törölni szeretnéd a :product-name :specification-name specifikációját?',
+    'delete-specification' =>
+        'Biztosan törölni szeretnéd a :name specifikációt?',
+    'delete-product-specification' =>
+        'Biztosan törölni szeretnéd a :product-name :specification-name specifikációját?',
     'product-images' => ':name képek',
     'dashboard' => 'Irányítópult',
     'no-result' => 'Nincs eredmény',
@@ -49,14 +53,18 @@ return [
     'comment' => 'Hozzászólás',
     'comments' => 'Hozzászólások',
     'choose-category' => 'Válassz kategóriát',
-    'added-notification' => '<a href=":link" class="alert-link">:name</a> hozzá lett adva az adatbázishoz <strong>:time</strong>-kor.',
-    'updated-notification' => '<a href=":link" class="alert-link">:name</a> módosítva lett <strong>:time</strong>-kor.',
-    'deleted-notification' => '<a href=":link" class="alert-link">:name</a> törölve lett <strong>:time</strong>-kor.',
-    'restored-notification' => '<a href=":link" class="alert-link">:name</a> helyre lett állítva <strong>:time</strong>-kor.',
+    'added-notification' =>
+        '<a href=":link" class="alert-link">:name</a> hozzá lett adva az adatbázishoz <strong>:time</strong>-kor.',
+    'updated-notification' =>
+        '<a href=":link" class="alert-link">:name</a> módosítva lett <strong>:time</strong>-kor.',
+    'deleted-notification' =>
+        '<a href=":link" class="alert-link">:name</a> törölve lett <strong>:time</strong>-kor.',
+    'restored-notification' =>
+        '<a href=":link" class="alert-link">:name</a> helyre lett állítva <strong>:time</strong>-kor.',
     'product-specifications' => 'Termék specifikációk',
     'value' => 'Érték',
     'amount' => 'Mennyiség',
     'mark-all-as-read' => 'Összes megjelölése olvasottként',
     'notification-info' => ':value olvasatlan értesítése van',
-    'admins' => 'Adminok'
+    'admins' => 'Adminok',
 ];

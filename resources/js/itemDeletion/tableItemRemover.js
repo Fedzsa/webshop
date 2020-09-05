@@ -1,5 +1,4 @@
 class TableItemRemover extends ItemRemover {
-
     constructor() {
         super();
     }
@@ -9,18 +8,13 @@ class TableItemRemover extends ItemRemover {
 
         deletedItemRow
             .find("#is-deleted-column")
-            .append(
-                '<i class="fas fa-check text-success"></i>'
-            );
+            .append('<i class="fas fa-check text-success"></i>');
 
         deletedItemRow
             .find("button")
-            .attr(
-                "class",
-                "btn btn-warning fas fa-trash-restore"
-            )
+            .attr("class", "btn btn-warning fas fa-trash-restore")
             .attr("onclick", this.getRestoreMethodDeclarationString());
     }
 
-    getRestoreMethodDeclarationString() {};
+    getRestoreMethodDeclarationString() {}
 }

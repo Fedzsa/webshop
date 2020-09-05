@@ -1,6 +1,6 @@
 class ImageRemover extends ItemRemover {
-    #productId
-    #imageId
+    #productId;
+    #imageId;
 
     constructor(productId, imageId) {
         super();
@@ -12,7 +12,7 @@ class ImageRemover extends ItemRemover {
         return `/products/${this.#productId}/images/${this.#imageId}`;
     }
 
-    getTheHtmlItemToBeDeleted(){
+    getTheHtmlItemToBeDeleted() {
         return $(`div[data-image-id=${this.#imageId}]`);
     }
 

@@ -30,20 +30,20 @@ function refreshNotificationBadge(notificationNumber) {
 }
 
 function refreshNotificationInfo(text) {
-    $('#notification-info-card .row .col:first-child').html(text);
+    $("#notification-info-card .row .col:first-child").html(text);
 }
 
 function markAllAsRead() {
     $.ajax({
-        type: 'PUT',
+        type: "PUT",
         url: `/notifications/mark-all-as-read`,
-        success: response => {
-            $('#notification-panel').html('');
+        success: (response) => {
+            $("#notification-panel").html("");
 
             refreshNotificationBadge(response.notificationNumber);
 
             refreshNotificationInfo(response.notificationInfo);
         },
-        error: error => console.error(error)
+        error: (error) => console.error(error),
     });
 }

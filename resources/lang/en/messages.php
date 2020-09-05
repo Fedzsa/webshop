@@ -9,7 +9,8 @@ return [
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
     'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' =>
+        'Too many login attempts. Please try again in :seconds seconds.',
     'registration' => 'Registration',
     'firstname' => 'Firstname',
     'lastname' => 'Lastname',
@@ -39,8 +40,10 @@ return [
     'delete-category' => 'Are you sure you want to delete the :name category?',
     'deleted' => 'Deleted',
     'specification' => '{1} Specification|[2,*] Specifications',
-    'delete-specification' => 'Are you sure you want to delete the :name specification?',
-    'delete-product-specification' => 'Are you sure you want to delete the :product-name :specification-name specification?',
+    'delete-specification' =>
+        'Are you sure you want to delete the :name specification?',
+    'delete-product-specification' =>
+        'Are you sure you want to delete the :product-name :specification-name specification?',
     'product-images' => ':name images',
     'dashboard' => 'Dashboard',
     'no-result' => 'No result',
@@ -51,14 +54,18 @@ return [
     'comment' => 'Comment',
     'comments' => 'Comments',
     'choose-category' => 'Choose category',
-    'added-notification' => '<a href=":link" class="alert-link">:name</a> has been added to the database at <strong>:time</strong>.',
-    'updated-notification' => '<a href=":link" class="alert-link">:name</a> has been updated at <strong>:time</strong>',
-    'deleted-notification' => '<a href=":link" class="alert-link">:name</a> has been deleted at <strong>:time</strong>',
-    'restored-notification' => '<a href=":link" class="alert-link">:name</a> has been restored at <strong>:time</strong>',
+    'added-notification' =>
+        '<a href=":link" class="alert-link">:name</a> has been added to the database at <strong>:time</strong>.',
+    'updated-notification' =>
+        '<a href=":link" class="alert-link">:name</a> has been updated at <strong>:time</strong>',
+    'deleted-notification' =>
+        '<a href=":link" class="alert-link">:name</a> has been deleted at <strong>:time</strong>',
+    'restored-notification' =>
+        '<a href=":link" class="alert-link">:name</a> has been restored at <strong>:time</strong>',
     'product-specifications' => 'Product specifications',
     'value' => 'Value',
     'amount' => 'Amount',
     'mark-all-as-read' => 'Mark all as read',
     'notification-info' => ':value unread notifications',
-    'admins' => 'Admins'
+    'admins' => 'Admins',
 ];

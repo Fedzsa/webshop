@@ -1,5 +1,5 @@
 class ProductRemover extends TableItemRemover {
-    #productId
+    #productId;
 
     constructor(productId) {
         super();
@@ -11,9 +11,7 @@ class ProductRemover extends TableItemRemover {
     }
 
     getTheHtmlItemToBeDeleted() {
-        return $(
-            `#product-table tbody tr[data-product-id=${this.#productId}]`
-        );
+        return $(`#product-table tbody tr[data-product-id=${this.#productId}]`);
     }
 
     getRestoreMethodDeclarationString() {

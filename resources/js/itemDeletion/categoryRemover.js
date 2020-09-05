@@ -1,5 +1,5 @@
 class CategoryRemover extends TableItemRemover {
-    #categoryId
+    #categoryId;
 
     constructor(categoryId) {
         super();

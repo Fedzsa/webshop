@@ -83,7 +83,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', 'DashboardController')->name('dashboard.index');
 
     // Notifications
-    Route::put('/notifications/mark-all-as-read', 'NotificationController@markAllAsRead')->name('notification.markAllAsRead');
+    Route::put(
+        '/notifications/mark-all-as-read',
+        'NotificationController@markAllAsRead'
+    )->name('notification.markAllAsRead');
     Route::put('/notifications/{id}', 'NotificationController@update')->name(
         'notifications.update'
     );

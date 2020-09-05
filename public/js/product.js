@@ -5,13 +5,12 @@ $.ajaxSetup({
 });
 
 class ItemRemover {
-
     constructor() {}
 
     deleteItem() {
         let modal = this.#fireDeleteModal();
-        modal.then(result => {
-            if(result.value) {
+        modal.then((result) => {
+            if (result.value) {
                 this.#delete(() => this.afterItemDeletedCallback());
             }
         });
@@ -47,13 +46,12 @@ class ItemRemover {
         Swal.fire("Deleted!", "", "success");
     }
 
-    afterItemDeletedCallback() {};
-    getUrl() {};
-    getTheHtmlItemToBeDeleted() {};
+    afterItemDeletedCallback() {}
+    getUrl() {}
+    getTheHtmlItemToBeDeleted() {}
 }
 
 class TableItemRemover extends ItemRemover {
-
     constructor() {
         super();
     }
@@ -63,24 +61,19 @@ class TableItemRemover extends ItemRemover {
 
         deletedItemRow
             .find("#is-deleted-column")
-            .append(
-                '<i class="fas fa-check text-success"></i>'
-            );
+            .append('<i class="fas fa-check text-success"></i>');
 
         deletedItemRow
             .find("button")
-            .attr(
-                "class",
-                "btn btn-warning fas fa-trash-restore"
-            )
+            .attr("class", "btn btn-warning fas fa-trash-restore")
             .attr("onclick", this.getRestoreMethodDeclarationString());
     }
 
-    getRestoreMethodDeclarationString() {};
+    getRestoreMethodDeclarationString() {}
 }
 
 class ProductRemover extends TableItemRemover {
-    #productId
+    #productId;
 
     constructor(productId) {
         super();
@@ -92,9 +85,7 @@ class ProductRemover extends TableItemRemover {
     }
 
     getTheHtmlItemToBeDeleted() {
-        return $(
-            `#product-table tbody tr[data-product-id=${this.#productId}]`
-        );
+        return $(`#product-table tbody tr[data-product-id=${this.#productId}]`);
     }
 
     getRestoreMethodDeclarationString() {
@@ -103,8 +94,8 @@ class ProductRemover extends TableItemRemover {
 }
 
 class ProductSpecificationRemover extends TableItemRemover {
-    #productId
-    #specificationId
+    #productId;
+    #specificationId;
 
     constructor(productId, specificationId) {
         super();
@@ -113,23 +104,29 @@ class ProductSpecificationRemover extends TableItemRemover {
     }
 
     getUrl() {
-        return `/products/${this.#productId}/specifications/${this.#specificationId}`;
+        return `/products/${this.#productId}/specifications/${
+            this.#specificationId
+        }`;
     }
 
     getTheHtmlItemToBeDeleted() {
         return $(
-            `#product-specification-table tbody tr[data-specification-id=${this.#specificationId}]`
+            `#product-specification-table tbody tr[data-specification-id=${
+                this.#specificationId
+            }]`
         );
     }
 
     getRestoreMethodDeclarationString() {
-        return `restoreProductSpecification(${this.#productId}, ${this.#specificationId})`;
+        return `restoreProductSpecification(${this.#productId}, ${
+            this.#specificationId
+        })`;
     }
 }
 
 class ImageRemover extends ItemRemover {
-    #productId
-    #imageId
+    #productId;
+    #imageId;
 
     constructor(productId, imageId) {
         super();
@@ -141,7 +138,7 @@ class ImageRemover extends ItemRemover {
         return `/products/${this.#productId}/images/${this.#imageId}`;
     }
 
-    getTheHtmlItemToBeDeleted(){
+    getTheHtmlItemToBeDeleted() {
         return $(`div[data-image-id=${this.#imageId}]`);
     }
 
@@ -152,7 +149,6 @@ class ImageRemover extends ItemRemover {
 }
 
 class ItemRestorer {
-
     constructor() {}
 
     restoreItem() {
@@ -191,7 +187,7 @@ class ItemRestorer {
 }
 
 class ProductRestorer extends ItemRestorer {
-    #productId
+    #productId;
 
     constructor(productId) {
         super();
@@ -212,8 +208,8 @@ class ProductRestorer extends ItemRestorer {
 }
 
 class ProductSpecificationRestorer extends ItemRestorer {
-    #productId
-    #specificationId
+    #productId;
+    #specificationId;
 
     constructor(productId, specificationId) {
         super();
@@ -222,11 +218,17 @@ class ProductSpecificationRestorer extends ItemRestorer {
     }
 
     getUrl() {
-        return `/products/${this.#productId}/specifications/${this.#specificationId}/restore`;
+        return `/products/${this.#productId}/specifications/${
+            this.#specificationId
+        }/restore`;
     }
 
     getTheHtmlItemToBeRestored() {
-        return $(`#product-specification-table tr[data-specification-id=${this.#specificationId}]`);
+        return $(
+            `#product-specification-table tr[data-specification-id=${
+                this.#specificationId
+            }]`
+        );
     }
 
     getDeleteMethodDeclarationString() {
@@ -245,12 +247,18 @@ function restoreProduct(productId) {
 }
 
 function deleteProductSpecification(productId, specificationId) {
-    let productSpecificationRemover = new ProductSpecificationRemover(productId, specificationId);
+    let productSpecificationRemover = new ProductSpecificationRemover(
+        productId,
+        specificationId
+    );
     productSpecificationRemover.deleteItem();
 }
 
 function restoreProductSpecification(productId, specificationId) {
-    let productSpecificationRestorer = new ProductSpecificationRestorer(productId, specificationId);
+    let productSpecificationRestorer = new ProductSpecificationRestorer(
+        productId,
+        specificationId
+    );
     productSpecificationRestorer.restoreItem();
 }
 

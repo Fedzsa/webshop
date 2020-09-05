@@ -1,5 +1,5 @@
 class CategoryRestorer extends ItemRestorer {
-    #categoryId
+    #categoryId;
 
     constructor(categoryId) {
         super();

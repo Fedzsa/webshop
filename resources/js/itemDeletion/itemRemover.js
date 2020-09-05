@@ -1,11 +1,10 @@
 class ItemRemover {
-
     constructor() {}
 
     deleteItem() {
         let modal = this.#fireDeleteModal();
-        modal.then(result => {
-            if(result.value) {
+        modal.then((result) => {
+            if (result.value) {
                 this.#delete(() => this.afterItemDeletedCallback());
             }
         });
@@ -41,7 +40,7 @@ class ItemRemover {
         Swal.fire("Deleted!", "", "success");
     }
 
-    afterItemDeletedCallback() {};
-    getUrl() {};
-    getTheHtmlItemToBeDeleted() {};
+    afterItemDeletedCallback() {}
+    getUrl() {}
+    getTheHtmlItemToBeDeleted() {}
 }
