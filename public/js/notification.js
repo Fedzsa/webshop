@@ -11,7 +11,7 @@ function markAsRead(notificationId) {
         success: (response) => {
             $(`#notification-${notificationId}`).remove();
 
-            getUnreadNotificationNumber();
+            refreshNotificationBadge(response.notificationNumber);
 
             refreshNotificationInfo(response.notificationInfo);
         },
@@ -21,23 +21,13 @@ function markAsRead(notificationId) {
     });
 }
 
-function getUnreadNotificationNumber() {
-    $.ajax({
-        type: "GET",
-        url: "/notifications/unread-notification-number",
-        success: (response) => {
-            if (response.notificationNumber === 0) {
-                $("#notification-badge").remove();
-            } else {
-                $("#notification-badge").html(response.notificationNumber);
-            }
-        },
-        error: (error) => {
-            console.error(error);
-        },
-    });
+function refreshNotificationBadge(notificationNumber) {
+    if (notificationNumber === 0) {
+        $("#notification-badge").remove();
+    } else {
+        $("#notification-badge").html(notificationNumber);
+    }
 }
-
 
 function refreshNotificationInfo(text) {
     $('#notification-info-card .row .col:first-child').html(text);
@@ -50,7 +40,7 @@ function markAllAsRead() {
         success: response => {
             $('#notification-panel').html('');
 
-            getUnreadNotificationNumber();
+            refreshNotificationBadge(response.notificationNumber);
 
             refreshNotificationInfo(response.notificationInfo);
         },

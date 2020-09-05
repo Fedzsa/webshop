@@ -16,24 +16,16 @@ class NotificationController extends Controller
     }
 
     /**
-     * Get unread notification number.
-     */
-    public function unreadNumber()
-    {
-        return response()->json(
-            ['notificationNumber' => countUnreadNotificationsForAuthUser()],
-            200
-        );
-    }
-
-    /**
      * Mark as read the notification.
      */
     public function update(string $id)
     {
         $this->notificationService->markAsRead($id);
 
-        return response()->json(['notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])], 200);
+        return response()->json([
+            'notificationNumber' => countUnreadNotificationsForAuthUser(),
+            'notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])
+        ], 200);
     }
 
     /**
@@ -43,6 +35,9 @@ class NotificationController extends Controller
     {
         $this->notificationService->markAllAsRead();
 
-        return response()->json(['notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])], 200);
+        return response()->json([
+            'notificationNumber' => countUnreadNotificationsForAuthUser(),
+            'notificationInfo' => Lang::get('messages.notification-info', ['value' => countUnreadNotificationsForAuthUser()])
+        ], 200);
     }
 }
