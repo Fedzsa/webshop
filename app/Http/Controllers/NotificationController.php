@@ -42,6 +42,6 @@ class NotificationController extends Controller
     {
         $this->notificationService->markAllAsRead();
 
-        return response()->ok(null, 200);
+        return response()->noContent();
     }
 }
