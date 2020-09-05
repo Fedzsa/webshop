@@ -11,6 +11,21 @@
         justify-content: space-between;
         align-items: center;
     }
+
+    #notification-info-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: .25rem;
+        box-shadow: $box-shadow;
+
+        .row {
+            align-items: center;
+        }
+
+        button {
+            float: right;
+        }
+    }
 }
 
 .sidebar {
@@ -23,8 +38,7 @@
     width: $sidebar-width;
     height: 100%;
     padding-top: $header-height;
-    box-shadow: 0 5px 15px rgba(57, 98, 254, 0.02),
-        0 3px 6px rgba(117, 108, 254, 0.12);
+    box-shadow: $box-shadow;
 
     .sidebar-menu {
         padding: 10px;

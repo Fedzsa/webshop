@@ -37,3 +37,17 @@ function getUnreadNotificationNumber() {
         },
     });
 }
+
+
+function markAllAsRead() {
+    $.ajax({
+        type: 'PUT',
+        url: `/notifications/mark-all-as-read`,
+        success: response => {
+            $('#notification-panel').html('');
+
+            getUnreadNotificationNumber();
+        },
+        error: error => console.error(error)
+    });
+}

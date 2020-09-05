@@ -9,6 +9,21 @@
   align-items: center;
 }
 
+.main #notification-info-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 5px 15px rgba(57, 98, 254, 0.02), 0 3px 6px rgba(117, 108, 254, 0.12);
+}
+
+.main #notification-info-card .row {
+  align-items: center;
+}
+
+.main #notification-info-card button {
+  float: right;
+}
+
 .sidebar {
   position: fixed;
   top: 0;

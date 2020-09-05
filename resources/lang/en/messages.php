@@ -57,5 +57,7 @@ return [
     'restored-notification' => '<a href=":link" class="alert-link">:name</a> has been restored at <strong>:time</strong>',
     'product-specifications' => 'Product specifications',
     'value' => 'Value',
-    'amount' => 'Amount'
+    'amount' => 'Amount',
+    'mark-all-as-read' => 'Mark all as read',
+    'notification-info' => ':value unread notifications'
 ];

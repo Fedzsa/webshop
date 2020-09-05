@@ -45,4 +45,16 @@ class NotificationService implements NotificationServiceInterface
             ->where('id', $id)
             ->update(['read_at' => now()]);
     }
+
+    public function markAllAsRead()
+    {
+        try
+        {
+            Auth::user()->unreadNotifications->markAsRead();
+        }
+        catch(Exception $exception)
+        {
+            dd($exception);
+        }
+    }
 }

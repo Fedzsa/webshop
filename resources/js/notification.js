@@ -31,3 +31,15 @@ function getUnreadNotificationNumber() {
         },
     });
 }
+
+
+function markAllAsRead() {
+    $.ajax({
+        type: 'PUT',
+        url: `/notifications/mark-all-as-read`,
+        success: response => {
+            $('#notification-panel').html('');
+        },
+        error: error => console.error(error)
+    });
+}

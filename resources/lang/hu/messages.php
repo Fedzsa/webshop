@@ -55,5 +55,7 @@ return [
     'restored-notification' => '<a href=":link" class="alert-link">:name</a> helyre lett állítva <strong>:time</strong>-kor.',
     'product-specifications' => 'Termék specifikációk',
     'value' => 'Érték',
-    'amount' => 'Mennyiség'
+    'amount' => 'Mennyiség',
+    'mark-all-as-read' => 'Összes megjelölése olvasottként',
+    'notification-info' => ':value olvasatlan értesítése van'
 ];

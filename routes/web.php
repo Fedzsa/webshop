@@ -87,6 +87,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         '/notifications/unread-notification-number',
         'NotificationController@unreadNumber'
     )->name('notifications.unread_notification_number');
+    Route::put('/notifications/mark-all-as-read', 'NotificationController@markAllAsRead')->name('notification.markAllAsRead');
     Route::put('/notifications/{id}', 'NotificationController@update')->name(
         'notifications.update'
     );

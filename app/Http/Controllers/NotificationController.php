@@ -34,4 +34,14 @@ class NotificationController extends Controller
 
         return response()->json(['marked' => true], 200);
     }
+
+    /**
+     * Mark all notification as read.
+     */
+    public function markAllAsRead()
+    {
+        $this->notificationService->markAllAsRead();
+
+        return response()->ok(null, 200);
+    }
 }
